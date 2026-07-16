@@ -82,7 +82,9 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           openLabel={dict.common.openMenu}
           closeLabel={dict.common.closeMenu}
           menuLabel={dict.common.menu}
+          callLabel={dict.common.call}
           languageSelector={languageSelector}
+          logo={<Logo locale={locale} label={dict.nav.home} />}
         />
       </Container>
     </header>
