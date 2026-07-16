@@ -49,6 +49,7 @@ export default async function ServicesPage({
         subtitle={services.heroSubtitle}
         breadcrumbs={
           <Breadcrumbs
+            tone="dark"
             label={dict.common.breadcrumb}
             items={[
               { label: dict.nav.home, href: localePath(locale, "home") },

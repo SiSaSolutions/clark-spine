@@ -50,6 +50,7 @@ export default async function AboutPage({
         subtitle={about.heroSubtitle}
         breadcrumbs={
           <Breadcrumbs
+            tone="dark"
             label={dict.common.breadcrumb}
             items={[
               { label: dict.nav.home, href: localePath(locale, "home") },

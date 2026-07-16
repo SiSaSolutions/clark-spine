@@ -44,6 +44,7 @@ export default async function PrivacyPage({
         title={privacy.title}
         breadcrumbs={
           <Breadcrumbs
+            tone="dark"
             label={dict.common.breadcrumb}
             items={[
               { label: dict.nav.home, href: localePath(locale, "home") },
