@@ -1,0 +1,37 @@
+# Dependencies
+/node_modules
+.pnp
+.pnp.*
+
+# Build output
+/.next
+/out
+/build
+*.tsbuildinfo
+next-env.d.ts
+
+# Testing
+/coverage
+
+# Environment / secrets — never commit real values
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+
+# Local tooling / staging
+/.asset-staging
+/artifacts
+.vercel
+.eslintcache
+
+# OS / editor artifacts
+.DS_Store
+Thumbs.db
+*.pem
+*.log
+npm-debug.log*
+.idea
+.vscode/*
+!.vscode/extensions.json

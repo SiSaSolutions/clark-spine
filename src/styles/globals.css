@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Design tokens — Clark Spine and Pain Relief
+   Palette derived from the practice's custom spine logo:
+     navy #0a2342 · blue #1a7abf · sky #6bbde0 · slate #5a6a7e
+   Tailwind v4 CSS-first config: values below generate utilities
+   (bg-brand-600, text-ink, etc.) and are exposed as CSS variables.
+   ========================================================================== */
+@theme {
+  /* Brand blues */
+  --color-brand-50: #eef7fc;
+  --color-brand-100: #d6ecf7;
+  --color-brand-200: #b0d9ee;
+  --color-brand-300: #6bbde0;
+  --color-brand-400: #3d9fd0;
+  --color-brand-500: #1a7abf;
+  --color-brand-600: #146199;
+  --color-brand-700: #124e7a;
+  --color-brand-800: #0f3a5c;
+  --color-brand-900: #0a2342;
+  --color-brand-950: #071a33;
+
+  /* Neutral / ink — warm-cool slate to match the logo's #5a6a7e */
+  --color-ink: #16202e;
+  --color-ink-soft: #3a4757;
+  --color-muted: #5a6a7e;
+  --color-line: #e2e7ee;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f5f8fb;
+  --color-surface-sunken: #eef2f7;
+
+  /* Semantic feedback */
+  --color-success: #1f7a4d;
+  --color-danger: #b42318;
+  --color-warning: #a15c07;
+
+  /* Semantic interactive roles — the alpha build's navy + bright-blue identity.
+     Primary actions use deep navy (like alpha's .btn-primary) for maximum
+     contrast; the bright accent (#1a7abf) carries highlights, active states,
+     icons, focus rings, and decorative accents. Because #1a7abf on white is
+     4.27:1 (AA-large only), interactive *text* uses --color-link (brand-600,
+     6.3:1) — never the raw accent at body size. */
+  --color-primary: #0a2342; /* navy = brand-900 */
+  --color-primary-hover: #0f3a5c; /* brand-800 */
+  --color-primary-active: #071a33; /* brand-950 */
+  --color-accent: #1a7abf; /* bright accent = brand-500 (AA-large / non-text) */
+  --color-accent-hover: #146199; /* brand-600 */
+  --color-link: #146199; /* interactive text, AA on white (6.3:1) = brand-600 */
+  --color-link-hover: #124e7a; /* brand-700 */
+
+  /* Typography */
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-lora), Georgia, "Times New Roman", serif;
+
+  /* Fluid type scale (min 320px → max ~1240px viewport) */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: clamp(1.0625rem, 0.02vw + 1.06rem, 1.125rem);
+  --text-xl: clamp(1.1875rem, 0.4vw + 1.1rem, 1.375rem);
+  --text-2xl: clamp(1.4rem, 1vw + 1.15rem, 1.75rem);
+  --text-3xl: clamp(1.7rem, 1.8vw + 1.25rem, 2.25rem);
+  --text-4xl: clamp(2rem, 3vw + 1.3rem, 3rem);
+  --text-5xl: clamp(2.35rem, 4.5vw + 1.4rem, 3.75rem);
+
+  /* Radii & shadows */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --shadow-card: 0 1px 2px rgb(10 35 66 / 0.06), 0 8px 24px -12px rgb(10 35 66 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(10 35 66 / 0.08), 0 18px 40px -18px rgb(10 35 66 / 0.28);
+
+  /* Layout */
+  --container-max: 78rem;
+}
+
+/* --------------------------------------------------------------------------
+   Base layer
+   -------------------------------------------------------------------------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    /* Guard against accidental horizontal overflow at any viewport. */
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    line-height: 1.15;
+    text-wrap: balance;
+    color: var(--color-brand-900);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Long words, URLs, phone numbers, and translated content wrap safely. */
+  p,
+  li,
+  a,
+  h1,
+  h2,
+  h3,
+  h4 {
+    overflow-wrap: break-word;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Respect reduced-motion globally. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Utilities
+   -------------------------------------------------------------------------- */
+@layer utilities {
+  /* Accessible visually-hidden helper (content available to screen readers). */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
