@@ -29,6 +29,7 @@
   --color-surface: #ffffff;
   --color-surface-subtle: #f5f8fb;
   --color-surface-sunken: #eef2f7;
+  --color-surface-dark: #071a33; /* = brand-950; shared navy for footer + interior heroes */
 
   /* Semantic feedback */
   --color-success: #1f7a4d;
@@ -49,6 +50,12 @@
   --color-link: #146199; /* interactive text, AA on white (6.3:1) = brand-600 */
   --color-link-hover: #124e7a; /* brand-700 */
 
+  /* On-dark roles — for text/accents over the deep navy (brand-900) hero and
+     footer surfaces. brand-500 is only ~3:1 on navy, so the sky blue
+     (brand-300, the logo's disc color) carries accents on dark instead. */
+  --color-accent-on-dark: #6bbde0; /* brand-300 / logo sky — 7.4:1 on brand-900 */
+  --color-text-on-dark-muted: #d6ecf7; /* brand-100 — 12.6:1 on brand-900 */
+
   /* Typography */
   --font-sans:
     var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
@@ -65,6 +72,8 @@
   --text-3xl: clamp(1.7rem, 1.8vw + 1.25rem, 2.25rem);
   --text-4xl: clamp(2rem, 3vw + 1.3rem, 3rem);
   --text-5xl: clamp(2.35rem, 4.5vw + 1.4rem, 3.75rem);
+  --text-6xl: clamp(2.75rem, 3.5vw + 1.6rem, 4.5rem);
+  --text-6xl--line-height: 1.1;
 
   /* Radii & shadows */
   --radius-sm: 0.375rem;
@@ -185,6 +194,14 @@
       flex-direction: column;
       justify-content: center;
     }
+  }
+
+  /* Dark interior-page hero: headings default to brand-900 in the base layer,
+     which is invisible over the navy hero surface — override to white here. */
+  .hero-dark h1,
+  .hero-dark h2,
+  .hero-dark h3 {
+    color: #ffffff;
   }
 }
 

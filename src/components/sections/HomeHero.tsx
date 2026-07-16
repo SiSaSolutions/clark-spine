@@ -40,7 +40,7 @@ export function HomeHero({ locale, dict }: { locale: Locale; dict: Dictionary })
           className="bg-brand-200/25 pointer-events-none absolute -top-24 -right-24 hidden size-96 rounded-full blur-3xl lg:block"
         />
         <Container className="hero-body desk-short:pt-8 desk-short:pb-8 desk-tiny:pt-5 desk-tiny:pb-5 pt-14 pb-16 sm:pt-16 sm:pb-20 lg:pt-12 lg:pb-12">
-          <AnimateIn className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <AnimateIn className="mx-auto flex max-w-4xl flex-col items-center text-center">
             <p className="border-brand-200/70 bg-brand-50 text-brand-700 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold tracking-wide uppercase">
               <span
                 aria-hidden="true"
@@ -50,7 +50,7 @@ export function HomeHero({ locale, dict }: { locale: Locale; dict: Dictionary })
             </p>
             <h1
               id="hero-heading"
-              className="desk-short:text-5xl desk-short:mt-4 desk-tiny:mt-3 mt-6 text-4xl text-balance sm:text-5xl lg:text-6xl"
+              className="desk-short:text-5xl desk-short:mt-5 desk-tiny:mt-4 mt-7 text-4xl text-balance sm:text-5xl lg:text-6xl"
             >
               {hero.titleSegments.map((seg, i) =>
                 seg.accent ? (

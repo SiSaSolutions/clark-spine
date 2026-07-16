@@ -47,6 +47,7 @@ export default async function InquiryPage({
         subtitle={inquiry.heroSubtitle}
         breadcrumbs={
           <Breadcrumbs
+            tone="dark"
             label={dict.common.breadcrumb}
             items={[
               { label: dict.nav.home, href: localePath(locale, "home") },

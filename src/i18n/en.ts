@@ -70,11 +70,9 @@ const en = {
     hero: {
       eyebrow: "Accepting new patients · Clark, NJ",
       titleSegments: [
-        { text: "Chiropractic care for ", accent: false },
-        { text: "auto injuries", accent: true },
-        { text: ", ", accent: false },
-        { text: "pain relief", accent: true },
-        { text: ", and everyday wellness", accent: false },
+        { text: "Relief for ", accent: false },
+        { text: "Auto Accident & Spine", accent: true },
+        { text: " Pain", accent: false },
       ],
       subtitle:
         "Experienced care for whiplash, neck pain, back pain, sciatica, and other injuries following a motor vehicle accident — plus everyday chiropractic care for spine and pain.",

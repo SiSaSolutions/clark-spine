@@ -4,37 +4,45 @@ import { Container } from "@/components/ui/Container";
 
 /**
  * Interior-page hero: an optional breadcrumb slot, an eyebrow, the page's single
- * <h1>, and a supporting subtitle. Kept text-only for fast rendering and to
- * avoid layout shift.
+ * <h1>, and a supporting subtitle, over a flat deep navy. The background uses the
+ * shared `surface-dark` token so it matches the footer's navy exactly (same
+ * semantic color, no gradient or overlays). Kept text-only for fast rendering
+ * and to avoid layout shift.
+ *
+ * On-dark colors come from the dedicated tokens: the sky-blue accent
+ * (`accent-on-dark`, the logo's disc color) for the eyebrow and `brand-100`
+ * for supporting text — both clear WCAG AA on the navy surface. The `.hero-dark`
+ * class overrides the base heading color (brand-900) to white.
  */
 export function PageHero({
   eyebrow,
   title,
   subtitle,
   breadcrumbs,
+  cta,
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
   breadcrumbs?: ReactNode;
+  cta?: ReactNode;
 }) {
   return (
-    <div className="border-line from-brand-50/80 via-surface-subtle to-surface-subtle relative border-b bg-gradient-to-br">
-      <div
-        aria-hidden="true"
-        className="from-brand-400 to-brand-700 absolute inset-y-0 left-0 w-1 bg-gradient-to-b sm:w-1.5"
-      />
-      <Container className="py-10 sm:py-14 lg:py-16">
+    <div className="hero-dark bg-surface-dark relative overflow-hidden">
+      <Container className="relative py-10 sm:py-14 lg:py-16">
         {breadcrumbs}
         {eyebrow ? (
-          <p className="text-brand-600 text-sm font-semibold tracking-wide uppercase">
+          <p className="text-accent-on-dark text-sm font-semibold tracking-wide uppercase">
             {eyebrow}
           </p>
         ) : null}
         <h1 className="mt-2 max-w-3xl text-4xl sm:text-5xl">{title}</h1>
         {subtitle ? (
-          <p className="text-ink-soft mt-4 max-w-2xl text-lg">{subtitle}</p>
+          <p className="text-text-on-dark-muted mt-4 max-w-2xl text-lg">
+            {subtitle}
+          </p>
         ) : null}
+        {cta ? <div className="mt-6">{cta}</div> : null}
       </Container>
     </div>
   );

@@ -20,7 +20,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   ];
 
   return (
-    <footer className="border-brand-800 bg-brand-950 text-brand-100 border-t">
+    <footer className="border-brand-800 bg-surface-dark text-brand-100 border-t">
       <Container className="py-12 lg:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Summary */}

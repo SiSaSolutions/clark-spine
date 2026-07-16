@@ -51,6 +51,7 @@ export default async function AutoAccidentsPage({
         subtitle={aa.heroSubtitle}
         breadcrumbs={
           <Breadcrumbs
+            tone="dark"
             label={dict.common.breadcrumb}
             items={[
               { label: dict.nav.home, href: localePath(locale, "home") },
