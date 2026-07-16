@@ -66,11 +66,9 @@ const es: Dictionary = {
     hero: {
       eyebrow: "Aceptando nuevos pacientes · Clark, NJ",
       titleSegments: [
-        { text: "Atención quiropráctica para ", accent: false },
-        { text: "lesiones de accidentes", accent: true },
-        { text: ", ", accent: false },
-        { text: "alivio del dolor", accent: true },
-        { text: " y bienestar diario", accent: false },
+        { text: "Alivio del dolor por ", accent: false },
+        { text: "accidentes de auto", accent: true },
+        { text: " y de columna", accent: false },
       ],
       subtitle:
         "Atención con experiencia para el latigazo cervical, el dolor de cuello, el dolor de espalda, la ciática y otras lesiones tras un accidente de vehículo motorizado — además de atención quiropráctica habitual para la columna y el dolor.",
