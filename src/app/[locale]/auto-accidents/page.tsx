@@ -29,7 +29,7 @@ export async function generateMetadata({
     title: dict.autoAccidents.metaTitle,
     description: dict.autoAccidents.metaDescription,
     siteName: dict.meta.siteName,
-    ogImageAlt: dict.meta.siteName,
+    ogImageAlt: dict.meta.ogImageAlt,
   });
 }
 

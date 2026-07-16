@@ -1,6 +1,6 @@
-import { useId } from "react";
 import Link from "next/link";
 
+import { SpineMark } from "@/components/brand/SpineMark";
 import { practice } from "@/data/practice";
 import type { Locale } from "@/i18n/locales";
 import { localePath } from "@/lib/routes";
@@ -9,18 +9,13 @@ import { cn } from "@/lib/utils";
 /**
  * Practice logo, linked to the localized home page.
  *
- * This reproduces the alpha build's exact logo presentation: an inline
- * anatomical-spine mark (a vertical taper of vertebrae → sacrum, gradient navy →
- * bright blue) beside a two-line wordmark — "Clark" (navy) + "Spine" (accent) in
- * the serif face, over a spaced "AND PAIN RELIEF" subtitle. The alpha repo's
- * `logo.png` / `logo.svg` assets are unused there and are corrupt (a screenshot
- * with a baked-in XML-parse-error banner), so the mark is rendered as inline SVG
- * — it scales crisply, inherits the page font for the wordmark, causes no layout
- * shift, and cannot fail as a broken image request.
+ * This reproduces the alpha build's exact logo presentation: the approved
+ * anatomical spine mark (see `SpineMark`) beside a two-line wordmark —
+ * "Clark" (navy) + "Spine" (accent) in the serif face, over a spaced
+ * "AND PAIN RELIEF" subtitle.
  *
- * The SVG mark is aria-hidden and the wordmark text is aria-hidden; the
- * accessible name lives on the link so assistive tech announces it once.
- * Gradient ids are unique per instance via useId.
+ * The SVG mark and the wordmark text are aria-hidden; the accessible name
+ * lives on the link so assistive tech announces it once.
  */
 export function Logo({
   locale,
@@ -31,198 +26,13 @@ export function Logo({
   className?: string;
   label: string;
 }) {
-  const uid = useId().replace(/:/g, "");
-  const gradId = `logo-spine-${uid}`;
-
   return (
     <Link
       href={localePath(locale, "home")}
       className={cn("inline-flex min-w-0 shrink items-center gap-1.5", className)}
       aria-label={`${practice.name} — ${label}`}
     >
-      {/* Anatomical spine mark — exact alpha geometry (viewBox 0 0 24 56). */}
-      <svg
-        viewBox="0 0 24 56"
-        className="block h-9 w-auto shrink-0 sm:h-10"
-        style={{ aspectRatio: "24 / 56" }}
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <defs>
-          <linearGradient
-            id={gradId}
-            x1="0"
-            y1="0"
-            x2="0"
-            y2="56"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop offset="0%" stopColor="#1a7abf" />
-            <stop offset="100%" stopColor="#0a2342" />
-          </linearGradient>
-        </defs>
-        {/* C3 */}
-        <path
-          fill={`url(#${gradId})`}
-          d="M12.11,1.50 H15.51 Q16.91,1.50 16.91,2.90 V3.30 Q16.91,4.70 15.51,4.70 H12.11 Q10.71,4.70 10.71,3.30 V2.90 Q10.71,1.50 12.11,1.50 Z"
-        />
-        <path
-          fill={`url(#${gradId})`}
-          opacity="0.80"
-          d="M16.91,2.10 C19.00,2.10 20.71,2.70 20.71,3.10 C20.71,3.50 19.00,4.10 16.91,4.10 Z"
-        />
-        <ellipse cx="13.81" cy="3.10" rx="1.1" ry="0.85" fill="white" opacity="0.20" />
-        <rect
-          x="11.74"
-          y="4.70"
-          width="5.46"
-          height="1.30"
-          rx="0.75"
-          fill="#6bbde0"
-          opacity="0.75"
-        />
-        {/* C5 */}
-        <path
-          fill={`url(#${gradId})`}
-          d="M12.93,6.00 H16.93 Q18.33,6.00 18.33,7.40 V8.00 Q18.33,9.40 16.93,9.40 H12.93 Q11.53,9.40 11.53,8.00 V7.40 Q11.53,6.00 12.93,6.00 Z"
-        />
-        <path
-          fill={`url(#${gradId})`}
-          opacity="0.80"
-          d="M18.33,6.60 C20.64,6.60 22.53,7.26 22.53,7.70 C22.53,8.14 20.64,8.80 18.33,8.80 Z"
-        />
-        <ellipse cx="14.93" cy="7.70" rx="1.1" ry="0.85" fill="white" opacity="0.20" />
-        <rect
-          x="11.73"
-          y="9.40"
-          width="5.98"
-          height="1.30"
-          rx="0.75"
-          fill="#6bbde0"
-          opacity="0.75"
-        />
-        {/* T1 */}
-        <path
-          fill={`url(#${gradId})`}
-          d="M11.68,10.70 H16.08 Q17.48,10.70 17.48,12.10 V13.10 Q17.48,14.50 16.08,14.50 H11.68 Q10.28,14.50 10.28,13.10 V12.10 Q10.28,10.70 11.68,10.70 Z"
-        />
-        <path
-          fill={`url(#${gradId})`}
-          opacity="0.80"
-          d="M17.48,11.40 C20.23,11.40 22.48,12.12 22.48,12.60 C22.48,13.08 20.23,13.80 17.48,13.80 Z"
-        />
-        <ellipse cx="13.88" cy="12.60" rx="1.1" ry="0.85" fill="white" opacity="0.20" />
-        <rect
-          x="9.72"
-          y="14.50"
-          width="6.34"
-          height="1.50"
-          rx="0.75"
-          fill="#6bbde0"
-          opacity="0.75"
-        />
-        {/* T5 */}
-        <path
-          fill={`url(#${gradId})`}
-          d="M9.66,16.00 H14.46 Q15.86,16.00 15.86,17.40 V18.60 Q15.86,20.00 14.46,20.00 H9.66 Q8.26,20.00 8.26,18.60 V17.40 Q8.26,16.00 9.66,16.00 Z"
-        />
-        <path
-          fill={`url(#${gradId})`}
-          opacity="0.80"
-          d="M15.86,16.70 C19.05,16.70 21.66,17.48 21.66,18.00 C21.66,18.52 19.05,19.30 15.86,19.30 Z"
-        />
-        <ellipse cx="12.06" cy="18.00" rx="1.1" ry="0.85" fill="white" opacity="0.20" />
-        <rect
-          x="8.02"
-          y="20.00"
-          width="6.69"
-          height="1.50"
-          rx="0.75"
-          fill="#6bbde0"
-          opacity="0.75"
-        />
-        {/* T10 */}
-        <path
-          fill={`url(#${gradId})`}
-          d="M8.18,21.50 H13.38 Q14.78,21.50 14.78,22.90 V24.30 Q14.78,25.70 13.38,25.70 H8.18 Q6.78,25.70 6.78,24.30 V22.90 Q6.78,21.50 8.18,21.50 Z"
-        />
-        <path
-          fill={`url(#${gradId})`}
-          opacity="0.80"
-          d="M14.78,22.20 C17.81,22.20 20.28,23.04 20.28,23.60 C20.28,24.16 17.81,25.00 14.78,25.00 Z"
-        />
-        <ellipse cx="10.78" cy="23.60" rx="1.1" ry="0.85" fill="white" opacity="0.20" />
-        <rect
-          x="6.99"
-          y="25.70"
-          width="7.04"
-          height="1.60"
-          rx="0.75"
-          fill="#6bbde0"
-          opacity="0.75"
-        />
-        {/* L2 */}
-        <path
-          fill={`url(#${gradId})`}
-          d="M7.73,27.30 H13.73 Q15.13,27.30 15.13,28.70 V30.70 Q15.13,32.10 13.73,32.10 H7.73 Q6.33,32.10 6.33,30.70 V28.70 Q6.33,27.30 7.73,27.30 Z"
-        />
-        <path
-          fill={`url(#${gradId})`}
-          opacity="0.80"
-          d="M15.13,28.10 C17.60,28.10 19.63,29.06 19.63,29.70 C19.63,30.34 17.60,31.30 15.13,31.30 Z"
-        />
-        <ellipse cx="10.73" cy="29.70" rx="1.1" ry="0.85" fill="white" opacity="0.20" />
-        <rect
-          x="7.59"
-          y="32.10"
-          width="7.74"
-          height="1.80"
-          rx="0.75"
-          fill="#6bbde0"
-          opacity="0.75"
-        />
-        {/* L4 */}
-        <path
-          fill={`url(#${gradId})`}
-          d="M9.24,33.90 H16.04 Q17.44,33.90 17.44,35.30 V37.70 Q17.44,39.10 16.04,39.10 H9.24 Q7.84,39.10 7.84,37.70 V35.30 Q7.84,33.90 9.24,33.90 Z"
-        />
-        <path
-          fill={`url(#${gradId})`}
-          opacity="0.80"
-          d="M17.44,34.80 C19.37,34.80 20.94,35.82 20.94,36.50 C20.94,37.18 19.37,38.20 17.44,38.20 Z"
-        />
-        <ellipse cx="12.64" cy="36.50" rx="1.1" ry="0.85" fill="white" opacity="0.20" />
-        <rect
-          x="9.90"
-          y="39.10"
-          width="8.45"
-          height="1.80"
-          rx="0.75"
-          fill="#6bbde0"
-          opacity="0.75"
-        />
-        {/* L5 */}
-        <path
-          fill={`url(#${gradId})`}
-          d="M11.62,40.90 H19.02 Q20.42,40.90 20.42,42.30 V45.00 Q20.42,46.40 19.02,46.40 H11.62 Q10.22,46.40 10.22,45.00 V42.30 Q10.22,40.90 11.62,40.90 Z"
-        />
-        <path
-          fill={`url(#${gradId})`}
-          opacity="0.80"
-          d="M20.42,41.85 C21.96,41.85 23.22,42.93 23.22,43.65 C23.22,44.37 21.96,45.45 20.42,45.45 Z"
-        />
-        <ellipse cx="15.32" cy="43.65" rx="1.1" ry="0.85" fill="white" opacity="0.20" />
-        {/* Sacrum */}
-        <path
-          fill={`url(#${gradId})`}
-          d="M10.32,47.40 H17.72 Q19.12,47.40 19.12,48.80 L17.08,53.50 Q17.08,54.90 15.68,54.90 H12.36 Q10.96,54.90 10.96,53.50 L8.92,48.80 Q8.92,47.40 10.32,47.40 Z"
-        />
-        <ellipse cx="14.66" cy="49.05" rx="0.9" ry="0.65" fill="white" opacity="0.18" />
-        <ellipse cx="14.06" cy="51.00" rx="0.9" ry="0.65" fill="white" opacity="0.18" />
-        <ellipse cx="13.57" cy="52.95" rx="0.9" ry="0.65" fill="white" opacity="0.18" />
-      </svg>
+      <SpineMark className="h-9 w-auto shrink-0 sm:h-10" />
 
       {/* Wordmark — real HTML text so it inherits the serif face (matches alpha). */}
       <span aria-hidden="true" className="flex min-w-0 flex-col leading-none">

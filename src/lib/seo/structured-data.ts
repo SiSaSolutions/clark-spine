@@ -1,4 +1,5 @@
 import { formattedAddress, practice } from "@/data/practice";
+import { brandAssets } from "@/lib/brand";
 import { siteUrl } from "@/lib/public-env";
 import { localePath } from "@/lib/routes";
 import type { Crumb } from "@/components/sections/Breadcrumbs";
@@ -37,8 +38,8 @@ export function localBusinessJsonLd(locale: Locale) {
     url: absolute(localePath(locale, "home")),
     telephone: practice.phone.e164,
     faxNumber: practice.fax.display,
-    image: absolute("/brand/logo-mark.png"),
-    logo: absolute("/brand/logo-mark.png"),
+    image: absolute(brandAssets.ogImage),
+    logo: absolute(brandAssets.icon512),
     address: {
       "@type": "PostalAddress",
       streetAddress: `${practice.address.line1}, ${practice.address.line2}`,

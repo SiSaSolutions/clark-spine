@@ -27,7 +27,10 @@ export async function generateMetadata({
     title: dict.home.metaTitle,
     description: dict.home.metaDescription,
     siteName: dict.meta.siteName,
-    ogImageAlt: dict.meta.siteName,
+    ogImageAlt: dict.meta.ogImageAlt,
+    // The home title already leads with the brand — skip the `%s · siteName`
+    // template to avoid "Clark Spine … · Clark Spine and Pain Relief".
+    absoluteTitle: true,
   });
 }
 

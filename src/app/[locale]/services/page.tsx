@@ -27,7 +27,7 @@ export async function generateMetadata({
     title: dict.services.metaTitle,
     description: dict.services.metaDescription,
     siteName: dict.meta.siteName,
-    ogImageAlt: dict.meta.siteName,
+    ogImageAlt: dict.meta.ogImageAlt,
   });
 }
 

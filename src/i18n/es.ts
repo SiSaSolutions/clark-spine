@@ -8,9 +8,10 @@ import type { Dictionary } from "./dictionaries";
 const es: Dictionary = {
   meta: {
     siteName: "Clark Spine and Pain Relief",
-    defaultTitle: "Clark Spine and Pain Relief — Quiropráctico en Clark, NJ",
+    defaultTitle: "Clark Spine and Pain Relief | Quiropráctico en Clark, NJ",
     defaultDescription:
       "El Dr. James Garabo, DC ofrece atención quiropráctica y alivio del dolor en Clark, Nueva Jersey, con enfoque en el dolor de columna y las lesiones por accidentes de auto.",
+    ogImageAlt: "Clark Spine and Pain Relief en Clark, Nueva Jersey",
   },
 
   common: {
@@ -60,9 +61,9 @@ const es: Dictionary = {
   },
 
   home: {
-    metaTitle: "Quiropráctico en Clark, NJ",
+    metaTitle: "Clark Spine and Pain Relief | Quiropráctico en Clark, NJ",
     metaDescription:
-      "Clark Spine and Pain Relief — atención quiropráctica para lesiones por accidentes de auto y el dolor de espalda, cuello y ciática en Clark, Nueva Jersey. Dr. James Garabo, DC. Solicite una cita hoy.",
+      "Atención quiropráctica para el dolor de espalda, cuello, ciática y lesiones por accidentes de auto en Clark, Nueva Jersey. Dr. James Garabo, DC. Solicite una cita hoy.",
     hero: {
       eyebrow: "Aceptando nuevos pacientes · Clark, NJ",
       titleSegments: [

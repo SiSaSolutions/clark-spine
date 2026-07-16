@@ -17,6 +17,7 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "brand:assets": "node scripts/generate-brand-assets.mjs",
     "screenshots:clean": "node scripts/screenshots-clean.mjs",
     "screenshots:generate": "node scripts/visual-qa.mjs",
     "screenshots": "npm run screenshots:generate",
