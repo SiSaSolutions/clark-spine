@@ -34,7 +34,7 @@ export function localePath(locale: Locale, page: PageKey): string {
 }
 
 /** Keys present in `dictionary.nav`. */
-export type NavKey =
+type NavKey =
   | "home"
   | "about"
   | "services"

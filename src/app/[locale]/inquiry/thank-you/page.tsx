@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { AlertTriangle, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { buttonClasses } from "@/components/ui/Button";
+import { EmergencyNotice } from "@/components/ui/EmergencyNotice";
 import { Section } from "@/components/ui/Section";
 import { siteUrl } from "@/lib/public-env";
 import { localePath } from "@/lib/routes";
@@ -43,13 +44,7 @@ export default async function ThankYouPage({
       <h1 className="mt-4 text-3xl sm:text-4xl">{t.title}</h1>
       <p className="mx-auto mt-4 max-w-xl text-lg text-ink-soft">{t.body}</p>
 
-      <div
-        role="note"
-        className="mx-auto mt-8 flex max-w-md items-start gap-3 rounded-md border border-warning/30 bg-warning/5 p-4 text-left"
-      >
-        <AlertTriangle aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-warning" />
-        <p className="text-sm text-ink">{t.emergencyNote}</p>
-      </div>
+      <EmergencyNotice message={t.emergencyNote} className="mx-auto mt-8 max-w-md text-left" />
 
       <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
         <Link href={localePath(locale, "home")} className={buttonClasses("primary", "lg")}>

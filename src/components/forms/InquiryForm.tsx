@@ -1,11 +1,11 @@
 "use client";
 
-import { AlertTriangle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Script from "next/script";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/Button";
+import { EmergencyNotice } from "@/components/ui/EmergencyNotice";
 import { resolveFieldMessage } from "@/lib/inquiry-errors";
 import { inquirySchema } from "@/lib/schemas/inquiry";
 import type { Dictionary } from "@/i18n/dictionaries";
@@ -196,14 +196,7 @@ export function InquiryForm({
     <>
       <Script src={TURNSTILE_SRC} strategy="afterInteractive" onLoad={renderWidget} />
 
-      {/* Emergency / privacy notice */}
-      <div
-        role="note"
-        className="mb-6 flex items-start gap-3 rounded-md border border-warning/30 bg-warning/5 p-4"
-      >
-        <AlertTriangle aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-warning" />
-        <p className="text-sm text-ink">{copy.emergencyNotice}</p>
-      </div>
+      <EmergencyNotice message={copy.emergencyNotice} className="mb-6" />
 
       <form noValidate onSubmit={onSubmit} aria-busy={submitting}>
         {/* Form-level error summary (live region). */}

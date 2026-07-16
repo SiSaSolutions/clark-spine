@@ -58,10 +58,6 @@ export function isEmailConfigured(): boolean {
   return Boolean(e.RESEND_API_KEY && e.INQUIRY_FROM_EMAIL && e.INQUIRY_OWNER_EMAIL);
 }
 
-export function isTurnstileConfigured(): boolean {
-  return Boolean(serverEnv().TURNSTILE_SECRET_KEY);
-}
-
 export function isRateLimitConfigured(): boolean {
   const e = serverEnv();
   return Boolean(e.UPSTASH_REDIS_REST_URL && e.UPSTASH_REDIS_REST_TOKEN);

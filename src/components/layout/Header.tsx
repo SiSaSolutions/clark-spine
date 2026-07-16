@@ -2,13 +2,11 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/brand/Logo";
 import type { Dictionary } from "@/i18n/dictionaries";
-import type { Locale } from "@/i18n/locales";
+import { localeShort, type Locale } from "@/i18n/locales";
 import { localePath, primaryNav } from "@/lib/routes";
 import { LanguageSelector } from "./LanguageSelector";
 import { MobileNav } from "./MobileNav";
 import { NavLink } from "./NavLink";
-
-const localeShort: Record<Locale, string> = { en: "EN", es: "ES" };
 
 /**
  * Site header: logo, primary navigation, language switch, and the primary CTA.

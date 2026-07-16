@@ -2,7 +2,7 @@
  * Single source of truth for supported locales.
  *
  * Locale validation everywhere in the app funnels through {@link isLocale} /
- * {@link assertLocale} so an unsupported or user-controlled value can never be
+ * {@link toLocale} so an unsupported or user-controlled value can never be
  * used to build a redirect target or index a dictionary.
  */
 
@@ -29,9 +29,10 @@ export function toLocale(value: unknown): Locale {
   return isLocale(value) ? value : defaultLocale;
 }
 
-export const localeLabels: Record<Locale, string> = {
-  en: "English",
-  es: "Español",
+/** Short labels for the language switcher. */
+export const localeShort: Record<Locale, string> = {
+  en: "EN",
+  es: "ES",
 };
 
 /** BCP-47 `lang` attribute values. */

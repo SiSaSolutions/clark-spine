@@ -8,32 +8,24 @@ import type { Dictionary } from "./dictionaries";
 const es: Dictionary = {
   meta: {
     siteName: "Clark Spine and Pain Relief",
-    tagline: "Atención quiropráctica y alivio del dolor en Clark, Nueva Jersey.",
     defaultTitle: "Clark Spine and Pain Relief — Quiropráctico en Clark, NJ",
     defaultDescription:
       "El Dr. James Garabo, DC ofrece atención quiropráctica y alivio del dolor en Clark, Nueva Jersey, con enfoque en el dolor de columna y las lesiones por accidentes de auto.",
-    localeName: "Español",
-    switchToOther: "View in English",
   },
 
   common: {
     skipToContent: "Saltar al contenido principal",
     call: "Llamar",
-    callUs: "Llámenos",
     email: "Correo",
     fax: "Fax",
     address: "Dirección",
     officeHours: "Horario de Oficina",
     closed: "Cerrado",
-    bookAppointment: "Solicitar una Cita",
-    ourServices: "Nuestros Servicios",
-    learnMore: "Más información",
     getDirections: "Cómo llegar",
     menu: "Menú",
     closeMenu: "Cerrar menú",
     openMenu: "Abrir menú",
     languageLabel: "Idioma",
-    home: "Inicio",
     breadcrumb: "Ruta de navegación",
   },
 

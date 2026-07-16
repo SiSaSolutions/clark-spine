@@ -12,32 +12,24 @@
 const en = {
   meta: {
     siteName: "Clark Spine and Pain Relief",
-    tagline: "Chiropractic and pain-relief care in Clark, New Jersey.",
     defaultTitle: "Clark Spine and Pain Relief — Chiropractor in Clark, NJ",
     defaultDescription:
       "Dr. James Garabo, DC provides chiropractic and pain-relief care in Clark, New Jersey, with a focus on spine pain and motor vehicle accident injuries.",
-    localeName: "English",
-    switchToOther: "Ver en Español",
   },
 
   common: {
     skipToContent: "Skip to main content",
     call: "Call",
-    callUs: "Call us",
     email: "Email",
     fax: "Fax",
     address: "Address",
     officeHours: "Office Hours",
     closed: "Closed",
-    bookAppointment: "Request an Appointment",
-    ourServices: "Our Services",
-    learnMore: "Learn more",
     getDirections: "Get directions",
     menu: "Menu",
     closeMenu: "Close menu",
     openMenu: "Open menu",
     languageLabel: "Language",
-    home: "Home",
     breadcrumb: "Breadcrumb",
   },
 

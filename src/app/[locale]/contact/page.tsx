@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { AlertTriangle, MapPin, Phone, Printer } from "lucide-react";
+import { MapPin, Phone, Printer } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PageHero } from "@/components/sections/PageHero";
+import { EmergencyNotice } from "@/components/ui/EmergencyNotice";
 import { Section } from "@/components/ui/Section";
 import { practice, formattedAddress } from "@/data/practice";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -100,14 +101,7 @@ export default async function ContactPage({
               </div>
             </dl>
 
-            {/* Emergency notice — icon + heading, not color alone. */}
-            <div
-              role="note"
-              className="mt-8 flex items-start gap-3 rounded-md border border-warning/30 bg-warning/5 p-4"
-            >
-              <AlertTriangle aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-warning" />
-              <p className="text-sm text-ink">{contact.emergencyNotice}</p>
-            </div>
+            <EmergencyNotice message={contact.emergencyNotice} className="mt-8" />
           </div>
 
           {/* Office hours */}
