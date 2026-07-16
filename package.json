@@ -18,10 +18,13 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "brand:assets": "node scripts/generate-brand-assets.mjs",
+    "screenshots": "node scripts/visual-qa/cli.mjs",
+    "screenshots:changed": "node scripts/visual-qa/cli.mjs --changed",
+    "screenshots:all": "node scripts/visual-qa/cli.mjs --all",
+    "screenshots:reset": "node scripts/visual-qa/cli.mjs --reset",
+    "screenshots:dry": "node scripts/visual-qa/cli.mjs --dry-run",
     "screenshots:clean": "node scripts/screenshots-clean.mjs",
-    "screenshots:generate": "node scripts/visual-qa.mjs",
-    "screenshots": "npm run screenshots:generate",
-    "visual:qa": "npm run screenshots",
+    "visual:qa": "npm run screenshots:all",
     "email:dev": "email dev --dir src/emails"
   },
   "dependencies": {
