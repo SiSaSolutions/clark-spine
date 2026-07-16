@@ -63,13 +63,7 @@ export const practice = {
       closes: "18:00",
       display: "8:30 AM – 6:00 PM",
     },
-    {
-      day: "tuesday",
-      schemaDay: "Tuesday",
-      opens: "08:30",
-      closes: "12:30",
-      display: "8:30 AM – 12:30 PM",
-    },
+    { day: "tuesday", schemaDay: "Tuesday", opens: null, closes: null, display: null },
     {
       day: "wednesday",
       schemaDay: "Wednesday",
@@ -85,13 +79,7 @@ export const practice = {
       closes: "18:00",
       display: "8:30 AM – 6:00 PM",
     },
-    {
-      day: "saturday",
-      schemaDay: "Saturday",
-      opens: "08:30",
-      closes: "12:00",
-      display: "8:30 AM – 12:00 PM",
-    },
+    { day: "saturday", schemaDay: "Saturday", opens: null, closes: null, display: null },
     { day: "sunday", schemaDay: "Sunday", opens: null, closes: null, display: null },
   ] satisfies OpeningHours[],
 } as const;
