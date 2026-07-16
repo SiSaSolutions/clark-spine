@@ -53,9 +53,12 @@ stored preference or the `Accept-Language` header.
 | `npm run test` | Vitest unit tests |
 | `npm run format` | Prettier write |
 | `npm run format:check` | Prettier check (no writes) |
-| `npm run screenshots` | Clean the previous set, then capture visual-QA screenshots |
+| `npm run screenshots -- <scope>` | Targeted screenshot update (e.g. `about`, `about,en`, `mobile-menu`) |
+| `npm run screenshots:changed` | Derive the screenshot scope from Git-detected changes (`-- --base=<ref>`) |
+| `npm run screenshots:all` | Regenerate the full screenshot suite (no directory wipe) |
+| `npm run screenshots:reset` | Explicit full reset: wipe the screenshot directory, then full suite |
+| `npm run screenshots:dry -- <scope>` | Dry run: report the planned scope without capturing anything |
 | `npm run screenshots:clean` | Delete the generated screenshot set only |
-| `npm run screenshots:generate` | Capture screenshots (cleans first via the harness) |
 | `npm run email:dev` | Preview React Email templates |
 
 ## Project structure
@@ -74,17 +77,59 @@ src/
   styles/globals.css        # Tailwind v4 tokens + base layer
   middleware.ts             # locale routing + per-request CSP nonce
 scripts/check-translations.ts   # build-time translation gate
-scripts/visual-qa.mjs           # Playwright screenshot + layout assertions
-scripts/screenshots-clean.mjs   # safe cleanup of the generated screenshot set
+scripts/visual-qa/              # incremental screenshot harness
+  scenarios.mjs                 #   scenario registry (routes × locales × viewports × states)
+  dependency-map.mjs            #   source-to-screenshot dependency rules
+  select.mjs                    #   filters, Git change detection, i18n key-diff
+  fs-safety.mjs                 #   path guards + safe per-file replacement
+  capture.mjs                   #   Playwright capture + layout assertions
+  cli.mjs                       #   command-line entry point
+scripts/screenshots-clean.mjs   # full wipe (reset mode only)
 ```
 
 ## Visual QA screenshots
 
-`npm run screenshots` produces exactly **one current set** of screenshots in
-`artifacts/screenshots/current/` (git-ignored). The harness deletes the previous
-set first, so runs never accumulate stale files. Filenames are deterministic —
+The screenshot harness is **incremental**: a run regenerates only the
+screenshots affected by the current change and leaves everything else in
+`artifacts/screenshots/current/` (git-ignored) untouched. The directory holds
+exactly one current file per scenario. Filenames are deterministic —
 `<route>-<locale>-<deviceClass>-<width>x<height>.png` (e.g.
-`home-en-desktop-1512x982.png`) — with no timestamps or run ids.
+`home-en-desktop-1512x982.png`) or `<state>-<locale>-<width>x<height>.png` for
+interaction states (e.g. `mobile-menu-en-390x844.png`) — with no timestamps or
+run ids. Every scenario is defined once in
+`scripts/visual-qa/scenarios.mjs`.
+
+Typical usage:
+
+```bash
+npm run screenshots -- about              # one page, both locales, all viewports
+npm run screenshots -- about,en           # one page, one locale
+npm run screenshots -- --page=home --viewport=mobile
+npm run screenshots -- mobile-menu        # menu open-state scenarios
+npm run screenshots -- shared-header      # everything the header touches
+npm run screenshots:changed               # scope from uncommitted changes
+npm run screenshots:changed -- --base=origin/main
+npm run screenshots:dry -- about          # preview the scope, capture nothing
+npm run screenshots:all                   # explicit full suite
+npm run screenshots:reset                 # explicit wipe + full rebuild
+```
+
+`screenshots:changed` matches changed files against the dependency rules in
+`scripts/visual-qa/dependency-map.mjs`. Page-specific files select one page;
+shared components (header, footer, mobile nav, interior hero) expand to the
+pages they render on; global files (tokens, global CSS, root layouts, the
+screenshot tooling itself) escalate to the full suite. Locale dictionary edits
+are key-diffed per namespace, so an About-only translation change regenerates
+only the About screenshots in that locale. Files whose impact cannot be
+determined are reported — never silently converted into a full rebuild. Note
+the detection sees file paths, not rendered pixels; when in doubt, state the
+scope explicitly.
+
+Each capture writes to a temporary file and atomically replaces its target
+only on success, so a failed capture never destroys the previous valid
+screenshot. Failure diagnostics land in `artifacts/screenshots/failures/`. A
+normal run never deletes the screenshot directory — only
+`npm run screenshots:reset` does.
 
 The run also asserts: no horizontal overflow, no broken images, header logo
 present, mobile menu present below `xl`, page starts at scroll position 0, and —

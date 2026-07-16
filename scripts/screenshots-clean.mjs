@@ -1,7 +1,13 @@
 #!/usr/bin/env node
 /**
- * Removes the previous generated screenshot set so each visual-QA run produces
- * exactly one current set in `artifacts/screenshots/current/`.
+ * Removes the entire generated screenshot set in
+ * `artifacts/screenshots/current/`.
+ *
+ * This full wipe is used ONLY by the explicit full-reset command
+ * (`npm run screenshots:reset`) or when invoked directly via
+ * `npm run screenshots:clean`. Normal targeted screenshot runs never call
+ * this — they atomically replace only the deterministic files they own (see
+ * scripts/visual-qa/fs-safety.mjs).
  *
  * Safety guards:
  *   - The target directory is resolved from the repository root (this script's
