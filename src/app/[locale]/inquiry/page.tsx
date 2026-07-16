@@ -25,7 +25,7 @@ export async function generateMetadata({
     title: dict.inquiry.metaTitle,
     description: dict.inquiry.metaDescription,
     siteName: dict.meta.siteName,
-    ogImageAlt: dict.meta.siteName,
+    ogImageAlt: dict.meta.ogImageAlt,
   });
 }
 

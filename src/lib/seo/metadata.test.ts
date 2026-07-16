@@ -34,4 +34,46 @@ describe("buildPageMetadata", () => {
     expect(Object.keys(languages).sort()).toEqual(["en", "es", "x-default"]);
     expect(languages["x-default"]).toContain("/en/services");
   });
+
+  it("uses the branded 1200x630 Open Graph image with alt text", () => {
+    const images = meta.openGraph?.images;
+    expect(images).toEqual([
+      {
+        url: "/brand/clark-spine-og.png",
+        width: 1200,
+        height: 630,
+        alt: "logo",
+      },
+    ]);
+  });
+
+  it("uses a large-image Twitter card with the same asset", () => {
+    const twitter = meta.twitter as { card?: string; images?: { url: string }[] };
+    expect(twitter.card).toBe("summary_large_image");
+    expect(twitter.images?.[0]?.url).toBe("/brand/clark-spine-og.png");
+  });
+
+  it("brands the social title while keeping the templated page title", () => {
+    expect(meta.title).toBe("Servicios");
+    expect(meta.openGraph?.title).toBe("Servicios · Clark Spine");
+    expect(meta.twitter?.title).toBe("Servicios · Clark Spine");
+  });
+
+  it("supports absolute titles for brand-first pages", () => {
+    const home = buildPageMetadata({
+      locale: "en",
+      page: "home",
+      title: "Clark Spine and Pain Relief | Chiropractor in Clark, NJ",
+      description: "desc",
+      siteName: "Clark Spine and Pain Relief",
+      ogImageAlt: "logo",
+      absoluteTitle: true,
+    });
+    expect(home.title).toEqual({
+      absolute: "Clark Spine and Pain Relief | Chiropractor in Clark, NJ",
+    });
+    expect(home.openGraph?.title).toBe(
+      "Clark Spine and Pain Relief | Chiropractor in Clark, NJ",
+    );
+  });
 });

@@ -12,9 +12,10 @@
 const en = {
   meta: {
     siteName: "Clark Spine and Pain Relief",
-    defaultTitle: "Clark Spine and Pain Relief — Chiropractor in Clark, NJ",
+    defaultTitle: "Clark Spine and Pain Relief | Chiropractor in Clark, NJ",
     defaultDescription:
       "Dr. James Garabo, DC provides chiropractic and pain-relief care in Clark, New Jersey, with a focus on spine pain and motor vehicle accident injuries.",
+    ogImageAlt: "Clark Spine and Pain Relief in Clark, New Jersey",
   },
 
   common: {
@@ -64,9 +65,9 @@ const en = {
   },
 
   home: {
-    metaTitle: "Chiropractor in Clark, NJ",
+    metaTitle: "Clark Spine and Pain Relief | Chiropractor in Clark, NJ",
     metaDescription:
-      "Clark Spine and Pain Relief — chiropractic care for auto accident injuries, back, neck, and sciatica pain in Clark, New Jersey. Dr. James Garabo, DC. Request an appointment today.",
+      "Chiropractic care for back pain, neck pain, sciatica and auto-accident injuries in Clark, New Jersey. Dr. James Garabo, DC. Request an appointment today.",
     hero: {
       eyebrow: "Accepting new patients · Clark, NJ",
       titleSegments: [
