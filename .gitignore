@@ -26,6 +26,12 @@ next-env.d.ts
 .vercel
 .eslintcache
 
+# Playwright artifacts (defensive — no playwright.config exists today)
+/test-results
+/playwright-report
+/blob-report
+/.playwright
+
 # OS / editor artifacts
 .DS_Store
 Thumbs.db

@@ -17,7 +17,10 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "visual:qa": "node scripts/visual-qa.mjs",
+    "screenshots:clean": "node scripts/screenshots-clean.mjs",
+    "screenshots:generate": "node scripts/visual-qa.mjs",
+    "screenshots": "npm run screenshots:generate",
+    "visual:qa": "npm run screenshots",
     "email:dev": "email dev --dir src/emails"
   },
   "dependencies": {
