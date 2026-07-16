@@ -76,7 +76,14 @@
 
   /* Layout */
   --container-max: 78rem;
+  --header-height: 4rem; /* keep in sync with the header's h-16 */
 }
+
+/* Height-aware desktop variants: compact the hero on short desktop/laptop
+   viewports so the full composition (through the credential strip) fits above
+   the fold. Usage: desk-short:pt-8, desk-tiny:pt-5, … */
+@custom-variant desk-short (@media (min-width: 64rem) and (max-height: 53.125rem));
+@custom-variant desk-tiny (@media (min-width: 64rem) and (max-height: 46.875rem));
 
 /* --------------------------------------------------------------------------
    Base layer
@@ -143,6 +150,40 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
+    }
+
+    /* Reveal-on-scroll content must be fully visible without motion. The
+       server renders AnimateIn with inline opacity:0 (it cannot know the
+       user's preference), so this override guarantees visibility. */
+    [data-animate-in] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Components
+   -------------------------------------------------------------------------- */
+@layer components {
+  /* Home hero viewport fit: on desktop/laptop the hero block fills the space
+     below the sticky header and distributes it between the main content
+     (centered) and the credential strip (anchored at the bottom), so the whole
+     composition — including credential labels — is visible without scrolling.
+     min-height (not a fixed height) keeps translated content safe: if text
+     needs more room, the block simply grows. */
+  @media (min-width: 64rem) {
+    .hero-fit {
+      display: flex;
+      flex-direction: column;
+      min-height: calc(100svh - var(--header-height));
+    }
+
+    .hero-fit > .hero-body {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 }

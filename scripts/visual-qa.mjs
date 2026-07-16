@@ -35,7 +35,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const OUT_DIR = path.join(ROOT, "artifacts", "screenshots", "current");
 
-const BASE_URL = process.env.VISUAL_QA_BASE_URL ?? "http://127.0.0.1:3000";
+const PORT = process.env.VISUAL_QA_PORT ?? "3000";
+const BASE_URL = process.env.VISUAL_QA_BASE_URL ?? `http://127.0.0.1:${PORT}`;
 const LOCALES = ["en", "es"];
 const ROUTES = [
   { slug: "home", path: "" },
@@ -93,8 +94,10 @@ function cleanPreviousSet() {
 async function waitForServer(url, attempts = 60) {
   for (let i = 0; i < attempts; i++) {
     try {
-      const res = await fetch(url, { redirect: "manual" });
-      if (res.status > 0) return;
+      // A warming `next start` can briefly answer 4xx/5xx for pages and static
+      // assets; only treat a real page response as ready.
+      const res = await fetch(`${url}/en`, { redirect: "follow" });
+      if (res.ok) return;
     } catch {
       // retry
     }
@@ -105,10 +108,10 @@ async function waitForServer(url, attempts = 60) {
 
 async function maybeStartServer() {
   if (process.env.VISUAL_QA_START !== "1") return null;
-  const child = spawn("npx", ["next", "start", "-H", "127.0.0.1", "-p", "3000"], {
+  const child = spawn("npx", ["next", "start", "-H", "127.0.0.1", "-p", PORT], {
     cwd: ROOT,
     stdio: ["ignore", "pipe", "pipe"],
-    env: { ...process.env, PORT: "3000" },
+    env: { ...process.env, PORT },
   });
   child.stdout.on("data", () => {});
   child.stderr.on("data", () => {});

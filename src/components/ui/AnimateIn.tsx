@@ -13,6 +13,12 @@ import { cn } from "@/lib/utils";
  *
  * Defaults include min-w-0 / w-full so AnimateIn is safe as a grid/flex child
  * (avoids min-width:auto track blowout from wide card content).
+ *
+ * The `data-animate-in` attribute pairs with a `prefers-reduced-motion`
+ * override in globals.css: the server always renders the motion branch
+ * (with inline opacity:0), and hydration does not remove stale server style
+ * attributes when the client switches to the static branch — without the CSS
+ * override, reduced-motion users would never see the content.
  */
 export function AnimateIn({
   children,
@@ -27,12 +33,17 @@ export function AnimateIn({
   const classes = cn("min-w-0 w-full", className);
 
   if (reduce) {
-    return <div className={classes}>{children}</div>;
+    return (
+      <div data-animate-in="" className={classes}>
+        {children}
+      </div>
+    );
   }
 
   return (
     <LazyMotion features={domAnimation} strict>
       <m.div
+        data-animate-in=""
         className={classes}
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
