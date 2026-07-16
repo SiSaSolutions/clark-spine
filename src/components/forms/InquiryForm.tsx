@@ -25,7 +25,8 @@ const initialValues: Record<FieldName, string> = {
   message: "",
 };
 
-const TURNSTILE_SRC = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+const TURNSTILE_SRC =
+  "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 
 export function InquiryForm({
   locale,
@@ -60,7 +61,8 @@ export function InquiryForm({
 
   // --- Turnstile ---------------------------------------------------------
   const renderWidget = useCallback(() => {
-    if (!window.turnstile || !widgetRef.current || widgetIdRef.current || !siteKey) return;
+    if (!window.turnstile || !widgetRef.current || widgetIdRef.current || !siteKey)
+      return;
     widgetIdRef.current = window.turnstile.render(widgetRef.current, {
       sitekey: siteKey,
       language: locale,
@@ -145,14 +147,11 @@ export function InquiryForm({
     setSubmitting(true);
 
     try {
-      const response = await fetch(
-        `/api/inquiry?locale=${encodeURIComponent(locale)}`,
-        {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(candidate),
-        },
-      );
+      const response = await fetch(`/api/inquiry?locale=${encodeURIComponent(locale)}`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(candidate),
+      });
 
       if (response.ok) {
         // Navigate to the localized thank-you page (keeps submitting state).
@@ -171,7 +170,9 @@ export function InquiryForm({
       if (response.status === 422 && result.fieldErrors) {
         applyFieldErrors(result.fieldErrors);
       } else if (response.status === 429) {
-        setFormError(messages.rateLimit.replace("{seconds}", String(result.retryAfter ?? 60)));
+        setFormError(
+          messages.rateLimit.replace("{seconds}", String(result.retryAfter ?? 60)),
+        );
         focusSummary();
       } else if (result.error === "captcha") {
         setFormError(messages.captcha);
@@ -206,14 +207,14 @@ export function InquiryForm({
           role="alert"
           aria-live="assertive"
           className={cn(
-            "mb-4 rounded-md border border-danger/40 bg-danger/5 p-4 text-sm text-danger",
+            "border-danger/40 bg-danger/5 text-danger mb-4 rounded-md border p-4 text-sm",
             !hasErrors && "hidden",
           )}
         >
           {formError ?? form.errorSummaryTitle}
         </div>
 
-        <p className="mb-4 text-sm text-muted">{form.requiredHint}</p>
+        <p className="text-muted mb-4 text-sm">{form.requiredHint}</p>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <TextField
@@ -301,7 +302,10 @@ export function InquiryForm({
         </div>
 
         {/* Honeypot: must remain empty. Hidden from users and assistive tech. */}
-        <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute left-[-9999px] h-0 w-0 overflow-hidden"
+        >
           <label htmlFor={fieldId("company")}>Company</label>
           <input
             ref={honeypotRef}
@@ -321,10 +325,15 @@ export function InquiryForm({
         </div>
 
         <div className="mt-6">
-          <Button type="submit" size="lg" disabled={submitting} className="w-full sm:w-auto">
+          <Button
+            type="submit"
+            size="lg"
+            disabled={submitting}
+            className="w-full sm:w-auto"
+          >
             {submitting ? form.submitting : form.submit}
           </Button>
-          <p className="mt-3 text-sm text-muted">{form.privacyNote}</p>
+          <p className="text-muted mt-3 text-sm">{form.privacyNote}</p>
         </div>
       </form>
     </>
@@ -365,22 +374,22 @@ function Field({
 }) {
   return (
     <div className="min-w-0">
-      <label htmlFor={id} className="mb-1.5 block text-sm font-medium text-ink">
+      <label htmlFor={id} className="text-ink mb-1.5 block text-sm font-medium">
         {label}
         {required ? (
           <span className="text-danger"> *</span>
         ) : optionalLabel ? (
-          <span className="font-normal text-muted"> ({optionalLabel})</span>
+          <span className="text-muted font-normal"> ({optionalLabel})</span>
         ) : null}
       </label>
       {hint && hintId ? (
-        <p id={hintId} className="mb-1.5 text-sm text-muted">
+        <p id={hintId} className="text-muted mb-1.5 text-sm">
           {hint}
         </p>
       ) : null}
       {children}
       {error ? (
-        <p id={errorId} className="mt-1.5 text-sm text-danger">
+        <p id={errorId} className="text-danger mt-1.5 text-sm">
           {error}
         </p>
       ) : null}

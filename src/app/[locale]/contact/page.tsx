@@ -65,34 +65,50 @@ export default async function ContactPage({
             <h2 className="text-2xl">{contact.infoHeading}</h2>
             <dl className="mt-6 space-y-5">
               <div className="flex items-start gap-3">
-                <Phone aria-hidden="true" className="mt-1 size-5 shrink-0 text-brand-600" />
+                <Phone
+                  aria-hidden="true"
+                  className="text-brand-600 mt-1 size-5 shrink-0"
+                />
                 <div>
-                  <dt className="text-sm font-semibold text-muted">{contact.phoneLabel}</dt>
+                  <dt className="text-muted text-sm font-semibold">
+                    {contact.phoneLabel}
+                  </dt>
                   <dd>
-                    <a href={practice.phone.href} className="text-lg text-ink hover:text-brand-700">
+                    <a
+                      href={practice.phone.href}
+                      className="text-ink hover:text-brand-700 text-lg"
+                    >
                       {practice.phone.display}
                     </a>
                   </dd>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Printer aria-hidden="true" className="mt-1 size-5 shrink-0 text-brand-600" />
+                <Printer
+                  aria-hidden="true"
+                  className="text-brand-600 mt-1 size-5 shrink-0"
+                />
                 <div>
-                  <dt className="text-sm font-semibold text-muted">{contact.faxLabel}</dt>
-                  <dd className="text-lg text-ink">{practice.fax.display}</dd>
+                  <dt className="text-muted text-sm font-semibold">{contact.faxLabel}</dt>
+                  <dd className="text-ink text-lg">{practice.fax.display}</dd>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin aria-hidden="true" className="mt-1 size-5 shrink-0 text-brand-600" />
+                <MapPin
+                  aria-hidden="true"
+                  className="text-brand-600 mt-1 size-5 shrink-0"
+                />
                 <div>
-                  <dt className="text-sm font-semibold text-muted">{contact.addressLabel}</dt>
-                  <dd className="text-lg text-ink">{formattedAddress()}</dd>
+                  <dt className="text-muted text-sm font-semibold">
+                    {contact.addressLabel}
+                  </dt>
+                  <dd className="text-ink text-lg">{formattedAddress()}</dd>
                   <dd className="mt-1">
                     <a
                       href={practice.mapsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-brand-700 underline"
+                      className="text-brand-700 text-sm underline"
                     >
                       {dict.common.getDirections}
                     </a>
@@ -107,11 +123,16 @@ export default async function ContactPage({
           {/* Office hours */}
           <div className="min-w-0">
             <h2 className="text-2xl">{contact.hoursHeading}</h2>
-            <dl className="mt-6 divide-y divide-line rounded-lg border border-line bg-surface shadow-card">
+            <dl className="divide-line border-line bg-surface shadow-card mt-6 divide-y rounded-lg border">
               {practice.hours.map((h) => (
-                <div key={h.day} className="flex min-w-0 items-center justify-between gap-4 px-4 py-3">
-                  <dt className="font-medium text-ink">{dict.footer.days[h.day]}</dt>
-                  <dd className={`min-w-0 text-right ${h.display ? "text-ink-soft" : "text-muted"}`}>
+                <div
+                  key={h.day}
+                  className="flex min-w-0 items-center justify-between gap-4 px-4 py-3"
+                >
+                  <dt className="text-ink font-medium">{dict.footer.days[h.day]}</dt>
+                  <dd
+                    className={`min-w-0 text-right ${h.display ? "text-ink-soft" : "text-muted"}`}
+                  >
                     {h.display ?? dict.common.closed}
                   </dd>
                 </div>

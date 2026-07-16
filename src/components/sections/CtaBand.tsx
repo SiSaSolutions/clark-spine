@@ -30,13 +30,18 @@ export function CtaBand({
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-24 -bottom-24 size-72 rounded-full bg-brand-500/20 blur-3xl"
+        className="bg-brand-500/20 pointer-events-none absolute -right-24 -bottom-24 size-72 rounded-full blur-3xl"
       />
       <Container className="relative text-center">
         <h2 className="mx-auto max-w-2xl text-3xl text-white sm:text-4xl">{heading}</h2>
-        <p className="mx-auto mt-4 max-w-xl text-brand-100">{body}</p>
+        <p className="text-brand-100 mx-auto mt-4 max-w-xl">{body}</p>
         <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:justify-center">
-          <ButtonLink href={href} size="lg" variant="secondary" className="w-full sm:w-auto">
+          <ButtonLink
+            href={href}
+            size="lg"
+            variant="secondary"
+            className="w-full sm:w-auto"
+          >
             {button}
           </ButtonLink>
           <a

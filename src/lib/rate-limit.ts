@@ -42,7 +42,9 @@ export interface RateLimitOutcome {
   unavailable: boolean;
 }
 
-export async function checkInquiryRateLimit(identifier: string): Promise<RateLimitOutcome> {
+export async function checkInquiryRateLimit(
+  identifier: string,
+): Promise<RateLimitOutcome> {
   const rl = getLimiter();
   if (!rl) {
     return { success: false, retryAfterSeconds: 60, unavailable: true };

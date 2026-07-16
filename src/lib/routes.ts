@@ -34,13 +34,7 @@ export function localePath(locale: Locale, page: PageKey): string {
 }
 
 /** Keys present in `dictionary.nav`. */
-type NavKey =
-  | "home"
-  | "about"
-  | "services"
-  | "autoAccidents"
-  | "contact"
-  | "inquiry";
+type NavKey = "home" | "about" | "services" | "autoAccidents" | "contact" | "inquiry";
 
 /** Pages shown in the primary navigation, in order. Each key indexes `dict.nav`. */
 export const primaryNav: NavKey[] = [

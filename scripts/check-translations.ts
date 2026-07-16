@@ -52,7 +52,9 @@ function compare(reference: Json, candidate: Json, path: string, locale: string)
       candKeys.delete(key);
     }
     for (const extra of candKeys) {
-      problems.push(`[${locale}] ${path ? `${path}.${extra}` : extra}: unexpected extra key`);
+      problems.push(
+        `[${locale}] ${path ? `${path}.${extra}` : extra}: unexpected extra key`,
+      );
     }
     return;
   }

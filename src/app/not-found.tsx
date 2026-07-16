@@ -21,13 +21,10 @@ export default async function NotFound() {
   const t = dict.notFound;
 
   return (
-    <html
-      lang={localeHtmlLang[locale]}
-      className={`${inter.variable} ${lora.variable}`}
-    >
+    <html lang={localeHtmlLang[locale]} className={`${inter.variable} ${lora.variable}`}>
       <body>
         <div className="flex min-h-dvh flex-col">
-          <header className="border-b border-line bg-surface">
+          <header className="border-line bg-surface border-b">
             <Container className="flex h-16 items-center">
               <Logo locale={locale} label={dict.nav.home} />
             </Container>
@@ -37,9 +34,9 @@ export default async function NotFound() {
             className="flex flex-1 items-center justify-center px-4 py-20 text-center"
           >
             <div>
-              <p className="font-serif text-6xl text-brand-300">404</p>
+              <p className="text-brand-300 font-serif text-6xl">404</p>
               <h1 className="mt-4 text-3xl sm:text-4xl">{t.title}</h1>
-              <p className="mx-auto mt-3 max-w-md text-ink-soft">{t.body}</p>
+              <p className="text-ink-soft mx-auto mt-3 max-w-md">{t.body}</p>
               <Link
                 href={localePath(locale, "home")}
                 className={buttonClasses("primary", "lg", "mt-8")}

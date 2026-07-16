@@ -96,7 +96,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   const ipForTurnstile = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
   const turnstile = await verifyTurnstile(data.turnstileToken, ipForTurnstile);
   if (!turnstile.success) {
-    console.error(`[inquiry] turnstile failed (request ${requestId}):`, turnstile.errorCodes);
+    console.error(
+      `[inquiry] turnstile failed (request ${requestId}):`,
+      turnstile.errorCodes,
+    );
     return json(400, { ok: false, error: "captcha" });
   }
 

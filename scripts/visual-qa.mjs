@@ -82,10 +82,14 @@ function isFatalConsole(type, text) {
 }
 
 function cleanPreviousSet() {
-  const result = spawnSync(process.execPath, [path.join(__dirname, "screenshots-clean.mjs")], {
-    cwd: ROOT,
-    stdio: "inherit",
-  });
+  const result = spawnSync(
+    process.execPath,
+    [path.join(__dirname, "screenshots-clean.mjs")],
+    {
+      cwd: ROOT,
+      stdio: "inherit",
+    },
+  );
   if (result.status !== 0) {
     throw new Error("screenshots:clean failed — aborting screenshot generation");
   }
@@ -184,7 +188,9 @@ async function main() {
             await page.waitForTimeout(150);
 
             const metrics = await page.evaluate(() => {
-              const hero = document.querySelector('section[aria-labelledby="hero-heading"]');
+              const hero = document.querySelector(
+                'section[aria-labelledby="hero-heading"]',
+              );
               return {
                 scrollWidth: document.documentElement.scrollWidth,
                 innerWidth: window.innerWidth,
@@ -198,14 +204,16 @@ async function main() {
                   window.innerWidth < 1280
                     ? Boolean(
                         document.querySelector(
-                          'button[aria-label], button[aria-expanded], [data-mobile-nav-trigger]',
+                          "button[aria-label], button[aria-expanded], [data-mobile-nav-trigger]",
                         ) ||
-                          Array.from(document.querySelectorAll("button")).some((b) =>
-                            /menu|menú|open/i.test(b.getAttribute("aria-label") || b.textContent || ""),
+                        Array.from(document.querySelectorAll("button")).some((b) =>
+                          /menu|menú|open/i.test(
+                            b.getAttribute("aria-label") || b.textContent || "",
                           ),
+                        ),
                       )
                     : true,
-                logoSvg: Boolean(document.querySelector('header a[aria-label] svg')),
+                logoSvg: Boolean(document.querySelector("header a[aria-label] svg")),
               };
             });
 
@@ -216,7 +224,8 @@ async function main() {
             const heroFitRequired =
               route.slug === "home" && HERO_FIT_CLASSES.has(viewport.class);
             const heroFits =
-              metrics.heroBottom !== null && metrics.heroBottom <= metrics.innerHeight + 1;
+              metrics.heroBottom !== null &&
+              metrics.heroBottom <= metrics.innerHeight + 1;
             const row = {
               label,
               url,
@@ -249,7 +258,9 @@ async function main() {
               );
             }
             if (metrics.brokenImages.length) {
-              failures.push(`${label}: broken images: ${metrics.brokenImages.join(", ")}`);
+              failures.push(
+                `${label}: broken images: ${metrics.brokenImages.join(", ")}`,
+              );
             }
             if (!metrics.logoSvg) {
               failures.push(`${label}: header logo SVG missing`);
@@ -263,7 +274,7 @@ async function main() {
               const menuBtn = page
                 .locator("button")
                 .filter({ hasText: /menu|menú/i })
-                .or(page.locator('button[aria-expanded]'))
+                .or(page.locator("button[aria-expanded]"))
                 .first();
               if (await menuBtn.count()) {
                 await menuBtn.click();
@@ -278,7 +289,9 @@ async function main() {
                 }
               }
 
-              const lang = page.getByRole("link", { name: locale === "en" ? "ES" : "EN" }).first();
+              const lang = page
+                .getByRole("link", { name: locale === "en" ? "ES" : "EN" })
+                .first();
               if (await lang.count()) {
                 // Don't navigate away mid-loop; just confirm visible.
                 if (!(await lang.isVisible())) {
@@ -295,7 +308,9 @@ async function main() {
               }
             }
           } catch (err) {
-            failures.push(`${label}: ${err instanceof Error ? err.message : String(err)}`);
+            failures.push(
+              `${label}: ${err instanceof Error ? err.message : String(err)}`,
+            );
           } finally {
             await context.close();
           }
@@ -315,7 +330,11 @@ async function main() {
 
   await writeFile(
     path.join(OUT_DIR, "summary.json"),
-    JSON.stringify({ generatedAt: new Date().toISOString(), summary, failures, consoleErrors }, null, 2),
+    JSON.stringify(
+      { generatedAt: new Date().toISOString(), summary, failures, consoleErrors },
+      null,
+      2,
+    ),
   );
 
   if (consoleErrors.length) {

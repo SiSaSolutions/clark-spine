@@ -19,21 +19,21 @@ export function PageHero({
   breadcrumbs?: ReactNode;
 }) {
   return (
-    <div className="relative border-b border-line bg-gradient-to-br from-brand-50/80 via-surface-subtle to-surface-subtle">
+    <div className="border-line from-brand-50/80 via-surface-subtle to-surface-subtle relative border-b bg-gradient-to-br">
       <div
         aria-hidden="true"
-        className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-brand-400 to-brand-700 sm:w-1.5"
+        className="from-brand-400 to-brand-700 absolute inset-y-0 left-0 w-1 bg-gradient-to-b sm:w-1.5"
       />
       <Container className="py-10 sm:py-14 lg:py-16">
         {breadcrumbs}
         {eyebrow ? (
-          <p className="text-sm font-semibold tracking-wide text-brand-600 uppercase">
+          <p className="text-brand-600 text-sm font-semibold tracking-wide uppercase">
             {eyebrow}
           </p>
         ) : null}
         <h1 className="mt-2 max-w-3xl text-4xl sm:text-5xl">{title}</h1>
         {subtitle ? (
-          <p className="mt-4 max-w-2xl text-lg text-ink-soft">{subtitle}</p>
+          <p className="text-ink-soft mt-4 max-w-2xl text-lg">{subtitle}</p>
         ) : null}
       </Container>
     </div>

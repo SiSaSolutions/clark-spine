@@ -24,23 +24,29 @@ export function FeatureCard({
 }) {
   const Heading = headingLevel;
   return (
-    <div className="flex h-full min-w-0 flex-col rounded-lg border border-line bg-surface p-6 shadow-card transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-lift focus-within:-translate-y-0.5 focus-within:shadow-lift">
-      <span className="inline-flex size-12 items-center justify-center rounded-md bg-brand-50 text-brand-600">
+    <div className="border-line bg-surface shadow-card hover:shadow-lift focus-within:shadow-lift flex h-full min-w-0 flex-col rounded-lg border p-6 transition-[box-shadow,transform] duration-200 focus-within:-translate-y-0.5 hover:-translate-y-0.5">
+      <span className="bg-brand-50 text-brand-600 inline-flex size-12 items-center justify-center rounded-md">
         <Icon name={icon} />
       </span>
       <Heading className="mt-4 text-xl">{title}</Heading>
-      <p className="mt-2 flex-1 text-ink-soft">{body}</p>
+      <p className="text-ink-soft mt-2 flex-1">{body}</p>
       {conditions && conditions.length > 0 ? (
-        <div className="mt-4 border-t border-line pt-4">
+        <div className="border-line mt-4 border-t pt-4">
           {conditionsLabel ? (
-            <p className="text-xs font-semibold tracking-wide text-muted uppercase">
+            <p className="text-muted text-xs font-semibold tracking-wide uppercase">
               {conditionsLabel}
             </p>
           ) : null}
           <ul className="mt-2 space-y-1.5">
             {conditions.map((condition) => (
-              <li key={condition} className="flex items-start gap-2 text-sm text-ink-soft">
-                <Check aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-brand-500" />
+              <li
+                key={condition}
+                className="text-ink-soft flex items-start gap-2 text-sm"
+              >
+                <Check
+                  aria-hidden="true"
+                  className="text-brand-500 mt-0.5 size-4 shrink-0"
+                />
                 <span>{condition}</span>
               </li>
             ))}

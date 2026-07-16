@@ -36,7 +36,7 @@ async function main() {
 
   // The target must live strictly inside the repository root.
   const relFromRoot = path.relative(ROOT, target);
-  if (relFromRoot === "" ) {
+  if (relFromRoot === "") {
     fail("target resolves to the repository root");
   }
   if (relFromRoot.startsWith("..") || path.isAbsolute(relFromRoot)) {
@@ -55,7 +55,9 @@ async function main() {
   } catch (err) {
     if (err && err.code === "ENOENT") {
       await mkdir(target, { recursive: true });
-      console.log(`screenshots:clean — created ${path.relative(ROOT, target)} (nothing to clean)`);
+      console.log(
+        `screenshots:clean — created ${path.relative(ROOT, target)} (nothing to clean)`,
+      );
       return;
     }
     throw err;

@@ -40,17 +40,26 @@ export default async function ThankYouPage({
 
   return (
     <Section containerClassName="max-w-2xl text-center">
-      <CheckCircle2 aria-hidden="true" className="mx-auto size-14 text-success" />
+      <CheckCircle2 aria-hidden="true" className="text-success mx-auto size-14" />
       <h1 className="mt-4 text-3xl sm:text-4xl">{t.title}</h1>
-      <p className="mx-auto mt-4 max-w-xl text-lg text-ink-soft">{t.body}</p>
+      <p className="text-ink-soft mx-auto mt-4 max-w-xl text-lg">{t.body}</p>
 
-      <EmergencyNotice message={t.emergencyNote} className="mx-auto mt-8 max-w-md text-left" />
+      <EmergencyNotice
+        message={t.emergencyNote}
+        className="mx-auto mt-8 max-w-md text-left"
+      />
 
       <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-        <Link href={localePath(locale, "home")} className={buttonClasses("primary", "lg")}>
+        <Link
+          href={localePath(locale, "home")}
+          className={buttonClasses("primary", "lg")}
+        >
           {t.backHome}
         </Link>
-        <Link href={localePath(locale, "services")} className={buttonClasses("outline", "lg")}>
+        <Link
+          href={localePath(locale, "services")}
+          className={buttonClasses("outline", "lg")}
+        >
           {t.viewServices}
         </Link>
       </div>

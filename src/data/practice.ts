@@ -11,13 +11,7 @@ export interface OpeningHours {
   day: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
   /** Schema.org day name for structured data. */
   schemaDay:
-    | "Monday"
-    | "Tuesday"
-    | "Wednesday"
-    | "Thursday"
-    | "Friday"
-    | "Saturday"
-    | "Sunday";
+    "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
   /** 24h "HH:MM" open/close, or null when closed. */
   opens: string | null;
   closes: string | null;
@@ -62,12 +56,42 @@ export const practice = {
   establishedYear: 1991,
 
   hours: [
-    { day: "monday", schemaDay: "Monday", opens: "08:30", closes: "18:00", display: "8:30 AM – 6:00 PM" },
-    { day: "tuesday", schemaDay: "Tuesday", opens: "08:30", closes: "12:30", display: "8:30 AM – 12:30 PM" },
-    { day: "wednesday", schemaDay: "Wednesday", opens: "08:30", closes: "18:00", display: "8:30 AM – 6:00 PM" },
+    {
+      day: "monday",
+      schemaDay: "Monday",
+      opens: "08:30",
+      closes: "18:00",
+      display: "8:30 AM – 6:00 PM",
+    },
+    {
+      day: "tuesday",
+      schemaDay: "Tuesday",
+      opens: "08:30",
+      closes: "12:30",
+      display: "8:30 AM – 12:30 PM",
+    },
+    {
+      day: "wednesday",
+      schemaDay: "Wednesday",
+      opens: "08:30",
+      closes: "18:00",
+      display: "8:30 AM – 6:00 PM",
+    },
     { day: "thursday", schemaDay: "Thursday", opens: null, closes: null, display: null },
-    { day: "friday", schemaDay: "Friday", opens: "08:30", closes: "18:00", display: "8:30 AM – 6:00 PM" },
-    { day: "saturday", schemaDay: "Saturday", opens: "08:30", closes: "12:00", display: "8:30 AM – 12:00 PM" },
+    {
+      day: "friday",
+      schemaDay: "Friday",
+      opens: "08:30",
+      closes: "18:00",
+      display: "8:30 AM – 6:00 PM",
+    },
+    {
+      day: "saturday",
+      schemaDay: "Saturday",
+      opens: "08:30",
+      closes: "12:00",
+      display: "8:30 AM – 12:00 PM",
+    },
     { day: "sunday", schemaDay: "Sunday", opens: null, closes: null, display: null },
   ] satisfies OpeningHours[],
 } as const;

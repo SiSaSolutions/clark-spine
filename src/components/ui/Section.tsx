@@ -41,7 +41,11 @@ export function Section({
       aria-labelledby={ariaLabelledby}
       className={cn("py-16 sm:py-20 lg:py-28", toneClass[tone], className)}
     >
-      {contained ? <Container className={containerClassName}>{children}</Container> : children}
+      {contained ? (
+        <Container className={containerClassName}>{children}</Container>
+      ) : (
+        children
+      )}
     </Tag>
   );
 }

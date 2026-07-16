@@ -62,7 +62,7 @@ export default async function AboutPage({
       <Section ariaLabelledby="bio-heading">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
           <div className="order-last min-w-0 lg:order-first">
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-xl border border-brand-100 bg-brand-50 shadow-lift ring-1 ring-brand-900/5">
+            <div className="border-brand-100 bg-brand-50 shadow-lift ring-brand-900/5 relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-xl border ring-1">
               <Image
                 src={drPortrait}
                 alt={about.imageAlt}
@@ -74,12 +74,8 @@ export default async function AboutPage({
             </div>
           </div>
           <div className="min-w-0">
-            <SectionHeading
-              id="bio-heading"
-              title={about.bio.heading}
-              as="h2"
-            />
-            <div className="mt-4 space-y-4 text-ink-soft">
+            <SectionHeading id="bio-heading" title={about.bio.heading} as="h2" />
+            <div className="text-ink-soft mt-4 space-y-4">
               {about.bio.paragraphs.map((paragraph) => (
                 <p key={paragraph.slice(0, 24)}>{paragraph}</p>
               ))}

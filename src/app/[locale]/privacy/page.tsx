@@ -55,7 +55,7 @@ export default async function PrivacyPage({
 
       <Section>
         <Prose>
-          <p className="text-sm text-muted">
+          <p className="text-muted text-sm">
             {privacy.lastUpdatedLabel}: {privacy.lastUpdated}
           </p>
           <p>{privacy.intro}</p>

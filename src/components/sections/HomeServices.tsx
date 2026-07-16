@@ -30,9 +30,9 @@ export function HomeServices({ locale, dict }: { locale: Locale; dict: Dictionar
         <AnimateIn className="lg:col-span-1">
           <a
             href={localePath(locale, "autoAccidents")}
-            className="group flex h-full min-w-0 flex-col rounded-lg border border-brand-200 bg-gradient-to-br from-brand-800 to-brand-900 p-7 text-white shadow-card transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-lift focus-visible:-translate-y-0.5 focus-visible:shadow-lift"
+            className="group border-brand-200 from-brand-800 to-brand-900 shadow-card hover:shadow-lift focus-visible:shadow-lift flex h-full min-w-0 flex-col rounded-lg border bg-gradient-to-br p-7 text-white transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 focus-visible:-translate-y-0.5"
           >
-            <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide text-brand-100 uppercase ring-1 ring-white/15">
+            <span className="text-brand-100 inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide uppercase ring-1 ring-white/15">
               <Star aria-hidden="true" className="size-3.5 shrink-0" />
               {s.featured.badge}
             </span>
@@ -40,10 +40,10 @@ export function HomeServices({ locale, dict }: { locale: Locale; dict: Dictionar
               <Car aria-hidden="true" className="size-6" />
             </span>
             <h3 className="mt-4 font-serif text-2xl text-white">{s.featured.title}</h3>
-            <p className="mt-2 text-brand-100">{s.featured.body}</p>
+            <p className="text-brand-100 mt-2">{s.featured.body}</p>
 
             <div className="mt-5 border-t border-white/15 pt-4">
-              <p className="text-xs font-semibold tracking-wide text-brand-200 uppercase">
+              <p className="text-brand-200 text-xs font-semibold tracking-wide uppercase">
                 {s.featured.conditionsLabel}
               </p>
               <ul className="mt-2 flex flex-wrap gap-2">
@@ -52,7 +52,10 @@ export function HomeServices({ locale, dict }: { locale: Locale; dict: Dictionar
                     key={c}
                     className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-sm text-white"
                   >
-                    <Check aria-hidden="true" className="size-3.5 shrink-0 text-brand-200" />
+                    <Check
+                      aria-hidden="true"
+                      className="text-brand-200 size-3.5 shrink-0"
+                    />
                     {c}
                   </li>
                 ))}

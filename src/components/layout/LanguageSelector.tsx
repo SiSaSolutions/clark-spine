@@ -41,7 +41,7 @@ export function LanguageSelector({
     <div
       role="group"
       aria-label={groupLabel}
-      className="inline-flex items-center rounded-full bg-surface-sunken p-0.5 text-sm"
+      className="bg-surface-sunken inline-flex items-center rounded-full p-0.5 text-sm"
     >
       {locales.map((locale) => {
         const active = locale === currentLocale;
@@ -56,7 +56,7 @@ export function LanguageSelector({
             className={cn(
               "min-h-9 min-w-11 rounded-full px-3 font-medium transition-colors",
               active
-                ? "bg-white text-brand-700 shadow-sm"
+                ? "text-brand-700 bg-white shadow-sm"
                 : "text-ink-soft hover:text-ink",
             )}
           >

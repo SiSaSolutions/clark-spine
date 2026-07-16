@@ -83,7 +83,12 @@ export default async function AutoAccidentsPage({
         />
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {aa.injuries.items.map((item) => (
-            <FeatureCard key={item.title} icon={item.icon} title={item.title} body={item.body} />
+            <FeatureCard
+              key={item.title}
+              icon={item.icon}
+              title={item.title}
+              body={item.body}
+            />
           ))}
         </div>
       </Section>
@@ -99,16 +104,19 @@ export default async function AutoAccidentsPage({
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
           <div className="min-w-0">
             <SectionHeading id="legal-heading" title={aa.legal.heading} />
-            <p className="mt-4 text-ink-soft">{aa.legal.body}</p>
+            <p className="text-ink-soft mt-4">{aa.legal.body}</p>
           </div>
           <ul className="grid min-w-0 gap-3 self-center sm:grid-cols-2 lg:grid-cols-1">
             {aa.legal.items.map((item) => (
               <li
                 key={item}
-                className="flex min-w-0 items-start gap-3 rounded-md border border-line bg-surface p-4 shadow-card"
+                className="border-line bg-surface shadow-card flex min-w-0 items-start gap-3 rounded-md border p-4"
               >
-                <Check aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-brand-600" />
-                <span className="min-w-0 text-ink">{item}</span>
+                <Check
+                  aria-hidden="true"
+                  className="text-brand-600 mt-0.5 size-5 shrink-0"
+                />
+                <span className="text-ink min-w-0">{item}</span>
               </li>
             ))}
           </ul>

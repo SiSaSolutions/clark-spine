@@ -16,7 +16,7 @@ export function Breadcrumbs({ items, label }: { items: Crumb[]; label: string })
   return (
     <nav aria-label={label} className="mb-4">
       <JsonLd data={breadcrumbJsonLd(items)} />
-      <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted">
+      <ol className="text-muted flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
           return (
@@ -26,7 +26,10 @@ export function Breadcrumbs({ items, label }: { items: Crumb[]; label: string })
                   {item.label}
                 </Link>
               ) : (
-                <span aria-current={isLast ? "page" : undefined} className="text-ink-soft">
+                <span
+                  aria-current={isLast ? "page" : undefined}
+                  className="text-ink-soft"
+                >
                   {item.label}
                 </span>
               )}

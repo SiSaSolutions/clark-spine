@@ -52,6 +52,10 @@ stored preference or the `Accept-Language` header.
 | `npm run check:i18n` | Fail if any translation key/array is missing or empty |
 | `npm run test` | Vitest unit tests |
 | `npm run format` | Prettier write |
+| `npm run format:check` | Prettier check (no writes) |
+| `npm run screenshots` | Clean the previous set, then capture visual-QA screenshots |
+| `npm run screenshots:clean` | Delete the generated screenshot set only |
+| `npm run screenshots:generate` | Capture screenshots (cleans first via the harness) |
 | `npm run email:dev` | Preview React Email templates |
 
 ## Project structure
@@ -69,8 +73,27 @@ src/
   data/                     # verified practice facts (single source of truth)
   styles/globals.css        # Tailwind v4 tokens + base layer
   middleware.ts             # locale routing + per-request CSP nonce
-scripts/check-translations.ts
+scripts/check-translations.ts   # build-time translation gate
+scripts/visual-qa.mjs           # Playwright screenshot + layout assertions
+scripts/screenshots-clean.mjs   # safe cleanup of the generated screenshot set
 ```
+
+## Visual QA screenshots
+
+`npm run screenshots` produces exactly **one current set** of screenshots in
+`artifacts/screenshots/current/` (git-ignored). The harness deletes the previous
+set first, so runs never accumulate stale files. Filenames are deterministic —
+`<route>-<locale>-<deviceClass>-<width>x<height>.png` (e.g.
+`home-en-desktop-1512x982.png`) — with no timestamps or run ids.
+
+The run also asserts: no horizontal overflow, no broken images, header logo
+present, mobile menu present below `xl`, page starts at scroll position 0, and —
+on desktop/laptop viewports — the full home hero including the credential strip
+fits within the initial viewport without scrolling.
+
+The harness expects a production server (`npm run build && npm run start`), or
+set `VISUAL_QA_START=1` to have it spawn one (use `VISUAL_QA_PORT` if 3000 is
+taken).
 
 ## Internationalization
 

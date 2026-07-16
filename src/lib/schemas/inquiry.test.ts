@@ -36,9 +36,9 @@ describe("inquirySchema", () => {
   });
 
   it("rejects names containing newlines (header-injection defense)", () => {
-    expect(fieldCode({ ...valid, firstName: "Jane\r\nBcc: evil@x.com" }, "firstName")).toBe(
-      "invalid",
-    );
+    expect(
+      fieldCode({ ...valid, firstName: "Jane\r\nBcc: evil@x.com" }, "firstName"),
+    ).toBe("invalid");
   });
 
   it("rejects names with digits or angle brackets", () => {
@@ -64,6 +64,8 @@ describe("inquirySchema", () => {
   });
 
   it("rejects an over-long message", () => {
-    expect(fieldCode({ ...valid, message: "x".repeat(2001) }, "message")).toBe("too_long");
+    expect(fieldCode({ ...valid, message: "x".repeat(2001) }, "message")).toBe(
+      "too_long",
+    );
   });
 });

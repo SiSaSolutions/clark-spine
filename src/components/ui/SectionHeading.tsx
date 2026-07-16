@@ -27,14 +27,10 @@ export function SectionHeading({
 }) {
   return (
     <div
-      className={cn(
-        "max-w-2xl",
-        align === "center" && "mx-auto text-center",
-        className,
-      )}
+      className={cn("max-w-2xl", align === "center" && "mx-auto text-center", className)}
     >
       {eyebrow ? (
-        <p className="mb-2 text-sm font-semibold tracking-wide text-brand-600 uppercase">
+        <p className="text-brand-600 mb-2 text-sm font-semibold tracking-wide uppercase">
           {eyebrow}
         </p>
       ) : null}
@@ -47,9 +43,7 @@ export function SectionHeading({
       >
         {title}
       </Heading>
-      {description ? (
-        <p className="mt-4 text-lg text-ink-soft">{description}</p>
-      ) : null}
+      {description ? <p className="text-ink-soft mt-4 text-lg">{description}</p> : null}
     </div>
   );
 }

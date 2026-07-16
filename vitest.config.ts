@@ -16,7 +16,9 @@ export default defineConfig({
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
       // Allow importing modules that use the `server-only` guard in unit tests.
-      "server-only": fileURLToPath(new URL("./test/stubs/server-only.ts", import.meta.url)),
+      "server-only": fileURLToPath(
+        new URL("./test/stubs/server-only.ts", import.meta.url),
+      ),
     },
   },
 });

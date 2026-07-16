@@ -54,11 +54,7 @@ export const inquirySchema = z.object({
     .refine(noNewlines, "invalid")
     .optional()
     .default(""),
-  message: z
-    .string()
-    .trim()
-    .min(MESSAGE_MIN, "too_short")
-    .max(MESSAGE_MAX, "too_long"),
+  message: z.string().trim().min(MESSAGE_MIN, "too_short").max(MESSAGE_MAX, "too_long"),
   // Honeypot: must stay empty. Bots that fill every field are rejected.
   company: z.string().max(0, "invalid").optional().default(""),
   // Cloudflare Turnstile token — presence checked here, verified server-side.
@@ -69,4 +65,5 @@ export type InquiryInput = z.input<typeof inquirySchema>;
 export type InquiryData = z.output<typeof inquirySchema>;
 
 /** Field-level error codes surfaced to the client for localized messaging. */
-export type InquiryFieldError = "required" | "too_short" | "too_long" | "invalid" | "captcha";
+export type InquiryFieldError =
+  "required" | "too_short" | "too_long" | "invalid" | "captcha";
