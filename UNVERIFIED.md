@@ -15,10 +15,30 @@ No public inbox address is displayed. The inquiry form delivers server-side to
 `INQUIRY_OWNER_EMAIL`; `practice.email` stays `null` until the practice supplies
 a public-facing address to show in the UI.
 
-## 2. Higher-resolution provider portrait
+## 2. Provider portrait
 
-`public/images/dr-garabo.png` is only 386×386px. Request a higher-resolution
-portrait for crisp rendering on high-density displays.
+The About portrait is now the practice-supplied headshot
+`public/images/practice/dr-james-garabo.webp` (474×592, exact 4:5). It renders
+in a ~320px-wide frame, which is adequate on high-density displays. A larger
+original would still be welcome if available for future use.
+
+## 2a. Exterior office photos (Contact page)
+
+The Contact "Practice information" area shows two practice-supplied exterior
+photos (`practice-building-sign.jpg`, `practice-front-door.jpg`). Their alt text
+references the **"Marcus Plaza" building name / Garabo Chiropractic signage**,
+which is visible in the photographs — confirm the plaza name is current before
+launch. The earlier directional paragraph ("follow the walkway to the office
+entrance") has been removed. The walkway photo (`practice-walkway.jpg`) remains
+in the repo but is currently unused. Written publication rights for the
+photographs must also be confirmed (see item 4).
+
+## 2b. Interior office photos (About page) — pending
+
+The interior waiting-area and treatment-hallway photos were **not** added: the
+only available source files are 360×480px, too low for crisp high-density
+rendering. Awaiting higher-resolution originals from the practice; the "Our
+Office" About section will be added once they are supplied.
 
 ## 3. Final Privacy Policy / legal review
 

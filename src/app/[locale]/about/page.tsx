@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
 import { CredentialList } from "@/components/sections/CredentialList";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PageHero } from "@/components/sections/PageHero";
+import { PracticePhoto } from "@/components/sections/PracticePhoto";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { localePath } from "@/lib/routes";
 import { getDictionary } from "@/i18n/dictionaries";
 import { isLocale } from "@/i18n/locales";
-import drPortrait from "../../../../public/images/dr-garabo.png";
+import drPortrait from "../../../../public/images/practice/dr-james-garabo.webp";
 
 export async function generateMetadata({
   params,
@@ -63,16 +63,12 @@ export default async function AboutPage({
       <Section ariaLabelledby="bio-heading">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
           <div className="order-last min-w-0 lg:order-first">
-            <div className="border-brand-100 bg-brand-50 shadow-lift ring-brand-900/5 relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-xl border ring-1">
-              <Image
-                src={drPortrait}
-                alt={about.imageAlt}
-                fill
-                sizes="(max-width: 1024px) 20rem, 24rem"
-                className="object-cover object-top"
-                placeholder="blur"
-              />
-            </div>
+            <PracticePhoto
+              src={drPortrait}
+              alt={about.imageAlt}
+              className="mx-auto aspect-[4/5] max-w-xs"
+              sizes="(max-width: 1024px) 20rem, 24rem"
+            />
           </div>
           <div className="min-w-0">
             <SectionHeading id="bio-heading" title={about.bio.heading} as="h2" />

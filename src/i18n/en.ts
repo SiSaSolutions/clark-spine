@@ -190,7 +190,7 @@ const en = {
     heroEyebrow: "About Our Practice",
     heroTitle: "Our practice",
     heroSubtitle: "Serving Clark, New Jersey and surrounding communities since 1991.",
-    imageAlt: "Dr. James Garabo, DC",
+    imageAlt: "Dr. James Garabo of Clark Spine and Pain Relief",
     bio: {
       heading: "About Clark Spine and Pain Relief",
       paragraphs: [
@@ -499,6 +499,18 @@ const en = {
     addressLabel: "Address",
     emergencyNotice:
       "If you are experiencing a medical emergency, call 911 or go to the nearest emergency room. Please do not use this website to report an emergency.",
+    officeLabel: "What to look for",
+    buildingImageAlt: "Marcus Plaza exterior sign listing Garabo Chiropractic",
+    doorImageAlt: "Front entrance to the Garabo Chiropractic office",
+    viewBuildingPhoto: "View a larger photo of the Marcus Plaza sign",
+    viewDoorPhoto: "View a larger photo of the office entrance",
+    lightbox: {
+      previous: "Previous image",
+      next: "Next image",
+      close: "Close image viewer",
+      counter: "Image {current} of {total}",
+      dialogLabel: "Office location photos",
+    },
     cta: {
       heading: "Request an appointment",
       body: "Send a request through our secure form and our team will be in touch to confirm your visit.",

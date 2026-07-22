@@ -191,7 +191,7 @@ const es: Dictionary = {
     heroTitle: "Nuestra práctica",
     heroSubtitle:
       "Sirviendo a Clark, Nueva Jersey y las comunidades cercanas desde 1991.",
-    imageAlt: "El Dr. James Garabo, DC",
+    imageAlt: "Dr. James Garabo de Clark Spine and Pain Relief",
     bio: {
       heading: "Sobre Clark Spine and Pain Relief",
       paragraphs: [
@@ -500,6 +500,18 @@ const es: Dictionary = {
     addressLabel: "Dirección",
     emergencyNotice:
       "Si tiene una emergencia médica, llame al 911 o acuda a la sala de emergencias más cercana. Por favor, no use este sitio web para reportar una emergencia.",
+    officeLabel: "Qué buscar",
+    buildingImageAlt: "Letrero exterior de Marcus Plaza que muestra Garabo Chiropractic",
+    doorImageAlt: "Entrada principal del consultorio de Garabo Chiropractic",
+    viewBuildingPhoto: "Ver una foto ampliada del letrero de Marcus Plaza",
+    viewDoorPhoto: "Ver una foto ampliada de la entrada del consultorio",
+    lightbox: {
+      previous: "Imagen anterior",
+      next: "Imagen siguiente",
+      close: "Cerrar visor de imágenes",
+      counter: "Imagen {current} de {total}",
+      dialogLabel: "Fotos de la ubicación del consultorio",
+    },
     cta: {
       heading: "Solicite una cita",
       body: "Envíe una solicitud por nuestro formulario seguro y nuestro equipo se comunicará con usted para confirmar su visita.",
