@@ -265,10 +265,7 @@ export function MobileNav({
                     {languageSelector}
                   </m.div>
 
-                  <m.div
-                    className="w-full max-w-xs"
-                    {...itemMotion(navItems.length + 1)}
-                  >
+                  <m.div className="w-full max-w-xs" {...itemMotion(navItems.length + 1)}>
                     <ButtonLink
                       href={ctaHref}
                       size="lg"

@@ -38,9 +38,7 @@ export function PageHero({
         ) : null}
         <h1 className="mt-2 max-w-3xl text-4xl sm:text-5xl">{title}</h1>
         {subtitle ? (
-          <p className="text-text-on-dark-muted mt-4 max-w-2xl text-lg">
-            {subtitle}
-          </p>
+          <p className="text-text-on-dark-muted mt-4 max-w-2xl text-lg">{subtitle}</p>
         ) : null}
         {cta ? <div className="mt-6">{cta}</div> : null}
       </Container>

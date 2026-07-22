@@ -132,12 +132,14 @@ function parseArgs(argv) {
     else if (arg.startsWith("--base=")) opts.base = arg.slice("--base=".length);
     else if (arg.startsWith("--page=")) {
       for (const v of splitList(arg.slice("--page=".length))) {
-        if (!PAGE_SLUGS.includes(v)) fail(`unknown page "${v}" (valid: ${PAGE_SLUGS.join(", ")})`);
+        if (!PAGE_SLUGS.includes(v))
+          fail(`unknown page "${v}" (valid: ${PAGE_SLUGS.join(", ")})`);
         opts.pages.push(v);
       }
     } else if (arg.startsWith("--locale=")) {
       for (const v of splitList(arg.slice("--locale=".length))) {
-        if (!LOCALES.includes(v)) fail(`unknown locale "${v}" (valid: ${LOCALES.join(", ")})`);
+        if (!LOCALES.includes(v))
+          fail(`unknown locale "${v}" (valid: ${LOCALES.join(", ")})`);
         opts.locales.push(v);
       }
     } else if (arg.startsWith("--viewport=")) {
@@ -151,7 +153,8 @@ function parseArgs(argv) {
       }
     } else if (arg.startsWith("--state=")) {
       for (const v of splitList(arg.slice("--state=".length))) {
-        if (!STATES.includes(v)) fail(`unknown state "${v}" (valid: ${STATES.join(", ")})`);
+        if (!STATES.includes(v))
+          fail(`unknown state "${v}" (valid: ${STATES.join(", ")})`);
         opts.states.push(v);
       }
     } else if (arg.startsWith("--")) {
@@ -235,7 +238,10 @@ async function main() {
   }
 
   const hasManualFilters =
-    opts.pages.length || opts.locales.length || opts.viewports.length || opts.states.length;
+    opts.pages.length ||
+    opts.locales.length ||
+    opts.viewports.length ||
+    opts.states.length;
   const hasScope =
     hasManualFilters || opts.namedScopes.length || opts.all || opts.changed || opts.reset;
   if (!hasScope) {
@@ -293,7 +299,9 @@ async function main() {
     if (changedReport) {
       for (const note of changedReport.notes) console.log(`Note: ${note}`);
     }
-    console.log("visual-qa: no screenshot scenarios matched the requested scope — nothing to do.");
+    console.log(
+      "visual-qa: no screenshot scenarios matched the requested scope — nothing to do.",
+    );
     return;
   }
 
@@ -303,7 +311,9 @@ async function main() {
   }
 
   if (changedReport) {
-    console.log(`Scope derived from ${changedReport.classifications.length} changed file(s):`);
+    console.log(
+      `Scope derived from ${changedReport.classifications.length} changed file(s):`,
+    );
     for (const c of changedReport.classifications) {
       console.log(`  ${c.file}  →  [${c.scope}] ${c.reason}`);
     }
@@ -321,9 +331,13 @@ async function main() {
   const { captureScenarios } = await import("./capture.mjs");
   const { failures, replaced, failed } = await captureScenarios(selected);
 
-  console.log(`\nReplaced ${replaced.length} screenshot(s) in ${path.relative(ROOT, OUT_DIR)}`);
+  console.log(
+    `\nReplaced ${replaced.length} screenshot(s) in ${path.relative(ROOT, OUT_DIR)}`,
+  );
   if (failed.length) {
-    console.error(`Failed scenarios (existing screenshots preserved): ${failed.join(", ")}`);
+    console.error(
+      `Failed scenarios (existing screenshots preserved): ${failed.join(", ")}`,
+    );
   }
   if (failures.length) {
     console.error("\nVisual QA FAILED:\n" + failures.map((f) => `  - ${f}`).join("\n"));

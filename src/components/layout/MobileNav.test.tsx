@@ -3,9 +3,13 @@ import userEvent from "@testing-library/user-event";
 import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { MobileNav } from "./MobileNav";
+import en from "@/i18n/en";
+import { localePath, primaryNav } from "@/lib/routes";
+
+let mockPathname = "/en";
 
 vi.mock("next/navigation", () => ({
-  usePathname: () => "/en",
+  usePathname: () => mockPathname,
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn() }),
 }));
 
@@ -63,6 +67,7 @@ function getTrigger() {
 
 describe("MobileNav", () => {
   beforeEach(() => {
+    mockPathname = "/en";
     document.body.style.position = "";
     document.body.style.top = "";
   });
@@ -101,9 +106,7 @@ describe("MobileNav", () => {
     expect(closeBtn).toHaveFocus();
 
     await user.click(closeBtn);
-    await waitFor(() =>
-      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
-    );
+    await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
     expect(trigger).toHaveFocus();
     expect(trigger).toHaveAttribute("aria-expanded", "false");
   });
@@ -117,9 +120,7 @@ describe("MobileNav", () => {
     expect(screen.getByRole("dialog")).toBeInTheDocument();
 
     await user.keyboard("{Escape}");
-    await waitFor(() =>
-      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
-    );
+    await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
     expect(trigger).toHaveFocus();
   });
 
@@ -131,9 +132,7 @@ describe("MobileNav", () => {
     const dialog = screen.getByRole("dialog");
     await user.click(within(dialog).getByRole("link", { name: "About" }));
 
-    await waitFor(() =>
-      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
-    );
+    await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
   });
 
   it("locks body scroll while open and restores it on close", async () => {
@@ -158,8 +157,45 @@ describe("MobileNav", () => {
       "aria-current",
       "page",
     );
-    expect(
-      within(dialog).getByRole("link", { name: "About" }),
-    ).not.toHaveAttribute("aria-current");
+    expect(within(dialog).getByRole("link", { name: "About" })).not.toHaveAttribute(
+      "aria-current",
+    );
+  });
+
+  it("includes the Patient Center link from the primary nav and marks it active on its route", async () => {
+    mockPathname = "/en/patient-center";
+    const user = userEvent.setup();
+    // Same derivation the Header uses, so the real nav registry is exercised.
+    const navItems = primaryNav.map((key) => ({
+      href: localePath("en", key),
+      label: en.nav[key],
+    }));
+    render(<MobileNav {...props} navItems={navItems} />);
+
+    await user.click(getTrigger());
+    const dialog = screen.getByRole("dialog");
+    const links = within(dialog)
+      .getAllByRole("link")
+      .map((link) => link.getAttribute("href"));
+    expect(links).toContain("/en/patient-center");
+
+    // Ordered between Auto Accidents and Contact.
+    const nav = within(dialog).getByRole("navigation", { name: "Menu" });
+    const labels = within(nav)
+      .getAllByRole("link")
+      .map((link) => link.textContent);
+    expect(labels).toEqual([
+      "Home",
+      "About",
+      "Services",
+      "Auto Accidents",
+      "Patient Center",
+      "Contact",
+    ]);
+
+    expect(within(dialog).getByRole("link", { name: "Patient Center" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
   });
 });

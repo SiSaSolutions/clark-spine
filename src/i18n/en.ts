@@ -39,6 +39,7 @@ const en = {
     about: "About",
     services: "Services",
     autoAccidents: "Auto Accidents",
+    patientCenter: "Patient Center",
     contact: "Contact",
     inquiry: "Request Appointment",
   },
@@ -200,7 +201,10 @@ const en = {
       ],
     },
     credentials: {
-      heading: "Education & licensure",
+      eyebrow: "Credentials & training",
+      heading: "A foundation built on professional study",
+      intro:
+        "Explore the education, licensure, and clinical experience that shaped Dr. Garabo's approach to patient care.",
       education: {
         title: "Education",
         items: [
@@ -240,8 +244,11 @@ const en = {
           { main: "Medicare", sub: "" },
           { main: "Horizon BCBS of New Jersey", sub: "Tier 1" },
           { main: "Hackensack Meridian", sub: "Inner Circle" },
+          { main: "Aetna", sub: "" },
         ],
       },
+      insuranceNote:
+        "The practice works with multiple insurance plans, including Aetna. Patients should contact their insurer or the office to confirm plan-specific benefits.",
     },
   },
 
@@ -482,6 +489,231 @@ const en = {
       heading: "Involved in an accident?",
       body: "Request an appointment for a prompt evaluation.",
       button: "Request an Appointment",
+    },
+  },
+
+  // Content preserved from the practice's original Patient Center page (forms
+  // list, fax instructions, FAQs, insurance items), reorganized and expanded
+  // with the new bilingual form workflow. See UNVERIFIED.md for pending items.
+  patientCenter: {
+    metaTitle: "Patient Center",
+    metaDescription:
+      "Access patient forms, submission instructions, insurance information, and resources for preparing for an appointment at Clark Spine and Pain Relief.",
+    heroEyebrow: "Patient Center",
+    heroTitle: "Prepare for your visit",
+    heroSubtitle:
+      "Access patient forms, review submission options, and find helpful information before your appointment.",
+    heroNote:
+      "Forms will be available in English and Spanish and can be completed digitally or printed.",
+    // Preserved original Patient Center hero copy.
+    heroIntro: "Forms, information, and everything you need before your first visit.",
+
+    // Preserved original "Getting Started" journey section.
+    gettingStarted: {
+      eyebrow: "Getting Started",
+      heading: "4 steps to pain relief",
+      body: "Our straightforward process gets you from pain to relief as quickly as possible.",
+      steps: [
+        {
+          title: "Book your appointment",
+          body: "Call our office or use the contact form to schedule. New patients are always welcome.",
+        },
+        {
+          title: "Complete patient forms",
+          body: "Download and complete your intake forms in advance to save time at your first visit.",
+        },
+        {
+          title: "In-office health assessment",
+          body: "Our doctor performs a thorough examination, reviews any imaging, and determines an accurate diagnosis.",
+        },
+        {
+          title: "Start your care plan",
+          body: "Receive a short-term, individualized treatment plan to eliminate pain and restore your quality of life.",
+        },
+      ],
+    },
+
+    workflow: {
+      eyebrow: "How It Works",
+      heading: "Complete your forms in four simple steps",
+      body: "Choose the form you need, complete it at your convenience, and submit it using the option that works best for you.",
+      steps: [
+        {
+          title: "Choose your form",
+          body: "Select the document you need in English or Spanish.",
+        },
+        {
+          title: "Download and complete it",
+          body: "Download the editable PDF to your phone, tablet, or computer and enter your information.",
+        },
+        {
+          title: "Save the completed form",
+          body: "Save a completed copy to your device before submitting or printing it.",
+        },
+        {
+          title: "Submit your form",
+          body: "Email it to the office, fax it, or print it and bring it to your appointment.",
+        },
+      ],
+    },
+
+    resources: {
+      // Eyebrow and heading preserved from the original forms section.
+      eyebrow: "Patient Paperwork",
+      heading: "Download patient forms",
+      // Original intent preserved ("complete forms at home and bring them or
+      // fax them"), updated so the digital and offline options are both clear.
+      body: "Complete forms in the comfort of your home and bring them to your appointment — or send them to the office by email or fax.",
+      downloadLabel: "Download PDF",
+      downloadAriaLabel: "Download {title} (PDF)",
+      externalLabel: "Open online form",
+      externalAriaLabel: "Open {title} (opens in a new tab)",
+      pdfComingSoon: "PDF coming soon",
+      externalComingSoon: "Online form coming soon",
+      // Items pair by id with src/data/patient-forms.ts. All four form names
+      // and descriptions are preserved from the original Patient Center.
+      items: [
+        {
+          id: "new-patient-intake",
+          title: "New Patient Intake Form",
+          description:
+            "Complete this form before your first visit. Covers personal information, medical history, and current symptoms.",
+        },
+        {
+          id: "personal-injury-questionnaire",
+          title: "Personal Injury Questionnaire",
+          description:
+            "For patients involved in auto accidents or personal injury cases. Documents mechanism of injury and symptom onset.",
+        },
+        {
+          id: "insurance-patient-form",
+          title: "Insurance Patient Form",
+          description:
+            "Covers your health insurance information and authorizations for billing. Required for all insured patients.",
+        },
+        {
+          id: "financial-policy-hipaa",
+          title: "Financial Policy & HIPAA Notice",
+          description:
+            "Our office financial policy and HIPAA privacy practices notice. Required for all new patients.",
+        },
+      ],
+      // Preserved original fax note; {fax} and {phone} are filled from the
+      // centralized practice data.
+      faxNote:
+        "Fax completed forms to {fax} or bring them to your appointment. Questions? Call {phone}.",
+    },
+
+    submission: {
+      eyebrow: "Submitting Your Forms",
+      heading: "Choose the option that works best for you",
+      email: {
+        title: "Email the completed form",
+        body: "Save the completed document and attach it to an email addressed to the office.",
+        subject: "Completed Patient Form",
+        linkAriaLabel: "Email the office at {address}",
+      },
+      fax: {
+        title: "Send it by fax",
+        body: "Fax the completed form to the office using the number below.",
+      },
+      print: {
+        title: "Print and bring it with you",
+        body: "Print the completed form and bring it to the office at your appointment.",
+      },
+      privacyNote:
+        "Email may not provide the same privacy protections as a secure patient portal. Contact the office if you are unsure which submission method to use.",
+    },
+
+    insurance: {
+      eyebrow: "Insurance Information",
+      heading: "Understanding your coverage",
+      body: "Clark Spine and Pain Relief works with multiple insurance plans, including Aetna. Coverage, benefits, referrals, deductibles, copayments, and patient responsibility can vary by plan. Contact your insurance provider or the office to confirm your individual benefits before treatment.",
+      // Preserved original insurance-section wording (Medicare and payment
+      // plans for uninsured or underinsured patients).
+      accessNote:
+        "The practice accepts most major insurance including Medicare, and offers convenient payment plans for uninsured or underinsured patients.",
+      providersLabel: "Participating insurance providers",
+      // Pairs by id with src/data/insurance.ts. Names preserved from the
+      // original Patient Center insurance section, plus Aetna.
+      providers: [
+        { id: "medicare", name: "Medicare", note: "" },
+        { id: "horizon-bcbs-nj", name: "Horizon BC/BS NJ", note: "Tier 1 Provider" },
+        {
+          id: "hackensack-meridian",
+          name: "Hackensack Meridian",
+          note: "“Inner Circle”",
+        },
+        { id: "aetna", name: "Aetna", note: "" },
+        { id: "major-plans", name: "Most Major Insurance Plans", note: "" },
+        { id: "uninsured", name: "Uninsured & Underinsured Plans", note: "" },
+        { id: "personal-injury", name: "Personal Injury Cases", note: "" },
+      ],
+    },
+
+    faq: {
+      // Eyebrow and heading preserved from the original FAQ section.
+      eyebrow: "FAQs",
+      heading: "Common questions",
+      items: [
+        {
+          question: "What should I bring to my first appointment?",
+          answer:
+            "Please bring your completed intake forms, a valid photo ID, your insurance card, and any imaging (X-ray, MRI) films or reports related to your condition.",
+        },
+        {
+          question: "Do you accept my insurance?",
+          answer:
+            "We accept most major insurance plans including Medicare and Aetna. We are a Tier 1 provider for Horizon BC/BS of NJ and an “Inner Circle” provider for Hackensack Meridian employees. Plan participation and individual benefits can vary, so call us at (908) 497-9440 to verify your specific plan.",
+        },
+        {
+          question: "How long are treatment plans?",
+          answer:
+            "We advocate for short-term, focused treatment plans designed to get you relief and correction as efficiently as possible. Most patients see significant improvement within a few weeks.",
+        },
+        {
+          question: "Can I complete the forms on my phone?",
+          answer:
+            "Yes. The downloadable forms will be editable PDFs that can be opened and completed on many phones, tablets, and computers. Available features may depend on the PDF application installed on your device.",
+        },
+        {
+          question: "How do I save a completed form?",
+          answer:
+            "Use your PDF application’s save, save a copy, or share option. Confirm that your information remains visible after saving before submitting the document.",
+        },
+        {
+          question: "How can I submit my forms?",
+          answer:
+            "You may email the saved document to the office, fax it to (908) 497-9442, or print it and bring it to your appointment.",
+        },
+        {
+          question: "Can the website email the form for me?",
+          answer:
+            "No. The website provides the document for download, but you must attach the saved form using your own email application.",
+        },
+        {
+          question: "Can I print the forms instead?",
+          answer:
+            "Yes. You may print the forms, complete them by hand, and bring them to your appointment.",
+        },
+        {
+          question: "What should I do if a form does not open or save correctly?",
+          answer:
+            "Try opening the document in a dedicated PDF application. You may also print the form or contact the office for assistance.",
+        },
+        {
+          question: "Is the new-patient intake form a PDF?",
+          answer:
+            "No. The new-patient intake form will open as a separate online form once it becomes available.",
+        },
+      ],
+    },
+
+    cta: {
+      heading: "Need help before your visit?",
+      body: "Contact the office with questions about forms, insurance, or preparing for your appointment.",
+      contactButton: "Contact the Office",
+      appointmentButton: "Request Appointment",
     },
   },
 

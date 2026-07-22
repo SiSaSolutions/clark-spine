@@ -10,6 +10,7 @@ export type PageKey =
   | "about"
   | "services"
   | "autoAccidents"
+  | "patientCenter"
   | "contact"
   | "inquiry"
   | "thankYou"
@@ -21,6 +22,7 @@ const segments: Record<PageKey, string> = {
   about: "about",
   services: "services",
   autoAccidents: "auto-accidents",
+  patientCenter: "patient-center",
   contact: "contact",
   inquiry: "inquiry",
   thankYou: "inquiry/thank-you",
@@ -34,7 +36,14 @@ export function localePath(locale: Locale, page: PageKey): string {
 }
 
 /** Keys present in `dictionary.nav`. */
-type NavKey = "home" | "about" | "services" | "autoAccidents" | "contact" | "inquiry";
+type NavKey =
+  | "home"
+  | "about"
+  | "services"
+  | "autoAccidents"
+  | "patientCenter"
+  | "contact"
+  | "inquiry";
 
 /** Pages shown in the primary navigation, in order. Each key indexes `dict.nav`. */
 export const primaryNav: NavKey[] = [
@@ -42,6 +51,7 @@ export const primaryNav: NavKey[] = [
   "about",
   "services",
   "autoAccidents",
+  "patientCenter",
   "contact",
 ];
 
@@ -51,6 +61,7 @@ export const indexablePages: PageKey[] = [
   "about",
   "services",
   "autoAccidents",
+  "patientCenter",
   "contact",
   "inquiry",
   "privacy",

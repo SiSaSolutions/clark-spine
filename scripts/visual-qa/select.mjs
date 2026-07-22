@@ -28,6 +28,7 @@ const PAGE_NAMESPACES = {
   about: "about",
   services: "services",
   autoAccidents: "auto-accidents",
+  patientCenter: "patient-center",
   contact: "contact",
   inquiry: "inquiry",
 };
@@ -95,9 +96,7 @@ function git(args) {
  */
 export function getChangedFiles({ base } = {}) {
   const ref = base || "HEAD";
-  const diffed = git(["diff", "--name-only", ref, "--"])
-    .split("\n")
-    .filter(Boolean);
+  const diffed = git(["diff", "--name-only", ref, "--"]).split("\n").filter(Boolean);
   const untracked = git(["ls-files", "--others", "--exclude-standard"])
     .split("\n")
     .filter(Boolean);
