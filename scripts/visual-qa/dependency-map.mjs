@@ -17,7 +17,12 @@
  * classified "unknown" and reported rather than silently expanding the run.
  */
 
-const ALL_DEFAULT = { pages: "all", locales: "all", viewports: "all", states: ["default"] };
+const ALL_DEFAULT = {
+  pages: "all",
+  locales: "all",
+  viewports: "all",
+  states: ["default"],
+};
 const ALL_STATES = { pages: "all", locales: "all", viewports: "all", states: "all" };
 
 /** Route slugs for non-home pages (used by the shared interior hero rule). */
@@ -28,7 +33,9 @@ export const RULES = [
   {
     match: /^scripts\/visual-qa(\.mjs$|\/)|^scripts\/screenshots-clean\.mjs$/,
     scope: "global",
-    specs: [{ ...ALL_STATES, reason: "screenshot tooling changed — full suite required" }],
+    specs: [
+      { ...ALL_STATES, reason: "screenshot tooling changed — full suite required" },
+    ],
     reason: "screenshot tooling changed",
   },
 
@@ -45,7 +52,9 @@ export const RULES = [
   {
     match: /^src\/i18n\/(locales|dictionaries)\.ts$/,
     scope: "global",
-    specs: [{ ...ALL_STATES, reason: "i18n infrastructure affects every localized route" }],
+    specs: [
+      { ...ALL_STATES, reason: "i18n infrastructure affects every localized route" },
+    ],
     reason: "shared localization architecture",
   },
 
@@ -201,7 +210,7 @@ export const RULES = [
 
   // ---- About page portrait asset ----
   {
-    match: /^public\/images\/dr-garabo/,
+    match: /^public\/images\/practice\/dr-james-garabo/,
     scope: "page",
     specs: [
       {
@@ -213,6 +222,22 @@ export const RULES = [
       },
     ],
     reason: "about page image asset",
+  },
+
+  // ---- Contact page exterior practice photos ----
+  {
+    match: /^public\/images\/practice\/practice-/,
+    scope: "page",
+    specs: [
+      {
+        pages: ["contact"],
+        locales: "all",
+        viewports: "all",
+        states: ["default"],
+        reason: "contact page exterior photos",
+      },
+    ],
+    reason: "contact page image assets",
   },
 
   // ---- Shared UI + remaining section components (conservative: all pages) ----

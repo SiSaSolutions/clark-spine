@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PageHero } from "@/components/sections/PageHero";
+import { PracticeLocationGallery } from "@/components/sections/PracticeLocationGallery";
 import { EmergencyNotice } from "@/components/ui/EmergencyNotice";
 import { Section } from "@/components/ui/Section";
 import { practice, formattedAddress } from "@/data/practice";
@@ -117,6 +118,19 @@ export default async function ContactPage({
                 </div>
               </div>
             </dl>
+
+            {/* Compact office-location photos supporting the address above.
+                Each thumbnail opens an accessible fullscreen viewer. */}
+            <div className="mt-8">
+              <p className="text-muted text-sm font-semibold">{contact.officeLabel}</p>
+              <PracticeLocationGallery
+                buildingAlt={contact.buildingImageAlt}
+                doorAlt={contact.doorImageAlt}
+                viewBuildingLabel={contact.viewBuildingPhoto}
+                viewDoorLabel={contact.viewDoorPhoto}
+                lightboxLabels={contact.lightbox}
+              />
+            </div>
 
             <EmergencyNotice message={contact.emergencyNotice} className="mt-8" />
           </div>
