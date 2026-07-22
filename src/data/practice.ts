@@ -38,6 +38,15 @@ export const practice = {
    * the UI until a public address is confirmed (see UNVERIFIED.md).
    */
   email: null as string | null,
+  /**
+   * Destination for completed patient forms (user-provided requirement).
+   * Patients attach saved forms from their own email application — the website
+   * never uploads, stores, or transmits patient documents.
+   */
+  formsEmail: {
+    display: "Garabochiro@gmail.com",
+    href: "mailto:Garabochiro@gmail.com",
+  },
 
   address: {
     line1: "118 Westfield Avenue",

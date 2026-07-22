@@ -12,6 +12,26 @@ describe("localePath", () => {
   it("builds locale-prefixed paths for sub-pages", () => {
     expect(localePath("es", "autoAccidents")).toBe("/es/auto-accidents");
     expect(localePath("en", "thankYou")).toBe("/en/inquiry/thank-you");
+    expect(localePath("en", "patientCenter")).toBe("/en/patient-center");
+    expect(localePath("es", "patientCenter")).toBe("/es/patient-center");
+  });
+});
+
+describe("patient center metadata", () => {
+  const meta = buildPageMetadata({
+    locale: "en",
+    page: "patientCenter",
+    title: "Patient Center",
+    description: "desc",
+    siteName: "Clark Spine and Pain Relief",
+    ogImageAlt: "logo",
+  });
+
+  it("sets the canonical and hreflang alternates for the new route", () => {
+    expect(meta.alternates?.canonical).toContain("/en/patient-center");
+    const languages = meta.alternates?.languages ?? {};
+    expect(languages["es"]).toContain("/es/patient-center");
+    expect(languages["x-default"]).toContain("/en/patient-center");
   });
 });
 

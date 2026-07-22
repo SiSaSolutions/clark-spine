@@ -26,7 +26,14 @@ const ALL_DEFAULT = {
 const ALL_STATES = { pages: "all", locales: "all", viewports: "all", states: "all" };
 
 /** Route slugs for non-home pages (used by the shared interior hero rule). */
-const INTERIOR_PAGES = ["services", "auto-accidents", "contact", "inquiry", "about"];
+const INTERIOR_PAGES = [
+  "services",
+  "auto-accidents",
+  "patient-center",
+  "contact",
+  "inquiry",
+  "about",
+];
 
 export const RULES = [
   // ---- Screenshot tooling: a tooling change invalidates the whole suite ----
@@ -184,6 +191,7 @@ export const RULES = [
     ["about", "about"],
     ["services", "services"],
     ["auto-accidents", "auto-accidents"],
+    ["patient-center", "patient-center"],
     ["contact", "contact"],
     ["inquiry", "inquiry"],
   ].map(([dir, slug]) => ({
@@ -238,6 +246,30 @@ export const RULES = [
       },
     ],
     reason: "contact page image assets",
+  },
+
+  // ---- Patient Center-only sections and data ----
+  {
+    match:
+      /^src\/components\/sections\/(PatientForms|FaqAccordion)\.tsx$|^src\/data\/(patient-forms|insurance)\.ts$/,
+    scope: "page",
+    specs: [
+      {
+        pages: ["patient-center"],
+        locales: "all",
+        viewports: "all",
+        states: ["default"],
+        reason: "patient center section component or resource data",
+      },
+    ],
+    reason: "patient center section",
+  },
+
+  // ---- Patient document files: downloads, no rendered page output ----
+  {
+    match: /^public\/documents\//,
+    scope: "none",
+    reason: "downloadable documents have no visual impact on rendered pages",
   },
 
   // ---- Shared UI + remaining section components (conservative: all pages) ----

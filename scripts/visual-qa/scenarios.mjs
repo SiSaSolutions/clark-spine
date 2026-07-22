@@ -31,6 +31,7 @@ export const ROUTES = [
   { slug: "home", path: "" },
   { slug: "services", path: "/services" },
   { slug: "auto-accidents", path: "/auto-accidents" },
+  { slug: "patient-center", path: "/patient-center" },
   { slug: "contact", path: "/contact" },
   { slug: "inquiry", path: "/inquiry" },
   { slug: "about", path: "/about" },
@@ -63,8 +64,7 @@ export const STATES = ["default", "mobile-menu"];
  * mobile and one tablet size (the hamburger shows below the xl breakpoint).
  */
 const MOBILE_MENU_VIEWPORTS = VIEWPORTS.filter(
-  (v) =>
-    (v.width === 390 && v.height === 844) || (v.width === 768 && v.height === 1024),
+  (v) => (v.width === 390 && v.height === 844) || (v.width === 768 && v.height === 1024),
 );
 
 /** Deterministic filename for a scenario. */

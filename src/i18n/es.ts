@@ -35,6 +35,7 @@ const es: Dictionary = {
     about: "Nosotros",
     services: "Servicios",
     autoAccidents: "Accidentes de Auto",
+    patientCenter: "Centro del Paciente",
     contact: "Contacto",
     inquiry: "Solicitar Cita",
   },
@@ -201,7 +202,10 @@ const es: Dictionary = {
       ],
     },
     credentials: {
-      heading: "Educación y licencias",
+      eyebrow: "Credenciales y formación",
+      heading: "Una base construida mediante estudios profesionales",
+      intro:
+        "Conozca la educación, las licencias y la experiencia clínica que dieron forma al enfoque del Dr. Garabo para la atención de sus pacientes.",
       education: {
         title: "Educación",
         items: [
@@ -241,8 +245,11 @@ const es: Dictionary = {
           { main: "Medicare", sub: "" },
           { main: "Horizon BCBS de Nueva Jersey", sub: "Tier 1" },
           { main: "Hackensack Meridian", sub: "Inner Circle" },
+          { main: "Aetna", sub: "" },
         ],
       },
+      insuranceNote:
+        "El consultorio trabaja con varios planes de seguro, incluido Aetna. Los pacientes deben comunicarse con su aseguradora o con el consultorio para confirmar los beneficios específicos de su plan.",
     },
   },
 
@@ -483,6 +490,219 @@ const es: Dictionary = {
       heading: "¿Estuvo en un accidente?",
       body: "Solicite una cita para una evaluación rápida.",
       button: "Solicitar una Cita",
+    },
+  },
+
+  // Contenido preservado del Centro de Pacientes original (lista de
+  // formularios, instrucciones de fax, preguntas frecuentes, seguros),
+  // reorganizado y ampliado con el nuevo flujo bilingüe de formularios.
+  patientCenter: {
+    metaTitle: "Centro del Paciente",
+    metaDescription:
+      "Acceda a formularios para pacientes, instrucciones de envío, información del seguro y recursos para prepararse para una cita en Clark Spine and Pain Relief.",
+    heroEyebrow: "Centro del Paciente",
+    heroTitle: "Prepárese para su visita",
+    heroSubtitle:
+      "Acceda a formularios para pacientes, revise las opciones de envío y encuentre información útil antes de su cita.",
+    heroNote:
+      "Los formularios estarán disponibles en inglés y español y podrán completarse digitalmente o imprimirse.",
+    heroIntro:
+      "Formularios, información y todo lo que necesita antes de su primera visita.",
+
+    gettingStarted: {
+      eyebrow: "Cómo Comenzar",
+      heading: "4 pasos para aliviar el dolor",
+      body: "Nuestro proceso sencillo lo lleva del dolor al alivio de la manera más rápida posible.",
+      steps: [
+        {
+          title: "Haga su cita",
+          body: "Llame a nuestra oficina o use el formulario de contacto para programar. Los nuevos pacientes siempre son bienvenidos.",
+        },
+        {
+          title: "Complete los formularios",
+          body: "Descargue y complete sus formularios con anticipación para ahorrar tiempo en su primera visita.",
+        },
+        {
+          title: "Evaluación en la oficina",
+          body: "Nuestro médico realiza un examen completo, revisa las imágenes y determina un diagnóstico preciso.",
+        },
+        {
+          title: "Inicie su plan de cuidado",
+          body: "Reciba un plan de tratamiento individualizado a corto plazo para eliminar el dolor y restaurar su calidad de vida.",
+        },
+      ],
+    },
+
+    workflow: {
+      eyebrow: "Cómo funciona",
+      heading: "Complete sus formularios en cuatro pasos sencillos",
+      body: "Elija el formulario que necesita, complételo cuando le resulte conveniente y envíelo mediante la opción que prefiera.",
+      steps: [
+        {
+          title: "Elija su formulario",
+          body: "Seleccione el documento que necesita en inglés o español.",
+        },
+        {
+          title: "Descárguelo y complételo",
+          body: "Descargue el PDF editable en su teléfono, tableta o computadora e ingrese su información.",
+        },
+        {
+          title: "Guarde el formulario completado",
+          body: "Guarde una copia completada en su dispositivo antes de enviarla o imprimirla.",
+        },
+        {
+          title: "Envíe su formulario",
+          body: "Envíelo por correo electrónico o fax, o imprímalo y llévelo a su cita.",
+        },
+      ],
+    },
+
+    resources: {
+      eyebrow: "Documentos del Paciente",
+      heading: "Descargar formularios del paciente",
+      body: "Complete los formularios en la comodidad de su hogar y tráigalos a su cita — o envíelos al consultorio por correo electrónico o fax.",
+      downloadLabel: "Descargar PDF",
+      downloadAriaLabel: "Descargar {title} (PDF)",
+      externalLabel: "Abrir formulario en línea",
+      externalAriaLabel: "Abrir {title} (se abre en una pestaña nueva)",
+      pdfComingSoon: "PDF próximamente",
+      externalComingSoon: "Formulario en línea próximamente",
+      items: [
+        {
+          id: "new-patient-intake",
+          title: "Formulario de Ingreso de Nuevo Paciente",
+          description:
+            "Complete este formulario antes de su primera visita. Incluye información personal, historial médico y síntomas actuales.",
+        },
+        {
+          id: "personal-injury-questionnaire",
+          title: "Cuestionario de Lesión Personal",
+          description:
+            "Para pacientes involucrados en accidentes automovilísticos o casos de lesión personal. Documenta el mecanismo de la lesión y el inicio de los síntomas.",
+        },
+        {
+          id: "insurance-patient-form",
+          title: "Formulario de Paciente Asegurado",
+          description:
+            "Incluye su información de seguro médico y autorizaciones para facturación. Requerido para todos los pacientes asegurados.",
+        },
+        {
+          id: "financial-policy-hipaa",
+          title: "Política Financiera y Aviso HIPAA",
+          description:
+            "La política financiera de nuestra oficina y el aviso de prácticas de privacidad HIPAA. Requerido para todos los nuevos pacientes.",
+        },
+      ],
+      faxNote:
+        "Envíe los formularios completados por fax al {fax} o tráigalos a su cita. ¿Preguntas? Llame al {phone}.",
+    },
+
+    submission: {
+      eyebrow: "Envío de formularios",
+      heading: "Elija la opción que más le convenga",
+      email: {
+        title: "Envíe el formulario por correo electrónico",
+        body: "Guarde el documento completado y adjúntelo a un correo electrónico dirigido al consultorio.",
+        subject: "Formulario del paciente completado",
+        linkAriaLabel: "Enviar un correo al consultorio a {address}",
+      },
+      fax: {
+        title: "Envíelo por fax",
+        body: "Envíe el formulario completado al consultorio mediante el número que aparece a continuación.",
+      },
+      print: {
+        title: "Imprímalo y llévelo",
+        body: "Imprima el formulario completado y llévelo al consultorio el día de su cita.",
+      },
+      privacyNote:
+        "El correo electrónico puede no ofrecer las mismas protecciones de privacidad que un portal seguro para pacientes. Comuníquese con el consultorio si no está seguro de qué método de envío utilizar.",
+    },
+
+    insurance: {
+      eyebrow: "Información del seguro",
+      heading: "Comprenda su cobertura",
+      body: "Clark Spine and Pain Relief trabaja con varios planes de seguro, incluido Aetna. La cobertura, los beneficios, las referencias, los deducibles, los copagos y la responsabilidad del paciente pueden variar según el plan. Comuníquese con su proveedor de seguro o con el consultorio para confirmar sus beneficios individuales antes del tratamiento.",
+      accessNote:
+        "El consultorio acepta la mayoría de los seguros importantes incluyendo Medicare, y ofrece planes de pago convenientes para pacientes sin seguro o con seguro insuficiente.",
+      providersLabel: "Proveedores de seguro participantes",
+      providers: [
+        { id: "medicare", name: "Medicare", note: "" },
+        { id: "horizon-bcbs-nj", name: "Horizon BC/BS NJ", note: "Proveedor Nivel 1" },
+        {
+          id: "hackensack-meridian",
+          name: "Hackensack Meridian",
+          note: "“Inner Circle”",
+        },
+        { id: "aetna", name: "Aetna", note: "" },
+        { id: "major-plans", name: "La Mayoría de los Seguros", note: "" },
+        { id: "uninsured", name: "Pacientes sin Seguro o Parcial", note: "" },
+        { id: "personal-injury", name: "Lesiones Personales", note: "" },
+      ],
+    },
+
+    faq: {
+      eyebrow: "Preguntas Frecuentes",
+      heading: "Preguntas comunes",
+      items: [
+        {
+          question: "¿Qué debo traer a mi primera cita?",
+          answer:
+            "Por favor traiga sus formularios de ingreso completados, una identificación válida con foto, su tarjeta de seguro, y cualquier imagen (rayos X, MRI) o informes relacionados con su condición.",
+        },
+        {
+          question: "¿Aceptan mi seguro?",
+          answer:
+            "Aceptamos la mayoría de los planes de seguro importantes incluyendo Medicare y Aetna. Somos un proveedor de Nivel 1 de Horizon BC/BS de NJ y proveedor “Inner Circle” para empleados de Hackensack Meridian. La participación del plan y los beneficios individuales pueden variar, así que llámenos al (908) 497-9440 para verificar su plan específico.",
+        },
+        {
+          question: "¿Cuánto duran los planes de tratamiento?",
+          answer:
+            "Abogamos por planes de tratamiento enfocados a corto plazo diseñados para brindarle alivio y corrección de manera eficiente. La mayoría de los pacientes ven una mejoría significativa en unas pocas semanas.",
+        },
+        {
+          question: "¿Puedo completar los formularios en mi teléfono?",
+          answer:
+            "Sí. Los formularios descargables serán archivos PDF editables que podrán abrirse y completarse en muchos teléfonos, tabletas y computadoras. Las funciones disponibles pueden depender de la aplicación de PDF instalada en su dispositivo.",
+        },
+        {
+          question: "¿Cómo guardo un formulario completado?",
+          answer:
+            "Use la opción de guardar, guardar una copia o compartir de su aplicación de PDF. Confirme que su información continúe visible después de guardar el documento antes de enviarlo.",
+        },
+        {
+          question: "¿Cómo puedo enviar mis formularios?",
+          answer:
+            "Puede enviar el documento guardado por correo electrónico al consultorio, enviarlo por fax al (908) 497-9442, o imprimirlo y llevarlo a su cita.",
+        },
+        {
+          question: "¿Puede el sitio web enviar el formulario por mí?",
+          answer:
+            "No. El sitio web proporciona el documento para descargar, pero usted debe adjuntar el formulario guardado mediante su propia aplicación de correo electrónico.",
+        },
+        {
+          question: "¿Puedo imprimir los formularios?",
+          answer:
+            "Sí. Puede imprimir los formularios, completarlos a mano y llevarlos a su cita.",
+        },
+        {
+          question:
+            "¿Qué debo hacer si un formulario no se abre o no se guarda correctamente?",
+          answer:
+            "Intente abrir el documento en una aplicación dedicada para archivos PDF. También puede imprimir el formulario o comunicarse con el consultorio para obtener ayuda.",
+        },
+        {
+          question: "¿El formulario de admisión para pacientes nuevos es un PDF?",
+          answer:
+            "No. El formulario de admisión para pacientes nuevos se abrirá como un formulario en línea separado cuando esté disponible.",
+        },
+      ],
+    },
+
+    cta: {
+      heading: "¿Necesita ayuda antes de su visita?",
+      body: "Comuníquese con el consultorio si tiene preguntas sobre formularios, seguros o cómo prepararse para su cita.",
+      contactButton: "Contactar al consultorio",
+      appointmentButton: "Solicitar una cita",
     },
   },
 

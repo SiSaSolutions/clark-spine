@@ -46,7 +46,7 @@ export function Breadcrumbs({
                   href={item.href}
                   className={cn(
                     isDark
-                      ? "underline decoration-brand-400/60 underline-offset-4 hover:text-white"
+                      ? "decoration-brand-400/60 underline underline-offset-4 hover:text-white"
                       : "hover:text-brand-700",
                   )}
                 >

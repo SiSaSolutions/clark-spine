@@ -56,3 +56,39 @@ each patient. Confirm usage rights for any future photography before publishing.
 The hero eyebrow now displays "Accepting new patients · Clark, NJ". Confirm with
 the practice that they are actively accepting new patients before launch; remove
 or reword the eyebrow if that is not current.
+
+## 6. Patient Center documents and intake URL — pending
+
+The Patient Center (`/en/patient-center`, `/es/patient-center`) preserves the
+form list from the original (alpha) Patient Center page: **New Patient Intake
+Form, Personal Injury Questionnaire, Insurance Patient Form, Financial Policy &
+HIPAA Notice**. All resources currently render as intentional disabled
+placeholders. Still pending from the practice:
+
+- Final editable PDF files (English **and** Spanish) for the Personal Injury
+  Questionnaire, Insurance Patient Form, and Financial Policy & HIPAA Notice.
+  Files go under `public/documents/patient-forms/en/` and `.../es/`; activate
+  each one by setting its `source` path and `available` flag in
+  `src/data/patient-forms.ts`.
+- The URL for the **New Patient Intake Form** (it will be an external online
+  form, not a PDF). Do not invent one — the card stays a placeholder until the
+  practice supplies it.
+- Confirmation that the preserved alpha form names and descriptions are still
+  the names the office uses, and legal review of the Financial Policy & HIPAA
+  Notice title/wording once the real document exists.
+
+Treated as user-provided requirements (not invented): preserve the original
+Patient Center content; forms-submission email `Garabochiro@gmail.com`
+(`practice.formsEmail`); the intake form will be an external link; the other
+forms will be bilingual editable PDFs. The fax number used is the verified
+`(908) 497-9442` from `src/data/practice.ts`.
+
+## 7. Aetna participation wording — pending confirmation
+
+Aetna was added (user-provided requirement) alongside the existing verified
+providers on the Patient Center insurance section and the About "Insurance &
+affiliations" card — always with qualified wording ("works with multiple
+insurance plans, including Aetna") and never as the sole or featured insurer.
+Plan-level participation terminology (network tier, plan types) has not been
+confirmed by the practice; `src/data/insurance.ts` tracks Aetna as
+`verified: false` until the office confirms.

@@ -6,8 +6,9 @@ import { Section } from "@/components/ui/Section";
 import { practice } from "@/data/practice";
 
 /**
- * Reusable call-to-action band. Offers the primary action (appointment form)
- * plus a always-available phone link — never relying on a single interaction.
+ * Reusable call-to-action band. Offers the primary action (appointment form),
+ * an optional secondary link, plus an always-available phone link — never
+ * relying on a single interaction.
  */
 export function CtaBand({
   heading,
@@ -15,12 +16,16 @@ export function CtaBand({
   button,
   href,
   callLabel,
+  secondaryButton,
+  secondaryHref,
 }: {
   heading: string;
   body: string;
   button: string;
   href: string;
   callLabel: string;
+  secondaryButton?: string;
+  secondaryHref?: string;
 }) {
   return (
     <Section tone="brand" contained={false} className="relative overflow-hidden">
@@ -44,6 +49,15 @@ export function CtaBand({
           >
             {button}
           </ButtonLink>
+          {secondaryButton && secondaryHref ? (
+            <ButtonLink
+              href={secondaryHref}
+              size="lg"
+              className="w-full bg-transparent text-white shadow-none ring-1 ring-white/40 hover:bg-white/10 active:bg-white/15 sm:w-auto"
+            >
+              {secondaryButton}
+            </ButtonLink>
+          ) : null}
           <a
             href={practice.phone.href}
             className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md px-6 py-3 text-lg font-medium text-white ring-1 ring-white/40 hover:bg-white/10 sm:w-auto"

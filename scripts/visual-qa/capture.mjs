@@ -113,11 +113,11 @@ function collectMetrics(page) {
               document.querySelector(
                 "button[aria-label], button[aria-expanded], [data-mobile-nav-trigger]",
               ) ||
-                Array.from(document.querySelectorAll("button")).some((b) =>
-                  /menu|menú|open/i.test(
-                    b.getAttribute("aria-label") || b.textContent || "",
-                  ),
+              Array.from(document.querySelectorAll("button")).some((b) =>
+                /menu|menú|open/i.test(
+                  b.getAttribute("aria-label") || b.textContent || "",
                 ),
+              ),
             )
           : true,
       logoSvg: Boolean(document.querySelector("header a[aria-label] svg")),

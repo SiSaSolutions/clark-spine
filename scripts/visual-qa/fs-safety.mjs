@@ -50,7 +50,9 @@ export function assertSafeScreenshotPath(absPath) {
     throw new PathSafetyError(`path escapes the screenshot directory: ${resolved}`);
   }
   if (rel.includes(path.sep)) {
-    throw new PathSafetyError(`path is not a direct child of the screenshot directory: ${resolved}`);
+    throw new PathSafetyError(
+      `path is not a direct child of the screenshot directory: ${resolved}`,
+    );
   }
   const [topSegment] = rel.split(path.sep);
   if (PROTECTED_SEGMENTS.has(topSegment)) {

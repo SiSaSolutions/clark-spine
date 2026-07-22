@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
-import { CredentialList } from "@/components/sections/CredentialList";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { EducationCredentials } from "@/components/sections/EducationCredentials";
 import { PageHero } from "@/components/sections/PageHero";
 import { PracticePhoto } from "@/components/sections/PracticePhoto";
 import { Section } from "@/components/ui/Section";
@@ -81,31 +81,18 @@ export default async function AboutPage({
         </div>
       </Section>
 
-      <Section tone="subtle" ariaLabelledby="credentials-heading">
-        <SectionHeading
-          id="credentials-heading"
-          title={about.credentials.heading}
-          align="center"
-        />
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <CredentialList
-            title={about.credentials.education.title}
-            items={about.credentials.education.items}
-          />
-          <CredentialList
-            title={about.credentials.licensure.title}
-            items={about.credentials.licensure.items}
-          />
-          <CredentialList
-            title={about.credentials.experience.title}
-            items={about.credentials.experience.items}
-          />
-          <CredentialList
-            title={about.credentials.affiliations.title}
-            items={about.credentials.affiliations.items}
-          />
-        </div>
-      </Section>
+      <EducationCredentials
+        eyebrow={about.credentials.eyebrow}
+        heading={about.credentials.heading}
+        intro={about.credentials.intro}
+        groups={[
+          about.credentials.education,
+          about.credentials.licensure,
+          about.credentials.experience,
+          about.credentials.affiliations,
+        ]}
+        note={about.credentials.insuranceNote}
+      />
 
       <CtaBand
         heading={dict.home.cta.heading}
