@@ -49,6 +49,10 @@ beforeEach(() => {
 const props = {
   buildingAlt: "Marcus Plaza sign",
   doorAlt: "Office entrance",
+  buildingLabel: "Marcus Plaza",
+  doorLabel: "Office entrance",
+  buildingHint: "Look for the plaza sign beside the walkway.",
+  doorHint: "Enter through the door marked Garabo Chiropractic.",
   viewBuildingLabel: "View a larger photo of the Marcus Plaza sign",
   viewDoorLabel: "View a larger photo of the office entrance",
   lightboxLabels: {

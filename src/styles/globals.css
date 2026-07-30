@@ -222,3 +222,36 @@
     border-width: 0;
   }
 }
+
+/* Subtle entrance for a disclosed FAQ answer. Applied only under motion-safe;
+   the disclosure itself stays driven by the `hidden` attribute so all content
+   is server-rendered and works without JavaScript. */
+@keyframes faq-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-0.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Live-status pulse for the hero "accepting new patients" dot: a faint ring
+   expands a short distance behind the static center dot and fades before
+   repeating. transform + opacity only (no layout properties). Applied only
+   under motion-safe. */
+@keyframes status-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(2.3);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.3);
+    opacity: 0;
+  }
+}

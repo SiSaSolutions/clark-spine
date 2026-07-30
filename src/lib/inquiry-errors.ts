@@ -8,7 +8,9 @@ export interface InquiryErrorMessages {
   required: string;
   invalidName: string;
   invalidEmail: string;
-  invalidPhone: string;
+  phoneRequired: string;
+  phoneInvalid: string;
+  phoneLength: string;
   tooLong: string;
   messageTooShort: string;
   captcha: string;
@@ -36,7 +38,9 @@ export function resolveFieldMessage(
       if (code === "too_long") return messages.tooLong;
       return messages.invalidEmail;
     case "phone":
-      return code === "too_long" ? messages.tooLong : messages.invalidPhone;
+      if (code === "phone_required") return messages.phoneRequired;
+      if (code === "phone_length") return messages.phoneLength;
+      return messages.phoneInvalid;
     case "subject":
       return messages.tooLong;
     case "message":

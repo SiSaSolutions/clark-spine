@@ -7,7 +7,9 @@ const m: InquiryErrorMessages = {
   required: "required",
   invalidName: "invalidName",
   invalidEmail: "invalidEmail",
-  invalidPhone: "invalidPhone",
+  phoneRequired: "phoneRequired",
+  phoneInvalid: "phoneInvalid",
+  phoneLength: "phoneLength",
   tooLong: "tooLong",
   messageTooShort: "messageTooShort",
   captcha: "captcha",
@@ -26,6 +28,12 @@ describe("resolveFieldMessage", () => {
     expect(resolveFieldMessage("email", "required", m)).toBe("required");
     expect(resolveFieldMessage("email", "invalid", m)).toBe("invalidEmail");
     expect(resolveFieldMessage("email", "too_long", m)).toBe("tooLong");
+  });
+
+  it("maps phone codes to distinct messages", () => {
+    expect(resolveFieldMessage("phone", "phone_required", m)).toBe("phoneRequired");
+    expect(resolveFieldMessage("phone", "phone_length", m)).toBe("phoneLength");
+    expect(resolveFieldMessage("phone", "phone_invalid", m)).toBe("phoneInvalid");
   });
 
   it("maps message codes", () => {

@@ -39,14 +39,15 @@ export const inquirySchema = z.object({
     .max(254, "too_long")
     .refine(noNewlines, "invalid")
     .pipe(z.string().email("invalid")),
-  // Optional phone: digits, spaces, and common separators only.
+  // Required phone: exactly 10 digits, no separators. The client sanitizes to
+  // digits before submitting; the server rejects anything else. Ordered so the
+  // first issue is the most relevant message (required → non-digit → length).
   phone: z
-    .string()
+    .string({ error: "phone_required" })
     .trim()
-    .max(30, "too_long")
-    .refine((v) => v === "" || /^[0-9+()\-.\s]{7,}$/.test(v), "invalid")
-    .optional()
-    .default(""),
+    .min(1, "phone_required")
+    .refine((v) => /^\d+$/.test(v), "phone_invalid")
+    .refine((v) => v.length === 10, "phone_length"),
   subject: z
     .string()
     .trim()
@@ -66,4 +67,11 @@ export type InquiryData = z.output<typeof inquirySchema>;
 
 /** Field-level error codes surfaced to the client for localized messaging. */
 export type InquiryFieldError =
-  "required" | "too_short" | "too_long" | "invalid" | "captcha";
+  | "required"
+  | "too_short"
+  | "too_long"
+  | "invalid"
+  | "captcha"
+  | "phone_required"
+  | "phone_invalid"
+  | "phone_length";

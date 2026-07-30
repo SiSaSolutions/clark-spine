@@ -1,5 +1,6 @@
 import { Hr, Section, Text } from "@react-email/components";
 
+import { formatUsPhone } from "@/lib/utils";
 import { EmailLayout } from "./components/EmailLayout";
 
 export interface OwnerNotificationProps {
@@ -41,7 +42,7 @@ export function InquiryOwnerNotification({
   const rows: [string, string][] = [
     [labels.name, `${data.firstName} ${data.lastName}`],
     [labels.email, data.email],
-    [labels.phone, data.phone || labels.notProvided],
+    [labels.phone, formatUsPhone(data.phone)],
     [labels.subject, data.subject || labels.notProvided],
   ];
 

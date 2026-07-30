@@ -54,12 +54,18 @@ export interface PatientFormResource {
  */
 export const patientForms: PatientFormResource[] = [
   {
-    // Will be an external online form (not a PDF); URL to be provided later.
+    // External online form (not a PDF) — the practice's ChiroTouch patient
+    // intake portal. This is the only resource that sends the patient to a
+    // separate site to complete the form. ChiroTouch serves a per-language
+    // portal, so each locale links to its own (en-US / es).
     id: "new-patient-intake",
     type: "external",
     icon: "exam",
-    source: { en: null, es: null },
-    available: { en: false, es: false },
+    source: {
+      en: "https://intake.mychirotouch.com/en-US/?clinic=GCHC0001",
+      es: "https://intake.mychirotouch.com/es?clinic=GCHC0001",
+    },
+    available: { en: true, es: true },
   },
   {
     id: "personal-injury-questionnaire",

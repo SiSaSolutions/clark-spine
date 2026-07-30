@@ -26,7 +26,8 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
     <LanguageSelector
       currentLocale={locale}
       labels={localeShort}
-      groupLabel={dict.common.languageLabel}
+      switchLabel={dict.common.switchLanguage}
+      currentLabel={dict.common.currentLanguage}
     />
   );
 

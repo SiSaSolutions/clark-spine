@@ -44,13 +44,19 @@ export function FaqAccordion({
   }
 
   return (
-    <div className="border-line divide-line bg-surface shadow-card divide-y rounded-lg border">
+    <div className="space-y-3">
       {items.map((item, index) => {
         const isOpen = open.has(index);
         const buttonId = `${baseId}-faq-button-${index}`;
         const panelId = `${baseId}-faq-panel-${index}`;
         return (
-          <div key={item.question}>
+          <div
+            key={item.question}
+            className={cn(
+              "border-line bg-surface shadow-card overflow-hidden rounded-lg border transition-colors duration-200",
+              isOpen && "border-brand-200 bg-surface-subtle",
+            )}
+          >
             <Heading className="text-base">
               <button
                 type="button"
@@ -58,16 +64,18 @@ export function FaqAccordion({
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => toggle(index)}
-                className="text-ink hover:bg-surface-subtle flex min-h-12 w-full items-center justify-between gap-4 px-5 py-4 text-left font-sans text-base font-semibold focus-visible:outline-3 focus-visible:-outline-offset-2"
+                className="text-ink hover:text-link flex min-h-14 w-full items-center justify-between gap-4 px-5 py-4 text-left font-sans text-base font-semibold transition-colors focus-visible:outline-3 focus-visible:-outline-offset-2"
               >
                 <span className="min-w-0">{item.question}</span>
-                <ChevronDown
+                <span
                   aria-hidden="true"
                   className={cn(
-                    "text-brand-600 size-5 shrink-0 transition-transform duration-200",
-                    isOpen && "rotate-180",
+                    "border-line text-brand-600 flex size-8 shrink-0 items-center justify-center rounded-full border transition-all duration-200",
+                    isOpen && "border-brand-300 bg-surface rotate-180",
                   )}
-                />
+                >
+                  <ChevronDown className="size-4" />
+                </span>
               </button>
             </Heading>
             <div
@@ -77,7 +85,9 @@ export function FaqAccordion({
               hidden={!isOpen}
               className="px-5 pb-5"
             >
-              <p className="text-ink-soft">{item.answer}</p>
+              <p className="text-ink-soft motion-safe:animate-[faq-reveal_0.2s_ease-out]">
+                {item.answer}
+              </p>
             </div>
           </div>
         );

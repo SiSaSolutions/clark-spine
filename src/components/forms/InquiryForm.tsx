@@ -253,13 +253,17 @@ export function InquiryForm({
             id={fieldId("phone")}
             errorId={errorId("phone")}
             label={form.phone}
-            optionalLabel={form.optional}
+            required
             type="tel"
-            inputMode="tel"
+            inputMode="numeric"
             autoComplete="tel"
+            pattern="[0-9]*"
+            maxLength={10}
             value={values.phone}
             error={errors.phone}
-            onChange={(v) => setField("phone", v)}
+            // Sanitize every value the field receives — typing, paste, autofill,
+            // and voice input — to at most 10 digits so state stays normalized.
+            onChange={(v) => setField("phone", v.replace(/\D/g, "").slice(0, 10))}
           />
           <div className="min-w-0 sm:col-span-2">
             <TextField
@@ -406,6 +410,8 @@ function TextField({
   type = "text",
   inputMode,
   autoComplete,
+  pattern,
+  maxLength,
   value,
   error,
   onChange,
@@ -416,8 +422,10 @@ function TextField({
   required?: boolean;
   optionalLabel?: string;
   type?: string;
-  inputMode?: "text" | "email" | "tel";
+  inputMode?: "text" | "email" | "tel" | "numeric";
   autoComplete?: string;
+  pattern?: string;
+  maxLength?: number;
   value: string;
   error?: string;
   onChange: (value: string) => void;
@@ -437,7 +445,10 @@ function TextField({
         type={type}
         inputMode={inputMode}
         autoComplete={autoComplete}
+        pattern={pattern}
+        maxLength={maxLength}
         required={required}
+        aria-required={required ? true : undefined}
         value={value}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? errorId : undefined}
