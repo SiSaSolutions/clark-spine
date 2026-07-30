@@ -10,8 +10,12 @@
  * level as the existing providers — deliberately not first and never presented
  * as the sole insurer).
  *
- * `kind` distinguishes named insurers from general coverage categories so the
- * UI can keep the presentation restrained and equal-weight.
+ * `group` separates accepted insurance plans/networks from the practice's other
+ * coverage and payment options (personal injury, uninsured/underinsured
+ * assistance, payment plans) so the UI can present each set under its own
+ * clearly labeled heading — a payment or case category is never shown as an
+ * insurance provider. `icon` is a locale-neutral key resolved by
+ * `@/components/ui/Icon`.
  */
 
 export type InsuranceEntryId =
@@ -21,12 +25,17 @@ export type InsuranceEntryId =
   | "aetna"
   | "major-plans"
   | "uninsured"
-  | "personal-injury";
+  | "personal-injury"
+  | "payment-plans";
+
+/** "plans" = accepted insurance plans/networks; "options" = other coverage & payment options. */
+export type InsuranceGroup = "plans" | "options";
 
 export interface InsuranceEntry {
   id: InsuranceEntryId;
-  /** "provider" = named insurer; "category" = general coverage category. */
-  kind: "provider" | "category";
+  group: InsuranceGroup;
+  /** Decorative icon key resolved by `@/components/ui/Icon`. */
+  icon: string;
   /**
    * Verification status: true when confirmed by the practice (see
    * UNVERIFIED.md); Aetna participation wording is user-provided and pending
@@ -35,13 +44,19 @@ export interface InsuranceEntry {
   verified: boolean;
 }
 
-/** Display order — preserved from the original Patient Center list; Aetna added after the existing named providers. */
+/**
+ * Display order per group — insurance plans/networks first (Medicare leads;
+ * Aetna sits among the others, never first and never alone), then the practice's
+ * additional coverage and payment options. The i18n `providers` arrays and the
+ * content test mirror this id order.
+ */
 export const insuranceEntries: InsuranceEntry[] = [
-  { id: "medicare", kind: "provider", verified: true },
-  { id: "horizon-bcbs-nj", kind: "provider", verified: true },
-  { id: "hackensack-meridian", kind: "provider", verified: true },
-  { id: "aetna", kind: "provider", verified: false },
-  { id: "major-plans", kind: "category", verified: true },
-  { id: "uninsured", kind: "category", verified: true },
-  { id: "personal-injury", kind: "category", verified: true },
+  { id: "medicare", group: "plans", icon: "hospital", verified: true },
+  { id: "aetna", group: "plans", icon: "shield", verified: false },
+  { id: "horizon-bcbs-nj", group: "plans", icon: "health", verified: true },
+  { id: "hackensack-meridian", group: "plans", icon: "network", verified: true },
+  { id: "major-plans", group: "plans", icon: "license", verified: true },
+  { id: "personal-injury", group: "options", icon: "scale", verified: true },
+  { id: "uninsured", group: "options", icon: "support", verified: true },
+  { id: "payment-plans", group: "options", icon: "wallet", verified: true },
 ];

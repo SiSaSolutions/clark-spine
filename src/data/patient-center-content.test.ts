@@ -35,10 +35,8 @@ describe("preserved original Patient Center content", () => {
     ]);
   });
 
-  it("keeps the verified fax number in the fax note and submission answers", () => {
+  it("keeps the verified fax number in the submission answers", () => {
     expect(practice.fax.display).toBe("(908) 497-9442");
-    expect(en.patientCenter.resources.faxNote).toContain("{fax}");
-    expect(es.patientCenter.resources.faxNote).toContain("{fax}");
     const submitFaq = en.patientCenter.faq.items.find(
       (item) => item.question === "How can I submit my forms?",
     );
@@ -51,16 +49,6 @@ describe("preserved original Patient Center content", () => {
     expect(questions).toContain("Do you accept my insurance?");
     expect(questions).toContain("How long are treatment plans?");
   });
-
-  it("keeps the original getting-started journey steps", () => {
-    const titles = en.patientCenter.gettingStarted.steps.map((step) => step.title);
-    expect(titles).toEqual([
-      "Book your appointment",
-      "Complete patient forms",
-      "In-office health assessment",
-      "Start your care plan",
-    ]);
-  });
 });
 
 describe("patient form resource registry", () => {
@@ -70,13 +58,15 @@ describe("patient form resource registry", () => {
     expect(es.patientCenter.resources.items.map((i) => i.id)).toEqual(registryIds);
   });
 
-  it("models the New Patient Intake Form as a future external resource with no invented URL", () => {
+  it("models the New Patient Intake Form as a live external resource (ChiroTouch)", () => {
     const intake = patientForms.find((form) => form.id === "new-patient-intake");
     expect(intake?.type).toBe("external");
-    expect(intake?.source.en).toBeNull();
-    expect(intake?.source.es).toBeNull();
-    expect(intake?.available.en).toBe(false);
-    expect(intake?.available.es).toBe(false);
+    expect(intake?.source.en).toBe(
+      "https://intake.mychirotouch.com/en-US/?clinic=GCHC0001",
+    );
+    expect(intake?.source.es).toBe("https://intake.mychirotouch.com/es?clinic=GCHC0001");
+    expect(intake?.available.en).toBe(true);
+    expect(intake?.available.es).toBe(true);
   });
 
   it("never marks a resource available without a source, and never uses broken URLs", () => {
@@ -122,13 +112,28 @@ describe("insurance providers", () => {
     expect(enNames).toContain("Horizon BC/BS NJ");
     expect(enNames).toContain("Hackensack Meridian");
     expect(enNames).toContain("Most Major Insurance Plans");
-    expect(enNames).toContain("Uninsured & Underinsured Plans");
+    expect(enNames).toContain("Uninsured & Underinsured Patients");
     expect(enNames).toContain("Personal Injury Cases");
+    expect(enNames).toContain("Payment Plans");
 
     const esNames = es.patientCenter.insurance.providers.map((p) => p.name);
     expect(esNames).toContain("Medicare");
     expect(esNames).toContain("La Mayoría de los Seguros");
     expect(esNames).toContain("Lesiones Personales");
+    expect(esNames).toContain("Planes de Pago");
+  });
+
+  it("separates insurance plans/networks from additional coverage & payment options", () => {
+    const groupOf = (id: string) =>
+      insuranceEntries.find((entry) => entry.id === id)?.group;
+    // Non-insurance categories must not sit in the insurance-plans group.
+    expect(groupOf("personal-injury")).toBe("options");
+    expect(groupOf("uninsured")).toBe("options");
+    expect(groupOf("payment-plans")).toBe("options");
+    // Named insurers/networks belong to the plans group.
+    for (const id of ["medicare", "aetna", "horizon-bcbs-nj", "hackensack-meridian"]) {
+      expect(groupOf(id)).toBe("plans");
+    }
   });
 
   it("adds Aetna alongside the existing providers — never alone and never first", () => {

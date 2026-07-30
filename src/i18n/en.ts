@@ -506,33 +506,6 @@ const en = {
       "Access patient forms, review submission options, and find helpful information before your appointment.",
     heroNote:
       "Forms will be available in English and Spanish and can be completed digitally or printed.",
-    // Preserved original Patient Center hero copy.
-    heroIntro: "Forms, information, and everything you need before your first visit.",
-
-    // Preserved original "Getting Started" journey section.
-    gettingStarted: {
-      eyebrow: "Getting Started",
-      heading: "4 steps to pain relief",
-      body: "Our straightforward process gets you from pain to relief as quickly as possible.",
-      steps: [
-        {
-          title: "Book your appointment",
-          body: "Call our office or use the contact form to schedule. New patients are always welcome.",
-        },
-        {
-          title: "Complete patient forms",
-          body: "Download and complete your intake forms in advance to save time at your first visit.",
-        },
-        {
-          title: "In-office health assessment",
-          body: "Our doctor performs a thorough examination, reviews any imaging, and determines an accurate diagnosis.",
-        },
-        {
-          title: "Start your care plan",
-          body: "Receive a short-term, individualized treatment plan to eliminate pain and restore your quality of life.",
-        },
-      ],
-    },
 
     workflow: {
       eyebrow: "How It Works",
@@ -599,10 +572,6 @@ const en = {
             "Our office financial policy and HIPAA privacy practices notice. Required for all new patients.",
         },
       ],
-      // Preserved original fax note; {fax} and {phone} are filled from the
-      // centralized practice data.
-      faxNote:
-        "Fax completed forms to {fax} or bring them to your appointment. Questions? Call {phone}.",
     },
 
     submission: {
@@ -622,33 +591,31 @@ const en = {
         title: "Print and bring it with you",
         body: "Print the completed form and bring it to the office at your appointment.",
       },
-      privacyNote:
-        "Email may not provide the same privacy protections as a secure patient portal. Contact the office if you are unsure which submission method to use.",
     },
 
     insurance: {
       eyebrow: "Insurance Information",
       heading: "Understanding your coverage",
-      body: "Clark Spine and Pain Relief works with multiple insurance plans, including Aetna. Coverage, benefits, referrals, deductibles, copayments, and patient responsibility can vary by plan. Contact your insurance provider or the office to confirm your individual benefits before treatment.",
-      // Preserved original insurance-section wording (Medicare and payment
-      // plans for uninsured or underinsured patients).
-      accessNote:
-        "The practice accepts most major insurance including Medicare, and offers convenient payment plans for uninsured or underinsured patients.",
-      providersLabel: "Participating insurance providers",
-      // Pairs by id with src/data/insurance.ts. Names preserved from the
-      // original Patient Center insurance section, plus Aetna.
+      intro:
+        "Clark Spine and Pain Relief accepts most major insurance plans, including Aetna, Medicare, Horizon Blue Cross Blue Shield of New Jersey, and participating Hackensack Meridian Health plans. Coverage, benefits, referrals, deductibles, copayments, and patient responsibility vary by plan.",
+      intro2:
+        "We also work with personal injury cases and offer payment options for uninsured or underinsured patients. Contact your insurance provider or our office before treatment to confirm your individual benefits and coverage.",
+      plansLabel: "Insurance Plans & Networks",
+      optionsLabel: "Additional Coverage & Payment Options",
+      verifyNote:
+        "Insurance participation and benefits can vary by individual plan. Please contact your insurance provider or our office to confirm coverage before your appointment.",
+      // Pairs by id (and order) with src/data/insurance.ts. Plans/networks first,
+      // then additional coverage & payment options. Names preserved from the
+      // original Patient Center section, plus Aetna and Payment Plans.
       providers: [
         { id: "medicare", name: "Medicare", note: "" },
-        { id: "horizon-bcbs-nj", name: "Horizon BC/BS NJ", note: "Tier 1 Provider" },
-        {
-          id: "hackensack-meridian",
-          name: "Hackensack Meridian",
-          note: "“Inner Circle”",
-        },
         { id: "aetna", name: "Aetna", note: "" },
+        { id: "horizon-bcbs-nj", name: "Horizon BC/BS NJ", note: "Tier 1 Provider" },
+        { id: "hackensack-meridian", name: "Hackensack Meridian", note: "Inner Circle" },
         { id: "major-plans", name: "Most Major Insurance Plans", note: "" },
-        { id: "uninsured", name: "Uninsured & Underinsured Plans", note: "" },
         { id: "personal-injury", name: "Personal Injury Cases", note: "" },
+        { id: "uninsured", name: "Uninsured & Underinsured Patients", note: "" },
+        { id: "payment-plans", name: "Payment Plans", note: "" },
       ],
     },
 
@@ -675,7 +642,7 @@ const en = {
         {
           question: "Can I complete the forms on my phone?",
           answer:
-            "Yes. The downloadable forms will be editable PDFs that can be opened and completed on many phones, tablets, and computers. Available features may depend on the PDF application installed on your device.",
+            "Yes. Our forms are editable PDFs that can be opened, completed, and saved directly on most modern phones and tablets without installing any additional software.",
         },
         {
           question: "How do I save a completed form?",
@@ -686,26 +653,6 @@ const en = {
           question: "How can I submit my forms?",
           answer:
             "You may email the saved document to the office, fax it to (908) 497-9442, or print it and bring it to your appointment.",
-        },
-        {
-          question: "Can the website email the form for me?",
-          answer:
-            "No. The website provides the document for download, but you must attach the saved form using your own email application.",
-        },
-        {
-          question: "Can I print the forms instead?",
-          answer:
-            "Yes. You may print the forms, complete them by hand, and bring them to your appointment.",
-        },
-        {
-          question: "What should I do if a form does not open or save correctly?",
-          answer:
-            "Try opening the document in a dedicated PDF application. You may also print the form or contact the office for assistance.",
-        },
-        {
-          question: "Is the new-patient intake form a PDF?",
-          answer:
-            "No. The new-patient intake form will open as a separate online form once it becomes available.",
         },
       ],
     },

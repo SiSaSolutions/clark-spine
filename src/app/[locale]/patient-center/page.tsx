@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Fragment, type ReactNode } from "react";
 
 import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { PageHero } from "@/components/sections/PageHero";
 import { PatientForms } from "@/components/sections/PatientForms";
-import { EmergencyNotice } from "@/components/ui/EmergencyNotice";
 import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -21,21 +19,52 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 /** Restrained icons for the four workflow steps, in step order. */
 const WORKFLOW_ICONS = ["exam", "download", "document", "fax"];
 
+interface InsuranceTile {
+  icon: string;
+  name: string;
+  note: string;
+}
+
 /**
- * Replace `{token}` placeholders in a dictionary template with rich nodes
- * (links, emphasized values) while keeping the translated sentence intact.
+ * One labeled coverage group (insurance plans/networks, or additional coverage &
+ * payment options) rendered as a grid of equal-weight tiles. Each tile pairs a
+ * decorative icon with a primary name and an optional secondary note. The group
+ * heading is a real <h3> under the section's <h2> for correct document outline.
  */
-function renderTemplate(
-  template: string,
-  replacements: Record<string, ReactNode>,
-): ReactNode[] {
-  return template.split(/(\{\w+\})/g).map((part, index) => {
-    const token = part.match(/^\{(\w+)\}$/)?.[1];
-    if (token && token in replacements) {
-      return <Fragment key={index}>{replacements[token]}</Fragment>;
-    }
-    return <Fragment key={index}>{part}</Fragment>;
-  });
+function InsuranceGroup({
+  id,
+  label,
+  tiles,
+}: {
+  id: string;
+  label: string;
+  tiles: InsuranceTile[];
+}) {
+  return (
+    <div>
+      <h3 id={id} className="text-xl">
+        {label}
+      </h3>
+      <ul className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {tiles.map((tile) => (
+          <li
+            key={tile.name}
+            className="border-line bg-surface shadow-card flex min-w-0 items-center gap-4 rounded-lg border p-5"
+          >
+            <span className="bg-brand-50 text-brand-600 inline-flex size-11 shrink-0 items-center justify-center rounded-md">
+              <Icon name={tile.icon} className="size-5" />
+            </span>
+            <div className="min-w-0">
+              <p className="text-ink font-medium">{tile.name}</p>
+              {tile.note ? (
+                <p className="text-brand-600 mt-0.5 text-xs font-medium">{tile.note}</p>
+              ) : null}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export async function generateMetadata({
@@ -70,6 +99,19 @@ export default async function PatientCenterPage({
     pc.submission.email.subject,
   )}`;
 
+  // Join the locale-neutral registry (order, group, icon) with the localized
+  // provider names/notes, then split into the two labeled coverage groups.
+  const insuranceTiles = insuranceEntries
+    .map((entry) => {
+      const provider = pc.insurance.providers.find((p) => p.id === entry.id);
+      return provider
+        ? { group: entry.group, icon: entry.icon, name: provider.name, note: provider.note }
+        : null;
+    })
+    .filter((tile): tile is NonNullable<typeof tile> => tile !== null);
+  const planTiles = insuranceTiles.filter((tile) => tile.group === "plans");
+  const optionTiles = insuranceTiles.filter((tile) => tile.group === "options");
+
   return (
     <>
       <PageHero
@@ -87,38 +129,9 @@ export default async function PatientCenterPage({
           />
         }
         cta={
-          <div className="text-text-on-dark-muted max-w-2xl space-y-2">
-            <p>{pc.heroNote}</p>
-            <p>{pc.heroIntro}</p>
-          </div>
+          <p className="text-text-on-dark-muted max-w-2xl">{pc.heroNote}</p>
         }
       />
-
-      {/* Preserved original "Getting Started" patient journey. */}
-      <Section ariaLabelledby="getting-started-heading">
-        <SectionHeading
-          id="getting-started-heading"
-          eyebrow={pc.gettingStarted.eyebrow}
-          title={pc.gettingStarted.heading}
-          description={pc.gettingStarted.body}
-        />
-        <ol className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-          {pc.gettingStarted.steps.map((step, index) => (
-            <li key={step.title} className="flex min-w-0 gap-4">
-              <span
-                aria-hidden="true"
-                className="text-brand-600 font-serif text-2xl leading-none font-semibold"
-              >
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div className="min-w-0">
-                <h3 className="text-lg">{step.title}</h3>
-                <p className="text-ink-soft mt-1 text-sm">{step.body}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </Section>
 
       {/* New bilingual form workflow. */}
       <Section tone="subtle" ariaLabelledby="workflow-heading">
@@ -166,26 +179,6 @@ export default async function PatientCenterPage({
             items={pc.resources.items}
             labels={pc.resources}
           />
-        </div>
-        {/* Preserved original fax note. */}
-        <div
-          role="note"
-          className="border-line bg-surface-subtle mt-8 flex items-start gap-3 rounded-md border p-4"
-        >
-          <Icon name="printer" className="text-brand-600 mt-0.5 size-5 shrink-0" />
-          <p className="text-ink text-sm">
-            {renderTemplate(pc.resources.faxNote, {
-              fax: <strong className="whitespace-nowrap">{practice.fax.display}</strong>,
-              phone: (
-                <a
-                  href={practice.phone.href}
-                  className="text-link hover:text-link-hover font-medium whitespace-nowrap underline-offset-2 hover:underline"
-                >
-                  {practice.phone.display}
-                </a>
-              ),
-            })}
-          </p>
         </div>
       </Section>
 
@@ -239,38 +232,42 @@ export default async function PatientCenterPage({
             </div>
           </li>
         </ul>
-        <EmergencyNotice message={pc.submission.privacyNote} className="mt-8" />
       </Section>
 
-      {/* Insurance information — preserved providers plus Aetna, equal weight. */}
+      {/* Insurance information — accepted plans/networks split from the practice's
+          other coverage & payment options; Aetna sits among the plans, not alone. */}
       <Section ariaLabelledby="insurance-heading">
         <SectionHeading
           id="insurance-heading"
           eyebrow={pc.insurance.eyebrow}
           title={pc.insurance.heading}
-          description={pc.insurance.body}
         />
-        <p className="text-ink-soft mt-4 max-w-2xl">{pc.insurance.accessNote}</p>
-        <h3 className="text-muted mt-8 text-xs font-semibold tracking-wide uppercase">
-          {pc.insurance.providersLabel}
-        </h3>
-        <ul className="mt-4 flex flex-wrap gap-3">
-          {insuranceEntries.map((entry) => {
-            const provider = pc.insurance.providers.find((p) => p.id === entry.id);
-            if (!provider) return null;
-            return (
-              <li
-                key={entry.id}
-                className="border-line bg-surface-subtle inline-flex min-h-11 items-center gap-2 rounded-full border px-4 py-2"
-              >
-                <span className="text-ink text-sm font-medium">{provider.name}</span>
-                {provider.note ? (
-                  <span className="text-ink-soft text-xs">{provider.note}</span>
-                ) : null}
-              </li>
-            );
-          })}
-        </ul>
+        <div className="mt-6 max-w-3xl space-y-4">
+          <p className="text-ink-soft text-lg">{pc.insurance.intro}</p>
+          <p className="text-ink-soft">{pc.insurance.intro2}</p>
+        </div>
+
+        <div className="mt-10 space-y-10">
+          <InsuranceGroup
+            id="insurance-plans-heading"
+            label={pc.insurance.plansLabel}
+            tiles={planTiles}
+          />
+          <InsuranceGroup
+            id="insurance-options-heading"
+            label={pc.insurance.optionsLabel}
+            tiles={optionTiles}
+          />
+        </div>
+
+        {/* Subtle informational callout — verification reminder, not a warning. */}
+        <div
+          role="note"
+          className="border-line bg-surface-subtle mt-10 flex items-start gap-3 rounded-md border p-4"
+        >
+          <Icon name="shield" className="text-brand-600 mt-0.5 size-5 shrink-0" />
+          <p className="text-ink-soft text-sm">{pc.insurance.verifyNote}</p>
+        </div>
       </Section>
 
       {/* Preserved original FAQs plus the new form-workflow questions. */}
