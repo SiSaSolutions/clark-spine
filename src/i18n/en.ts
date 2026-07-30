@@ -30,7 +30,8 @@ const en = {
     menu: "Menu",
     closeMenu: "Close menu",
     openMenu: "Open menu",
-    languageLabel: "Language",
+    switchLanguage: "Switch language to Spanish",
+    currentLanguage: "English",
     breadcrumb: "Breadcrumb",
   },
 

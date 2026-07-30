@@ -26,7 +26,8 @@ const es: Dictionary = {
     menu: "Menú",
     closeMenu: "Cerrar menú",
     openMenu: "Abrir menú",
-    languageLabel: "Idioma",
+    switchLanguage: "Cambiar idioma a inglés",
+    currentLanguage: "Español",
     breadcrumb: "Ruta de navegación",
   },
 
