@@ -710,21 +710,38 @@ const es: Dictionary = {
     metaTitle: "Contacto",
     metaDescription:
       "Contacte a Clark Spine and Pain Relief en Clark, Nueva Jersey. Llame al (908) 497-9440 o solicite una cita en línea.",
-    heroEyebrow: "Póngase en Contacto",
-    heroTitle: "Contáctenos",
-    heroSubtitle: "Solicite una cita o comuníquese con la oficina con una pregunta.",
+    heroEyebrow: "Contacto",
+    heroTitle: "Visite o contacte nuestra oficina",
+    heroSubtitle:
+      "¿Tiene una pregunta, necesita indicaciones o desea programar una cita? Comuníquese con Clark Spine and Pain Relief y nuestro equipo estará encantado de ayudarle.",
     infoHeading: "Información de la práctica",
     hoursHeading: "Horario de oficina",
+    hoursNote:
+      "Llame para confirmar el horario de días feriados o disponibilidad el mismo día.",
     phoneLabel: "Teléfono",
     faxLabel: "Fax",
     addressLabel: "Dirección",
+    directions: "Cómo llegar",
     emergencyNotice:
       "Si tiene una emergencia médica, llame al 911 o acuda a la sala de emergencias más cercana. Por favor, no use este sitio web para reportar una emergencia.",
-    officeLabel: "Qué buscar",
-    buildingImageAlt: "Letrero exterior de Marcus Plaza que muestra Garabo Chiropractic",
-    doorImageAlt: "Entrada principal del consultorio de Garabo Chiropractic",
-    viewBuildingPhoto: "Ver una foto ampliada del letrero de Marcus Plaza",
-    viewDoorPhoto: "Ver una foto ampliada de la entrada del consultorio",
+    location: {
+      mapTitle: "Mapa que muestra Clark Spine and Pain Relief en Clark, Nueva Jersey",
+    },
+    findingHeading: "Cómo encontrar nuestra oficina",
+    findingIntro:
+      "Use estas fotos para identificar la plaza y la entrada de la oficina al llegar.",
+    buildingLabel: "Marcus Plaza",
+    doorLabel: "Entrada de la oficina",
+    buildingHint: "Busque el letrero de la plaza junto al sendero.",
+    doorHint: "Entre por la puerta marcada Garabo Chiropractic.",
+    parkingNote: "Hay estacionamiento adicional detrás del edificio.",
+    buildingImageAlt:
+      "Letrero de Marcus Plaza y sendero que conduce a Clark Spine and Pain Relief",
+    doorImageAlt: "Puerta de entrada a la oficina de Clark Spine and Pain Relief",
+    buildingCaption: "Busque la entrada de Marcus Plaza",
+    doorCaption: "Entrada de la oficina",
+    viewBuildingPhoto: "Abrir foto de Marcus Plaza",
+    viewDoorPhoto: "Abrir foto de la entrada de la oficina",
     lightbox: {
       previous: "Imagen anterior",
       next: "Imagen siguiente",

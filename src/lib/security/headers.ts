@@ -7,14 +7,16 @@
  *  - `buildContentSecurityPolicy()` — the per-request CSP built in middleware
  *    with a fresh nonce so we never need `unsafe-inline` for scripts.
  *
- * The only third-party origin the application talks to from the browser is
- * Cloudflare Turnstile (bot verification widget). Everything else is same-origin
- * or handled server-side (Resend, Upstash), so those origins are deliberately
- * absent from the browser-facing policy.
+ * The browser talks to only two third-party origins: Cloudflare Turnstile (bot
+ * verification widget, script + frame) and the Google Maps embed on the Contact
+ * page (frame only). Everything else is same-origin or handled server-side
+ * (Resend, Upstash), so those origins are deliberately absent from the policy.
  */
 
 const TURNSTILE_SCRIPT = "https://challenges.cloudflare.com";
 const TURNSTILE_FRAME = "https://challenges.cloudflare.com";
+/** Keyless Google Maps embed iframe on the Contact page. */
+const GOOGLE_MAPS_FRAME = "https://www.google.com";
 
 /**
  * Permissions-Policy: deny powerful features the site never uses.
@@ -92,7 +94,7 @@ export function buildContentSecurityPolicy(nonce: string, isDev: boolean): strin
     "img-src": ["'self'", "data:", "blob:"],
     "font-src": ["'self'", "data:"],
     "connect-src": ["'self'", ...(isDev ? ["ws:", "wss:"] : [])],
-    "frame-src": [TURNSTILE_FRAME],
+    "frame-src": [TURNSTILE_FRAME, GOOGLE_MAPS_FRAME],
     "form-action": ["'self'"],
     "frame-ancestors": ["'none'"],
     "object-src": ["'none'"],

@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { MapPin, Phone, Printer } from "lucide-react";
+import { MapPin, Phone, Printer, SquareParking } from "lucide-react";
 import { notFound } from "next/navigation";
+import type { ComponentType } from "react";
 
 import { Breadcrumbs } from "@/components/sections/Breadcrumbs";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PageHero } from "@/components/sections/PageHero";
 import { PracticeLocationGallery } from "@/components/sections/PracticeLocationGallery";
+import { ButtonLink } from "@/components/ui/Button";
 import { EmergencyNotice } from "@/components/ui/EmergencyNotice";
 import { Section } from "@/components/ui/Section";
 import { practice, formattedAddress } from "@/data/practice";
@@ -60,101 +62,115 @@ export default async function ContactPage({
         }
       />
 
+      {/* Practice information + office hours */}
       <Section>
-        <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
-          {/* Practice information */}
-          <div className="min-w-0">
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
+          {/* Practice information card */}
+          <div className="border-line bg-surface shadow-card min-w-0 rounded-lg border p-6 sm:p-8">
             <h2 className="text-2xl">{contact.infoHeading}</h2>
-            <dl className="mt-6 space-y-5">
-              <div className="flex items-start gap-3">
-                <Phone
-                  aria-hidden="true"
-                  className="text-brand-600 mt-1 size-5 shrink-0"
-                />
-                <div>
-                  <dt className="text-muted text-sm font-semibold">
-                    {contact.phoneLabel}
-                  </dt>
-                  <dd>
-                    <a
-                      href={practice.phone.href}
-                      className="text-ink hover:text-brand-700 text-lg"
-                    >
-                      {practice.phone.display}
-                    </a>
-                  </dd>
+            <dl className="mt-6 space-y-6">
+              <InfoRow icon={Phone} label={contact.phoneLabel}>
+                <a
+                  href={practice.phone.href}
+                  className="text-ink hover:text-brand-700 text-lg font-medium"
+                >
+                  {practice.phone.display}
+                </a>
+              </InfoRow>
+              <InfoRow icon={Printer} label={contact.faxLabel}>
+                <span className="text-ink text-lg">{practice.fax.display}</span>
+              </InfoRow>
+              <InfoRow icon={MapPin} label={contact.addressLabel}>
+                <span className="text-ink text-lg">{formattedAddress()}</span>
+                <div className="mt-3">
+                  <ButtonLink
+                    href={practice.mapsUrl}
+                    variant="outline"
+                    size="md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MapPin aria-hidden="true" className="size-4" />
+                    {contact.directions}
+                  </ButtonLink>
                 </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Printer
-                  aria-hidden="true"
-                  className="text-brand-600 mt-1 size-5 shrink-0"
-                />
-                <div>
-                  <dt className="text-muted text-sm font-semibold">{contact.faxLabel}</dt>
-                  <dd className="text-ink text-lg">{practice.fax.display}</dd>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <MapPin
-                  aria-hidden="true"
-                  className="text-brand-600 mt-1 size-5 shrink-0"
-                />
-                <div>
-                  <dt className="text-muted text-sm font-semibold">
-                    {contact.addressLabel}
-                  </dt>
-                  <dd className="text-ink text-lg">{formattedAddress()}</dd>
-                  <dd className="mt-1">
-                    <a
-                      href={practice.mapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-brand-700 text-sm underline"
-                    >
-                      {dict.common.getDirections}
-                    </a>
-                  </dd>
-                </div>
-              </div>
+              </InfoRow>
             </dl>
 
-            {/* Compact office-location photos supporting the address above.
-                Each thumbnail opens an accessible fullscreen viewer. */}
-            <div className="mt-8">
-              <p className="text-muted text-sm font-semibold">{contact.officeLabel}</p>
+            {/* Embedded Google Map (keyless iframe) inside the card. Fixed
+                height prevents layout shift and keeps the card from towering
+                over the office-hours card; lazy-loaded so it never blocks
+                first paint. Rounded/border match the card's own language. */}
+            <div className="border-line mt-6 h-56 w-full overflow-hidden rounded-lg border sm:h-64">
+              <iframe
+                title={contact.location.mapTitle}
+                src={practice.mapsEmbedUrl}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+                className="h-full w-full"
+              />
+            </div>
+
+            {/* Compact photo aid: two clickable thumbnails that open the
+                accessible lightbox. Kept small so they stay secondary to the
+                contact details and map. */}
+            <h3 className="text-ink mt-6 flex items-center gap-2 text-sm font-semibold">
+              <MapPin aria-hidden="true" className="text-brand-600 size-4" />
+              {contact.findingHeading}
+            </h3>
+            <p className="text-muted mt-1.5 text-sm">{contact.findingIntro}</p>
+            <div className="mt-4">
               <PracticeLocationGallery
                 buildingAlt={contact.buildingImageAlt}
                 doorAlt={contact.doorImageAlt}
+                buildingLabel={contact.buildingLabel}
+                doorLabel={contact.doorLabel}
+                buildingHint={contact.buildingHint}
+                doorHint={contact.doorHint}
+                buildingCaption={contact.buildingCaption}
+                doorCaption={contact.doorCaption}
                 viewBuildingLabel={contact.viewBuildingPhoto}
                 viewDoorLabel={contact.viewDoorPhoto}
                 lightboxLabels={contact.lightbox}
               />
             </div>
-
-            <EmergencyNotice message={contact.emergencyNotice} className="mt-8" />
+            <p className="text-muted mt-3 flex items-center gap-2 text-sm">
+              <SquareParking
+                aria-hidden="true"
+                className="text-brand-600 size-4 shrink-0"
+              />
+              {contact.parkingNote}
+            </p>
           </div>
 
-          {/* Office hours */}
-          <div className="min-w-0">
+          {/* Office hours card */}
+          <div className="border-line bg-surface shadow-card min-w-0 rounded-lg border p-6 sm:p-8">
             <h2 className="text-2xl">{contact.hoursHeading}</h2>
-            <dl className="divide-line border-line bg-surface shadow-card mt-6 divide-y rounded-lg border">
+            <dl className="divide-line mt-6 divide-y">
               {practice.hours.map((h) => (
                 <div
                   key={h.day}
-                  className="flex min-w-0 items-center justify-between gap-4 px-4 py-3"
+                  className="flex min-w-0 items-center justify-between gap-4 py-3"
                 >
                   <dt className="text-ink font-medium">{dict.footer.days[h.day]}</dt>
-                  <dd
-                    className={`min-w-0 text-right ${h.display ? "text-ink-soft" : "text-muted"}`}
-                  >
-                    {h.display ?? dict.common.closed}
+                  <dd className="min-w-0 text-right">
+                    {h.display ? (
+                      <span className="text-ink-soft">{h.display}</span>
+                    ) : (
+                      <span className="text-muted bg-surface-subtle rounded-full px-2.5 py-0.5 text-sm font-medium">
+                        {dict.common.closed}
+                      </span>
+                    )}
                   </dd>
                 </div>
               ))}
             </dl>
+            <p className="text-muted mt-6 text-sm">{contact.hoursNote}</p>
           </div>
         </div>
+
+        <EmergencyNotice message={contact.emergencyNotice} className="mt-12" />
       </Section>
 
       <CtaBand
@@ -165,5 +181,28 @@ export default async function ContactPage({
         callLabel={dict.common.call}
       />
     </>
+  );
+}
+
+/** One labeled contact row: a brand-tinted icon chip, a label, and its value. */
+function InfoRow({
+  icon: Icon,
+  label,
+  children,
+}: {
+  icon: ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex items-start gap-4">
+      <span className="bg-brand-50 text-brand-600 mt-0.5 inline-flex size-10 shrink-0 items-center justify-center rounded-md">
+        <Icon aria-hidden className="size-5" />
+      </span>
+      <div className="min-w-0">
+        <dt className="text-muted text-sm font-semibold">{label}</dt>
+        <dd className="mt-0.5">{children}</dd>
+      </div>
+    </div>
   );
 }

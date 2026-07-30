@@ -58,9 +58,21 @@ export const practice = {
     country: "US",
   },
 
-  /** Google Maps directions link (search by full address — no fabricated coords). */
+  /**
+   * Google Maps directions link — searches by business name + full address (no
+   * fabricated coords) so it resolves to the same place as the embedded map.
+   */
   mapsUrl:
-    "https://www.google.com/maps/search/?api=1&query=118+Westfield+Avenue+Suite+3+Clark+NJ+07066",
+    "https://www.google.com/maps/search/?api=1&query=Garabo+Chiropractic+Health+Center+118+Westfield+Avenue+Clark+NJ+07066",
+
+  /**
+   * Keyless Google Maps embed for an `<iframe>` (no API key / paid JS SDK).
+   * Queries the business name + address and requests a close zoom (`z`) so the
+   * map centers on Marcus Plaza rather than a broad view of Clark;
+   * `output=embed` renders the interactive map.
+   */
+  mapsEmbedUrl:
+    "https://www.google.com/maps?q=Garabo%20Chiropractic%20Health%20Center%2C%20118%20Westfield%20Avenue%2C%20Clark%2C%20NJ%2007066&z=17&output=embed",
 
   establishedYear: 1991,
 
