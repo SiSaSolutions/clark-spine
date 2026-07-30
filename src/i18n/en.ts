@@ -795,7 +795,9 @@ const en = {
         required: "This field is required.",
         invalidName: "Please enter a valid name (letters, spaces, hyphens, apostrophes).",
         invalidEmail: "Please enter a valid email address.",
-        invalidPhone: "Please enter a valid phone number.",
+        phoneRequired: "Phone number is required.",
+        phoneLength: "Enter a valid 10-digit phone number.",
+        phoneInvalid: "Phone number can contain digits only.",
         tooLong: "This value is too long.",
         messageTooShort: "Please enter at least 10 characters.",
         captcha: "Please complete the security verification.",
@@ -831,7 +833,7 @@ const en = {
       {
         heading: "Information we collect",
         body: [
-          "When you use the appointment request form, we collect the information you choose to submit: your name, email address, an optional phone number, a subject, and your message.",
+          "When you use the appointment request form, we collect the information you choose to submit: your name, email address, phone number, a subject, and your message.",
           "Please do not submit sensitive medical information or details of a medical emergency through this website.",
         ],
       },

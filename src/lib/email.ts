@@ -7,6 +7,7 @@ import { InquiryOwnerNotification } from "@/emails/InquiryOwnerNotification";
 import { confirmationLabels, ownerLabels } from "@/emails/copy";
 import type { InquiryData } from "@/lib/schemas/inquiry";
 import type { Locale } from "@/i18n/locales";
+import { formatUsPhone } from "@/lib/utils";
 import { isEmailConfigured, isProduction, serverEnv } from "./env";
 
 /**
@@ -120,7 +121,7 @@ function ownerText(
     "",
     `${labels.name}: ${data.firstName} ${data.lastName}`,
     `${labels.email}: ${data.email}`,
-    `${labels.phone}: ${data.phone || labels.notProvided}`,
+    `${labels.phone}: ${formatUsPhone(data.phone)}`,
     `${labels.subject}: ${data.subject || labels.notProvided}`,
     "",
     `${labels.message}:`,

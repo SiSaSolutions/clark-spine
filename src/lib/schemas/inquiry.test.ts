@@ -6,7 +6,7 @@ const valid = {
   firstName: "Jane",
   lastName: "Smith",
   email: "jane@example.com",
-  phone: "(908) 555-0123",
+  phone: "9085550123",
   subject: "New patient",
   message: "I would like to request an appointment for lower back pain.",
   company: "",
@@ -25,14 +25,34 @@ describe("inquirySchema", () => {
     expect(result.success).toBe(true);
   });
 
-  it("defaults optional phone and subject to empty strings", () => {
-    const { phone: _p, subject: _s, ...rest } = valid;
+  it("defaults optional subject to an empty string", () => {
+    const { subject: _s, ...rest } = valid;
     const result = inquirySchema.safeParse(rest);
     expect(result.success).toBe(true);
     if (result.success) {
-      expect(result.data.phone).toBe("");
       expect(result.data.subject).toBe("");
     }
+  });
+
+  it("requires the phone number", () => {
+    expect(fieldCode({ ...valid, phone: "" }, "phone")).toBe("phone_required");
+    const { phone: _p, ...noPhone } = valid;
+    expect(fieldCode(noPhone, "phone")).toBe("phone_required");
+  });
+
+  it("rejects phone numbers that are not exactly 10 digits", () => {
+    expect(fieldCode({ ...valid, phone: "908" }, "phone")).toBe("phone_length");
+    expect(fieldCode({ ...valid, phone: "12345678901" }, "phone")).toBe("phone_length");
+  });
+
+  it("rejects phone numbers containing non-digit characters", () => {
+    expect(fieldCode({ ...valid, phone: "90a5550123" }, "phone")).toBe("phone_invalid");
+    expect(fieldCode({ ...valid, phone: "(908) 555-0123" }, "phone")).toBe("phone_invalid");
+    expect(fieldCode({ ...valid, phone: "abcdefghij" }, "phone")).toBe("phone_invalid");
+  });
+
+  it("accepts a bare 10-digit phone number", () => {
+    expect(inquirySchema.safeParse({ ...valid, phone: "7325551234" }).success).toBe(true);
   });
 
   it("rejects names containing newlines (header-injection defense)", () => {

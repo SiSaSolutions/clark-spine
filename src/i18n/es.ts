@@ -785,7 +785,9 @@ const es: Dictionary = {
         required: "Este campo es obligatorio.",
         invalidName: "Ingrese un nombre válido (letras, espacios, guiones, apóstrofos).",
         invalidEmail: "Ingrese una dirección de correo válida.",
-        invalidPhone: "Ingrese un número de teléfono válido.",
+        phoneRequired: "El número de teléfono es obligatorio.",
+        phoneLength: "Ingrese un número de teléfono válido de 10 dígitos.",
+        phoneInvalid: "El número de teléfono solo puede contener dígitos.",
         tooLong: "Este valor es demasiado largo.",
         messageTooShort: "Ingrese al menos 10 caracteres.",
         captcha: "Por favor complete la verificación de seguridad.",
@@ -821,7 +823,7 @@ const es: Dictionary = {
       {
         heading: "Información que recopilamos",
         body: [
-          "Cuando usa el formulario de solicitud de cita, recopilamos la información que usted decide enviar: su nombre, dirección de correo electrónico, un número de teléfono opcional, un asunto y su mensaje.",
+          "Cuando usa el formulario de solicitud de cita, recopilamos la información que usted decide enviar: su nombre, dirección de correo electrónico, número de teléfono, un asunto y su mensaje.",
           "Por favor, no envíe información médica sensible ni detalles de una emergencia médica a través de este sitio web.",
         ],
       },
