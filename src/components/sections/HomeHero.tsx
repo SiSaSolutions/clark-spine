@@ -42,10 +42,10 @@ export function HomeHero({ locale, dict }: { locale: Locale; dict: Dictionary })
         <Container className="hero-body desk-short:pt-8 desk-short:pb-8 desk-tiny:pt-5 desk-tiny:pb-5 pt-14 pb-16 sm:pt-16 sm:pb-20 lg:pt-12 lg:pb-12">
           <AnimateIn className="mx-auto flex max-w-4xl flex-col items-center text-center">
             <p className="border-brand-200/70 bg-brand-50 text-brand-700 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold tracking-wide uppercase">
-              <span
-                aria-hidden="true"
-                className="bg-success size-2 shrink-0 rounded-full"
-              />
+              <span aria-hidden="true" className="relative flex size-2 shrink-0">
+                <span className="bg-success motion-safe:animate-[status-pulse_2.8s_ease-out_infinite] absolute inset-0 rounded-full opacity-0" />
+                <span className="bg-success relative size-2 rounded-full" />
+              </span>
               {hero.eyebrow}
             </p>
             <h1
