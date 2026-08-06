@@ -188,7 +188,7 @@ describe("MobileNav", () => {
       "Home",
       "About",
       "Services",
-      "Auto Accidents",
+      "Auto Accident Care",
       "Patient Center",
       "Contact",
     ]);

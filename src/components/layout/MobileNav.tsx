@@ -14,13 +14,19 @@ import type { ReactNode } from "react";
 import type { Transition } from "framer-motion";
 
 import { ButtonLink } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
 import { practice } from "@/data/practice";
+import type { NavVariant } from "@/lib/routes";
+import { cn } from "@/lib/utils";
 import { NavLink } from "./NavLink";
 
 interface NavItem {
   href: string;
   label: string;
-  emphasized?: boolean;
+  /** `featured` promotes the item to a tinted call-to-action row. */
+  variant?: NavVariant;
+  /** Match this href only, never its descendants (the home item). */
+  exact?: boolean;
 }
 
 /** Tween matching the reference menu: deliberate, no bounce. */
@@ -247,17 +253,42 @@ export function MobileNav({
 
                   <nav aria-label={menuLabel} className="w-full">
                     <ul className="flex flex-col items-center gap-2">
-                      {navItems.map((item, i) => (
-                        <m.li key={item.href} className="w-full" {...itemMotion(i)}>
-                          <NavLink
-                            href={item.href}
-                            label={item.label}
-                            onNavigate={close}
-                            className="text-brand-900 hover:text-brand-600 aria-[current=page]:text-brand-500 flex min-h-12 items-center justify-center px-4 text-center font-serif text-2xl transition-colors"
-                            activeClassName="decoration-brand-500 font-semibold underline decoration-2 underline-offset-8"
-                          />
-                        </m.li>
-                      ))}
+                      {navItems.map((item, i) => {
+                        const featured = item.variant === "featured";
+                        return (
+                          <m.li key={item.href} className="w-full" {...itemMotion(i)}>
+                            <NavLink
+                              href={item.href}
+                              label={item.label}
+                              exact={item.exact}
+                              onNavigate={close}
+                              className={cn(
+                                "flex min-h-12 items-center justify-center gap-2 text-center font-serif transition-colors",
+                                // The featured row keeps the menu's typographic
+                                // scale but sits on a tinted, bordered card so
+                                // it reads as promoted without shouting.
+                                featured
+                                  ? "mx-auto w-full max-w-xs rounded-lg px-5 py-2 text-xl ring-1 ring-inset"
+                                  : "text-brand-900 hover:text-brand-600 px-4 text-2xl",
+                              )}
+                              inactiveClassName={
+                                featured
+                                  ? "bg-brand-50 text-brand-800 ring-brand-200"
+                                  : undefined
+                              }
+                              activeClassName={
+                                featured
+                                  ? "bg-brand-600 ring-brand-600 font-semibold text-white"
+                                  : "decoration-brand-500 text-brand-500 font-semibold underline decoration-2 underline-offset-8"
+                              }
+                            >
+                              {featured ? (
+                                <Icon name="car" className="size-5 shrink-0" />
+                              ) : null}
+                            </NavLink>
+                          </m.li>
+                        );
+                      })}
                     </ul>
                   </nav>
 
