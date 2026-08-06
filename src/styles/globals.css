@@ -85,7 +85,7 @@
 
   /* Layout */
   --container-max: 78rem;
-  --header-height: 4rem; /* keep in sync with the header's h-16 */
+  --header-height: 4.5rem; /* keep in sync with the header's h-18 */
 }
 
 /* Height-aware desktop variants: compact the hero on short desktop/laptop

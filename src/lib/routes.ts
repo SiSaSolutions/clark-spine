@@ -36,7 +36,7 @@ export function localePath(locale: Locale, page: PageKey): string {
 }
 
 /** Keys present in `dictionary.nav`. */
-type NavKey =
+export type NavKey =
   | "home"
   | "about"
   | "services"
@@ -54,6 +54,23 @@ export const primaryNav: NavKey[] = [
   "patientCenter",
   "contact",
 ];
+
+export type NavVariant = "default" | "featured";
+
+/**
+ * Nav items promoted to a featured call-to-action treatment. Auto-accident care
+ * is the practice's primary conversion path, so it stays visibly promoted on
+ * every page — a tinted, bordered link that outranks its neighbours while
+ * staying clearly below the Request Appointment button.
+ *
+ * Declared here so the desktop header, the mobile menu, and anything added
+ * later all read the same source instead of testing routes inline.
+ */
+const featuredNav: NavKey[] = ["autoAccidents"];
+
+export function navVariant(key: NavKey): NavVariant {
+  return featuredNav.includes(key) ? "featured" : "default";
+}
 
 /** Pages exposed for crawling in the sitemap. */
 export const indexablePages: PageKey[] = [
