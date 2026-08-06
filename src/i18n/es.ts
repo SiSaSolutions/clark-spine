@@ -186,27 +186,39 @@ const es: Dictionary = {
   },
 
   about: {
-    metaTitle: "Sobre la Práctica",
+    metaTitle: "Sobre el Dr. James Garabo, DC",
     metaDescription:
-      "Conozca Clark Spine and Pain Relief y al Dr. James Garabo, DC — atención quiropráctica en Clark, Nueva Jersey desde 1991.",
-    heroEyebrow: "Sobre Nuestra Práctica",
-    heroTitle: "Nuestra práctica",
+      "Conozca al Dr. James Garabo, DC — graduado del Palmer College of Chiropractic, con licencia en Nueva Jersey desde 1989, quien fundó Clark Spine and Pain Relief en Clark, NJ en 1991.",
+    heroEyebrow: "Sobre nosotros",
+    heroTitle: "Atención quiropráctica en Clark desde 1991",
     heroSubtitle:
-      "Sirviendo a Clark, Nueva Jersey y las comunidades cercanas desde 1991.",
-    imageAlt: "Dr. James Garabo de Clark Spine and Pain Relief",
-    bio: {
-      heading: "Sobre Clark Spine and Pain Relief",
+      "Clark Spine and Pain Relief es el consultorio del Dr. James Garabo, DC, al servicio de Clark, Nueva Jersey y las comunidades cercanas.",
+    imageAlt:
+      "Dr. James Garabo, DC, propietario y director clínico de Clark Spine and Pain Relief",
+    doctor: {
+      eyebrow: "Conozca al doctor",
+      heading: "James Garabo, DC",
+      role: "Propietario y Director Clínico",
       paragraphs: [
-        "Clark Spine and Pain Relief (Garabo Chiropractic Health Center, PC) ha atendido a pacientes en Clark, Nueva Jersey y las comunidades cercanas desde 1991. Bajo la dirección del Dr. James Garabo, DC, la práctica se enfoca en un diagnóstico preciso y un plan de tratamiento claro para cada paciente.",
-        "El Dr. Garabo es graduado del Palmer College of Chiropractic y su trabajo abarca el diagnóstico y manejo del dolor mecánico de columna, la interpretación de MRI y la documentación médico-legal.",
-        "La oficina brinda atención para el dolor de espalda, la ciática, el dolor de cuello, los dolores de cabeza y el dolor irradiado, con planes de tratamiento diseñados para ser a corto plazo e individualizados.",
+        "El Dr. James Garabo fundó Clark Spine and Pain Relief — Garabo Chiropractic Health Center, PC — en Clark, Nueva Jersey en 1991, y ha dirigido el consultorio desde entonces. Obtuvo su título de Doctor en Quiropráctica en el Palmer College of Chiropractic de Davenport, Iowa, en 1988, y tiene licencia en Nueva Jersey desde 1989.",
+        "Su trabajo diario se centra en el dolor mecánico de la columna: dolor de espalda y de cuello, ciática, dolores de cabeza y dolor irradiado, además de lesiones por accidentes automovilísticos y caídas. Buena parte de su formación continua se ha dedicado a las imágenes de la columna y a la atención de lesiones traumáticas.",
+        "Cada plan de atención comienza con un examen y una explicación sencilla de lo que significan los hallazgos. El tratamiento se adapta a cada persona, y se recomiendan estudios de imagen o la derivación a otro profesional cuando ese es el paso correcto.",
+      ],
+    },
+    highlights: {
+      label: "El consultorio en resumen",
+      items: [
+        { value: "35+ años", label: "Atendiendo pacientes en Nueva Jersey" },
+        { value: "Desde 1991", label: "Al servicio de Clark y sus alrededores" },
+        { value: "Palmer College", label: "Doctor en Quiropráctica, 1988" },
+        { value: "Trauma Qualified", label: "Atención de lesiones y colisiones" },
       ],
     },
     credentials: {
-      eyebrow: "Credenciales y formación",
-      heading: "Una base construida mediante estudios profesionales",
+      eyebrow: "Credenciales",
+      heading: "Formación y trayectoria profesional",
       intro:
-        "Conozca la educación, las licencias y la experiencia clínica que dieron forma al enfoque del Dr. Garabo para la atención de sus pacientes.",
+        "La formación, las licencias y la experiencia clínica detrás del enfoque del Dr. Garabo para la atención de sus pacientes.",
       education: {
         title: "Educación",
         items: [
@@ -214,43 +226,99 @@ const es: Dictionary = {
             main: "Doctor en Quiropráctica",
             sub: "Palmer College of Chiropractic · Davenport, IA · 1988",
           },
-          { main: "National Board of Chiropractic Examiners, Parte 1 · 1986", sub: "" },
-          { main: "National Board of Chiropractic Examiners, Parte 2 · 1987", sub: "" },
+          {
+            main: "National Board of Chiropractic Examiners",
+            sub: "Partes I y II · 1986–1987",
+          },
         ],
       },
       licensure: {
         title: "Licencias",
         items: [
-          { main: "Licencia de Nueva Jersey #MCO-3710", sub: "Activa" },
-          { main: "Licencia de Pensilvania · 1988", sub: "Inactiva" },
-          { main: "Licencia de Massachusetts · 1989", sub: "Inactiva" },
+          { main: "Licencia quiropráctica de Nueva Jersey", sub: "Activa · #MCO-3710" },
+          { main: "Con licencia y en ejercicio desde 1989", sub: "" },
         ],
       },
-      experience: {
-        title: "Experiencia",
+      leadership: {
+        title: "Dirección del consultorio",
         items: [
           {
-            main: "Director Clínico — Garabo Chiropractic Health Center, PC",
-            sub: "Clark, NJ · 1991 – Presente",
+            main: "Fundador, propietario y director clínico",
+            sub: "Clark Spine and Pain Relief · Clark, NJ · 1991 – Presente",
           },
           {
-            main: "Doctor Asociado — Delano Family Chiropractic Center",
-            sub: "Bloomfield, NJ · 1989 – 1991",
+            main: "Doctor asociado",
+            sub: "Delano Family Chiropractic Center · Bloomfield, NJ · 1989 – 1991",
           },
         ],
       },
-      affiliations: {
-        title: "Seguros y afiliaciones",
+      training: {
+        title: "Formación clínica avanzada",
         items: [
-          { main: "Trauma Qualified", sub: "" },
-          { main: "Medicare", sub: "" },
-          { main: "Horizon BCBS de Nueva Jersey", sub: "Tier 1" },
-          { main: "Hackensack Meridian", sub: "Inner Circle" },
-          { main: "Aetna", sub: "" },
+          { main: "Trauma Qualified", sub: "Atención de casos de colisión y lesiones" },
+          {
+            main: "Equipo de trauma de la Academy of Chiropractic",
+            sub: "Miembro desde 2018",
+          },
         ],
       },
-      insuranceNote:
-        "El consultorio trabaja con varios planes de seguro, incluido Aetna. Los pacientes deben comunicarse con su aseguradora o con el consultorio para confirmar los beneficios específicos de su plan.",
+    },
+    focus: {
+      eyebrow: "Áreas de enfoque",
+      heading: "Áreas de estudio avanzado",
+      intro:
+        "Temas a los que el Dr. Garabo ha dedicado estudio adicional, y lo que cada uno significa para su visita.",
+      items: [
+        {
+          title: "Imágenes de columna y MRI",
+          body: "Lectura de estudios de MRI y radiografías de la columna, relacionando lo que muestran las imágenes con lo que usted siente.",
+        },
+        {
+          title: "Biomecánica de la columna",
+          body: "Cómo se mueve la columna y cómo soporta la carga, para que la atención trate el origen del dolor y no solo la zona adolorida.",
+        },
+        {
+          title: "Trauma y lesiones por colisión",
+          body: "Evaluación de lesiones por accidentes automovilísticos y caídas, incluidos los síntomas que aparecen días después.",
+        },
+        {
+          title: "Evaluación ortopédica y neurológica",
+          body: "Pruebas manuales y neurológicas que ayudan a distinguir la afectación nerviosa del dolor articular o muscular.",
+        },
+        {
+          title: "Rehabilitación y cuidado activo",
+          body: "Trabajo de movimiento y ejercicio que ayuda a mantener entre visitas el progreso logrado en el consultorio.",
+        },
+        {
+          title: "Documentación y atención colaborativa",
+          body: "Registros e informes claros para su médico de cabecera, un especialista o un abogado cuando su caso lo requiera.",
+        },
+      ],
+    },
+    approach: {
+      eyebrow: "Cómo trabajamos",
+      heading: "Nuestro enfoque de atención",
+      intro:
+        "Tres cosas que puede esperar en Clark Spine and Pain Relief, desde la primera visita.",
+      items: [
+        {
+          title: "Evaluación cuidadosa",
+          body: "Su visita comienza con su historial y un examen, con estudios de imagen cuando hacen falta, antes de definir cualquier plan de tratamiento.",
+        },
+        {
+          title: "Planes de tratamiento claros",
+          body: "Le explicamos en lenguaje sencillo qué significan los hallazgos, qué atención se recomienda y qué esperar a lo largo del proceso.",
+        },
+        {
+          title: "Atención individualizada",
+          body: "El tratamiento se adapta a sus hallazgos, a su historial de salud y a lo que su cuerpo puede tolerar, no a una rutina fija.",
+        },
+      ],
+    },
+    insurance: {
+      heading: "Seguros y cobertura",
+      body: "La cobertura y la participación varían según el plan. El Centro del Paciente enumera los planes de seguro y las opciones de pago con los que trabaja este consultorio, y nuestra oficina puede ayudarle a confirmar sus beneficios antes de su primera visita.",
+      linkLabel: "Ver seguros y opciones de pago",
     },
   },
 

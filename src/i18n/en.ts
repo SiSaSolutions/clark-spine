@@ -186,26 +186,39 @@ const en = {
   },
 
   about: {
-    metaTitle: "About the Practice",
+    metaTitle: "About Dr. James Garabo, DC",
     metaDescription:
-      "Learn about Clark Spine and Pain Relief and Dr. James Garabo, DC — chiropractic care in Clark, New Jersey since 1991.",
-    heroEyebrow: "About Our Practice",
-    heroTitle: "Our practice",
-    heroSubtitle: "Serving Clark, New Jersey and surrounding communities since 1991.",
-    imageAlt: "Dr. James Garabo of Clark Spine and Pain Relief",
-    bio: {
-      heading: "About Clark Spine and Pain Relief",
+      "Meet Dr. James Garabo, DC — a Palmer College of Chiropractic graduate, licensed in New Jersey since 1989, who founded Clark Spine and Pain Relief in Clark, NJ in 1991.",
+    heroEyebrow: "About",
+    heroTitle: "Chiropractic care in Clark since 1991",
+    heroSubtitle:
+      "Clark Spine and Pain Relief is the practice of Dr. James Garabo, DC, serving Clark, New Jersey and the surrounding communities.",
+    imageAlt:
+      "Dr. James Garabo, DC, owner and clinic director of Clark Spine and Pain Relief",
+    doctor: {
+      eyebrow: "Meet the Doctor",
+      heading: "James Garabo, DC",
+      role: "Owner and Clinic Director",
       paragraphs: [
-        "Clark Spine and Pain Relief (Garabo Chiropractic Health Center, PC) has served patients in Clark, New Jersey and the surrounding communities since 1991. Under the direction of Dr. James Garabo, DC, the practice focuses on an accurate diagnosis and a clear treatment plan for every patient.",
-        "Dr. Garabo is a Palmer College of Chiropractic graduate whose work spans the diagnosis and management of mechanical spine pain, MRI interpretation, and medical-legal documentation.",
-        "The office provides care for back pain, sciatica, neck pain, headaches, and radiating pain, with treatment plans designed to be short-term and individualized.",
+        "Dr. James Garabo founded Clark Spine and Pain Relief — Garabo Chiropractic Health Center, PC — in Clark, New Jersey in 1991, and has led the practice ever since. He earned his Doctor of Chiropractic degree from Palmer College of Chiropractic in Davenport, Iowa in 1988 and has been licensed in New Jersey since 1989.",
+        "His day-to-day work centers on mechanical spine pain: back and neck pain, sciatica, headaches, and radiating pain, along with injuries from car accidents and falls. Much of his continued study has gone into spinal imaging and the care of trauma-related injuries.",
+        "Every plan of care begins with an examination and a plain explanation of what the findings mean. Treatment is matched to the individual, and imaging or a referral to another provider is recommended when that is the right next step.",
+      ],
+    },
+    highlights: {
+      label: "The practice at a glance",
+      items: [
+        { value: "35+ years", label: "Caring for patients in New Jersey" },
+        { value: "Since 1991", label: "Serving Clark and nearby towns" },
+        { value: "Palmer College", label: "Doctor of Chiropractic, 1988" },
+        { value: "Trauma qualified", label: "Collision and injury care" },
       ],
     },
     credentials: {
-      eyebrow: "Credentials & training",
-      heading: "A foundation built on professional study",
+      eyebrow: "Credentials",
+      heading: "Education and career foundation",
       intro:
-        "Explore the education, licensure, and clinical experience that shaped Dr. Garabo's approach to patient care.",
+        "The training, licensure, and clinical experience behind Dr. Garabo's approach to patient care.",
       education: {
         title: "Education",
         items: [
@@ -213,43 +226,96 @@ const en = {
             main: "Doctor of Chiropractic",
             sub: "Palmer College of Chiropractic · Davenport, IA · 1988",
           },
-          { main: "National Board of Chiropractic Examiners, Part 1 · 1986", sub: "" },
-          { main: "National Board of Chiropractic Examiners, Part 2 · 1987", sub: "" },
+          {
+            main: "National Board of Chiropractic Examiners",
+            sub: "Parts I and II · 1986–1987",
+          },
         ],
       },
       licensure: {
         title: "Licensure",
         items: [
-          { main: "New Jersey License #MCO-3710", sub: "Active" },
-          { main: "Pennsylvania License · 1988", sub: "Inactive" },
-          { main: "Massachusetts License · 1989", sub: "Inactive" },
+          { main: "New Jersey chiropractic license", sub: "Active · #MCO-3710" },
+          { main: "Licensed and practicing since 1989", sub: "" },
         ],
       },
-      experience: {
-        title: "Experience",
+      leadership: {
+        title: "Practice leadership",
         items: [
           {
-            main: "Clinic Director — Garabo Chiropractic Health Center, PC",
-            sub: "Clark, NJ · 1991 – Present",
+            main: "Founder, Owner, and Clinic Director",
+            sub: "Clark Spine and Pain Relief · Clark, NJ · 1991 – Present",
           },
           {
-            main: "Associate Doctor — Delano Family Chiropractic Center",
-            sub: "Bloomfield, NJ · 1989 – 1991",
+            main: "Associate Doctor",
+            sub: "Delano Family Chiropractic Center · Bloomfield, NJ · 1989 – 1991",
           },
         ],
       },
-      affiliations: {
-        title: "Insurance & affiliations",
+      training: {
+        title: "Advanced clinical training",
         items: [
-          { main: "Trauma Qualified", sub: "" },
-          { main: "Medicare", sub: "" },
-          { main: "Horizon BCBS of New Jersey", sub: "Tier 1" },
-          { main: "Hackensack Meridian", sub: "Inner Circle" },
-          { main: "Aetna", sub: "" },
+          { main: "Trauma qualified", sub: "Care for collision and injury cases" },
+          { main: "Academy of Chiropractic trauma team", sub: "Member since 2018" },
         ],
       },
-      insuranceNote:
-        "The practice works with multiple insurance plans, including Aetna. Patients should contact their insurer or the office to confirm plan-specific benefits.",
+    },
+    focus: {
+      eyebrow: "Areas of focus",
+      heading: "Areas of advanced study",
+      intro:
+        "Subjects Dr. Garabo has spent additional time studying, and what each one means for your visit.",
+      items: [
+        {
+          title: "Spine imaging and MRI",
+          body: "Reading spinal MRI and X-ray studies and matching what the images show to what you are feeling.",
+        },
+        {
+          title: "Spinal biomechanics",
+          body: "How the spine moves and carries load, so care addresses the source of the pain rather than only the sore spot.",
+        },
+        {
+          title: "Trauma and collision injuries",
+          body: "Evaluating injuries from car accidents and falls, including symptoms that surface days after the event.",
+        },
+        {
+          title: "Orthopedic and neurological evaluation",
+          body: "Hands-on and neurological testing that helps separate nerve involvement from joint or muscle pain.",
+        },
+        {
+          title: "Rehabilitation and active care",
+          body: "Movement and exercise work that helps the progress made in the office hold between visits.",
+        },
+        {
+          title: "Documentation and collaborative care",
+          body: "Clear records and reports for your primary doctor, a specialist, or an attorney when your case calls for them.",
+        },
+      ],
+    },
+    approach: {
+      eyebrow: "How we work",
+      heading: "Approach to patient care",
+      intro:
+        "Three things you can expect at Clark Spine and Pain Relief, from the first visit onward.",
+      items: [
+        {
+          title: "Careful evaluation",
+          body: "Your visit starts with your history and an examination, with imaging when it is needed — before any treatment plan is set.",
+        },
+        {
+          title: "Clear treatment plans",
+          body: "You are told what the findings mean, what care is recommended, and what to expect as you go, in plain language.",
+        },
+        {
+          title: "Individualized care",
+          body: "Treatment is matched to your findings, your health history, and what your body is ready for — not a fixed routine.",
+        },
+      ],
+    },
+    insurance: {
+      heading: "Insurance and coverage",
+      body: "Coverage and participation vary by plan. The Patient Center lists the insurance plans and payment options this practice works with, and our office can help confirm your benefits before your first visit.",
+      linkLabel: "See insurance and payment options",
     },
   },
 

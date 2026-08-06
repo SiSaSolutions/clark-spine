@@ -151,18 +151,18 @@ describe("insurance providers", () => {
     expect(es.patientCenter.insurance.providers.map((p) => p.id)).toEqual(registryIds);
   });
 
-  it("adds Aetna to the About affiliations without removing existing entries", () => {
+  it("keeps carrier names off the About page so the registry stays the only source", () => {
+    // The About page used to repeat the carrier list as a hand-maintained
+    // credential group, which meant Aetna's qualified wording had to be kept
+    // in sync in two places. It now links to the Patient Center instead.
+    const carriers = ["Medicare", "Aetna", "Horizon", "Hackensack"];
     for (const dict of [en, es]) {
-      const mains = dict.about.credentials.affiliations.items.map((i) => i.main);
-      expect(mains).toContain("Aetna");
-      expect(mains).toContain("Medicare");
-      expect(mains).toContain("Hackensack Meridian");
-      expect(mains[0]).not.toBe("Aetna");
-      expect(dict.about.credentials.insuranceNote).toContain("Aetna");
+      const aboutText = JSON.stringify(dict.about);
+      for (const carrier of carriers) {
+        expect(aboutText).not.toContain(carrier);
+      }
+      expect(dict.about.insurance.linkLabel.length).toBeGreaterThan(0);
     }
-    expect(en.about.credentials.affiliations.items.map((i) => i.main)).toContain(
-      "Horizon BCBS of New Jersey",
-    );
   });
 });
 
