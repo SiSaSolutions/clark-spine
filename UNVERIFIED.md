@@ -83,12 +83,50 @@ Patient Center content; forms-submission email `Garabochiro@gmail.com`
 forms will be bilingual editable PDFs. The fax number used is the verified
 `(908) 497-9442` from `src/data/practice.ts`.
 
-## 7. Aetna participation wording — pending confirmation
+## 7. About page claims — practice-supplied, pending written sign-off
+
+The About page redesign publishes several claims supplied verbally by the
+practice. Confirm each in writing before launch:
+
+- **Ownership and founding.** Dr. Garabo **founded** Garabo Chiropractic Health
+  Center, PC / Clark Spine and Pain Relief in 1991 and **owns** it. This drives
+  the "Owner and Clinic Director" label under his name, the "founded … in 1991"
+  bio paragraph, the "Founder, Owner, and Clinic Director" credential entry, and
+  the `founder` link in the About page's Person structured data
+  (`providerPersonJsonLd` in `src/lib/seo/structured-data.ts`). If he acquired
+  an existing practice rather than starting one, all four must be reworded to
+  "has led the practice since 1991" and the `founder` link removed.
+- **Academy of Chiropractic trauma team, member since 2018.** Appears in the
+  "Advanced clinical training" credential card. The membership year is the only
+  unconfirmed part; "Trauma Qualified" itself is already verified (see header).
+- **"35+ years" phrasing.** Deliberately static, never computed from the current
+  date, so it cannot silently drift and never needs an annual edit. It matches
+  the wording already used on the home page hero and stats band.
+
+Content intentionally **removed** from the public page in this redesign:
+
+- The **inactive Pennsylvania (1988) and Massachusetts (1989) licenses** — low
+  patient value and visual clutter. Only the active NJ license #MCO-3710 is
+  shown. The facts remain accurate, just unpublished.
+- The **insurance carrier list**. About now shows a short "Insurance and
+  coverage" notice linking to the Patient Center rather than repeating carrier
+  names. `src/data/insurance.ts` plus the Patient Center are the single source
+  of truth, which also removes the second place Aetna's qualified wording had to
+  be maintained (see item 8).
+- The **long postgraduate course list** from the legacy
+  `clarkspine.com/jamesgarabochiropractor` page was deliberately **not**
+  reproduced. It is condensed into six patient-facing "areas of advanced study"
+  topics. No individual seminar names, dates, or providers are published.
+
+No board certification, specialty certification, or treatment-outcome guarantee
+is asserted anywhere on the page or in its structured data.
+
+## 8. Aetna participation wording — pending confirmation
 
 Aetna was added (user-provided requirement) alongside the existing verified
-providers on the Patient Center insurance section and the About "Insurance &
-affiliations" card — always with qualified wording ("works with multiple
-insurance plans, including Aetna") and never as the sole or featured insurer.
+providers on the Patient Center insurance section — always with qualified
+wording ("works with multiple insurance plans, including Aetna") and never as
+the sole or featured insurer. It no longer appears on the About page (item 7).
 Plan-level participation terminology (network tier, plan types) has not been
 confirmed by the practice; `src/data/insurance.ts` tracks Aetna as
 `verified: false` until the office confirms.

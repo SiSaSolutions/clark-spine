@@ -22,17 +22,17 @@ const props = {
       items: [{ main: "New Jersey License #MCO-3710", sub: "Active" }],
     },
     {
-      title: "Experience",
+      title: "Practice leadership",
       items: [
         {
-          main: "Clinic Director — Garabo Chiropractic Health Center, PC",
-          sub: "Clark, NJ · 1991 – Present",
+          main: "Founder, Owner, and Clinic Director",
+          sub: "Clark Spine and Pain Relief · Clark, NJ · 1991 – Present",
         },
       ],
     },
     {
-      title: "Insurance & affiliations",
-      items: [{ main: "Medicare", sub: "" }],
+      title: "Advanced clinical training",
+      items: [{ main: "Trauma qualified", sub: "Care for collision and injury cases" }],
     },
   ],
 };
@@ -81,6 +81,23 @@ describe("EducationCredentials", () => {
       screen.getByText("Palmer College of Chiropractic · Davenport, IA · 1988"),
     ).toBeInTheDocument();
     expect(screen.getByText("New Jersey License #MCO-3710")).toBeInTheDocument();
-    expect(screen.getByText("Medicare")).toBeInTheDocument();
+    expect(screen.getByText("Trauma qualified")).toBeInTheDocument();
+  });
+
+  it("renders the credential cards as a plain responsive grid, not a scroll strip", () => {
+    render(<EducationCredentials {...props} />);
+    const cardList = screen.getByRole("list", { name: props.heading });
+    // This section used to be a horizontal snap-scroll strip below lg, which
+    // forced mobile users to swipe sideways to read the credentials. jsdom
+    // computes no layout, so class strings are the only thing a unit test can
+    // hold here; the real guard is the visual-QA scrollWidth <= innerWidth
+    // assertion at 320px.
+    expect(cardList).not.toHaveAttribute("tabindex");
+    expect(cardList.className).not.toMatch(/overflow-x|snap-|scroll-p|-mx-/);
+    for (const card of within(cardList).getAllByRole("listitem")) {
+      // `min-w-0` is required on grid children; a non-zero min-width is what
+      // used to force each card wider than a narrow viewport.
+      expect(card.className).not.toMatch(/basis-\[|min-w-[1-9]|shrink-0/);
+    }
   });
 });
